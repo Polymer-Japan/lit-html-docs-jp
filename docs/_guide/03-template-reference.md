@@ -8,7 +8,11 @@ slug: template-reference
 * ToC
 {:toc}
 
+<!-- original:
 lit-html templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, HTML:
+-->
+
+
 
 ```js
 html`<h1>Hello World</h1>`
