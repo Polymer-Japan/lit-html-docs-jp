@@ -13,10 +13,10 @@ slug: getting-started
 ### npm
 
 <!-- original:
-lit-htm is distributed on npm, in the [lit-html package].
+lit-htm is distributed on npm, in the [lit-html package](https://www.npmjs.com/package/lit-html).
 -->
 
-lit-htmはnpmのlit-htmlパッケージで配布されます。
+lit-htmはnpmの[lit-html package](https://www.npmjs.com/package/lit-html)で配布されます。
 
 ```
 npm install lit-html
@@ -28,25 +28,25 @@ npm install lit-html
 You can also load lit-html directly from the unpkg.com CDN:
 -->
 
-また、unpkg.com CDNからlit-htmlを直接読み込むこともできます：
+また、unpkg.comのCDNからlit-htmlを直接読み込むこともできます：
 
 ```js
 import {html, render} from 'https://unpkg.com/lit-html?module';
 ```
 
-### Online editors
+### オンラインエディタ(Online editors)
 
 <!-- original:
 You can try out lit-html without installing anything using an online editor. Below are links to a simple lit-html starter project in some popular online editors:
 -->
 
-オンラインエディタを使用して何もインストールせずにlit-htmlを試すことができます。以下は、人気のあるオンラインエディタでの単純なlit-htmlスタータープロジェクトへのリンクです。
+何もインストールせずにオンラインエディタでlit-htmlを試すことができます。以下のリンクはよく使われているオンラインエディタでのシンプルなlit-html starterプロジェクトです。
 
 *   [CodeSandbox](https://codesandbox.io/s/wq2wm73o28)
 *   [JSBin](https://jsbin.com/nahocaq/1/edit?html,output)
 *   [StackBlitz](https://stackblitz.com/edit/js-pku9ae?file=index.js)
 
-## Importing
+## インポート(Importing)
 
 <!-- origin:
 lit-html is written in and distributed as standard JavaScript modules.
@@ -55,9 +55,10 @@ Modules are increasingly supported in JavaScript environments and are shipping i
 To use lit-html, import it via a path:
 -->
 
-lit-htmlは、標準のJavaScriptモジュールとして作成され、配布されます。モジュールはJavaScript環境でますますサポートされ、Chrome、Opera、Safariで出荷されており、まもなくFirefoxとEdgeで使用されます。
+lit-htmlは、標準的なJavaScriptモジュールとして作成され、配布されています。
+モジュール機構(Modules)はますます普及していっており、既にChrome、Opera、Safariで使用でき、まもなくFirefoxとEdgeでも使用できるようになります。
 
-lit-htmlを使用するには、パス経由でインポートします。
+lit-htmlを使用するには、importでパスを指定します。
 
 ```js
 <script type="module">
@@ -74,11 +75,11 @@ The path to use depends on where you've installed lit-html to. Browsers only sup
 If you use a tool that converts package names into paths, then you can import by package name:
 -->
 
-JavaScript importステートメントはモジュールスクリプト（<script type="module">）内でのみ動作し、インラインスクリプト（上に示したような）または外部スクリプトである可能性があります。
+JavaScriptの`import`は`<script type="module">`内でのみ動作し、インライン（上に示したような）か外部スクリプトで読み込む必要があります。
 
-使用するパスは、lit-htmlをどこにインストールしたかによって異なります。ブラウザは、パッケージ名ではなく、パス別に他のモジュールをインポートすることしかサポートしていないため、他のツールを使用しなければ、パスを使用する必要があります。
+ブラウザ上ではインポートの指定にパッケージ名は使えず、他のモジュールでも直接パスを指定する必要があり、バンドラー等の別ツールを使用しない限り、パスを直接指定する必要があります。
 
-パッケージ名をパスに変換するツールを使用する場合は、パッケージ名でインポートできます。
+もしパッケージ名をパスに変換するツールを使っている場合は、パッケージ名を指定してインポートできます。
 
 ```js
 import {html, render} from 'lit-html';
@@ -88,7 +89,7 @@ import {html, render} from 'lit-html';
 **Why JavaScript modules?** For more information on why lit-html is distributed using JavaScript modules, see [JavaScript Modules](concepts#javascript-modules).
 -->
 
-**なぜJavaScriptモジュールですか？** lit-HTMLはJavaScriptモジュールを使用して配布される理由の詳細については、[JavaScript Modules](concepts#javascript-modules)を見てください。
+**なぜJavaScriptモジュールなのか？** lit-HTMLがJavaScriptモジュールで配布される詳細については、[JavaScript Modules](concepts#javascript-modules)を参照してください。
 
 ## Rendering a Template
 
@@ -101,8 +102,8 @@ lit-html has two main APIs:
 
 lit-htmlには2つの主要なAPIがあります：
 
-htmlテンプレートを書き込むためのテンプレートタグ
-render()関数は、DOMコンテナにテンプレートをレンダリングするために使用されます。
+* `html` テンプレートを書き込むためのテンプレートタグ(template tag)
+* `render()` DOMコンテナにテンプレートを描画する関数(function)。
 
 ```ts
 // lit-htmlをインポート
@@ -119,6 +120,6 @@ render(myTemplate('World'), document.body);
 To learn more about templates, see [Writing Templates](./writing-templates).
 -->
 
-テンプレートの詳細については、[テンプレートの作成](./writing-templates)を参照。
+テンプレートの詳細については、[テンプレートの作成](./writing-templates)を参照してください。
 
 [lit-html package]: https://www.npmjs.com/package/lit-html
