@@ -1,7 +1,7 @@
-name: lit-html
+name: lit-html lit-html (日本語意訳 作業中)
 description: An efficient, expressive, extensible HTML templating library for JavaScript
 markdown: kramdown
-kramdown: 
+kramdown:
   parse_block_html: true
 google_analytics: UA-39334307-23
 collections:

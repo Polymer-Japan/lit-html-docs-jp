@@ -75,7 +75,7 @@ The first time a particular lit-html template is rendered anywhere in the applic
 If we start with a template like this:
 -->
 
-特定のlit-htmlテンプレートがアプリケーション内のどこにでもレンダリングされた最初の段階で、lit-htmlはHTMLテンプレートを作成するために一度の設定作業を行います。すべてのリテラル部分を特殊なプレースホルダで結合し"{{}}"、次にa <template>を作成innerHTMLして結果に設定します。
+特定のlit-htmlテンプレートがアプリケーション内のどこにでもレンダリングされた最初の段階で、lit-htmlはHTMLテンプレートを作成するために一度の設定作業を行います。すべてのリテラル部分を特殊なプレースホルダで結合し"{% raw %}{{}}{% endraw %}"、次にa <template>を作成innerHTMLして結果に設定します。
 
 次のようなテンプレートで始める場合：
 
