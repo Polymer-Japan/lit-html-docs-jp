@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Introduction
+title: はじめる
 url: /guide/
 ---
 
@@ -8,7 +8,7 @@ url: /guide/
 * ToC
 {:toc}
 
-## lit-htmlとは(What is lit-html?)
+## lit-htmlとは
 
 <!-- original:
 lit-html is a simple, modern, safe, small and fast HTML templating library for JavaScript.
@@ -20,13 +20,13 @@ lit-htmlは、JavaScript用のシンプルでモダン、安全で小型で高�
 
 lit-htmlではJavaScriptの式を埋め込んだテンプレートリテラル([template literals])によってHTML in JavaScriptとして使うことができます。内部的にlit-htmlはJavaScriptテンプレートからHTMLの`<template>`要素を作成することにより、どこにJavaScript式の評価結果を挿入・更新するか正確に知ることができています。
 
-## lit-htmlテンプレート(lit-html Templates)
+## テンプレート
 
 <!-- original:
 lit-html templates are tagged template literals - they look like JavaScript strings but are enclosed in backticks (`` ` ``) instead of quotes - and tagged with lit-html's `html` tag:
 -->
 
-lit-htmlテンプレートは、タグ付きのテンプレートリテラル(tagged template literals)です。JavaScript文字列のように見えますが、引用符(")ではなくバッククォート(`` ` ``)で囲まれ、lit-htmlの`html`タグが使用されます:
+テンプレートは、タグ付きのテンプレートリテラル(tagged template literals)です。JavaScript文字列のように見えますが、引用符(")ではなくバッククォート(`` ` ``)で囲まれ、lit-htmlの`html`タグが使用されます:
 
 ```js
 html`<h1>Hello ${name}</h1>`
@@ -50,13 +50,13 @@ lit-html is _lazily_ rendered. Calling this function will evaluate the template 
 
 lit-htmlは _遅延(lazily)_ 描画されます。この関数が呼び出されると、literal-html `html`タグを使用してテンプレートリテラル(template literal)が評価され、`TemplateResult` (文字列やデータを描画する部分記録)が返されます。`TemplateResults`は生成するのが非常に軽く、実際にDOMに _描画_ されるまで実際には何も起こりません。
 
-## 描画について(Rendering)
+## 描画について
 
 <!-- original:
 To render a `TemplateResult`, call the `render()` function with a result and DOM container to render to:
 -->
 
-`TemplateResult` を実際に描画するには、使用する値と描画先のDOMコンテナを指定して`render()`関数を呼び出します。
+`TemplateResult` を実際に描画(レンダリング)するには、使用する値と描画先のDOMコンテナを指定して`render()`関数を呼び出します。
 
 
 

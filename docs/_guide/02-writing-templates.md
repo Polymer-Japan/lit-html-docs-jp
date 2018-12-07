@@ -1,6 +1,6 @@
 ---
 layout: post
-title: テンプレートの作成(Writing templates)
+title: テンプレートをつくる
 slug: writing-templates
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: はじめる
+title: 使ってみる
 slug: getting-started
 ---
 
@@ -120,6 +120,6 @@ render(myTemplate('World'), document.body);
 To learn more about templates, see [Writing Templates](./writing-templates).
 -->
 
-テンプレートの詳細については、[テンプレートの作成](./writing-templates)を参照してください。
+テンプレートの詳細については、[テンプレートをつくる](./writing-templates)を参照してください。
 
 [lit-html package]: https://www.npmjs.com/package/lit-html
