@@ -14,7 +14,7 @@ lit-html is a templating library that provides fast, efficient rendering and upd
 This section introduces the main features and concepts in lit-html.
 -->
 
-lit-htmlは、高速で効率的にHTMLを描画、更新するテンプレートライブラリです。様々なデータを扱うWeb UIをすぐに作ることができるでしょう。
+lit-htmlは、高速で効率的にHTMLを描画、更新するテンプレートライブラリです。様々なデータを扱うWeb UIをすぐに作ることができます。
 
 この章では、lit-htmlの主な機能と概念を紹介します。
 
@@ -43,19 +43,20 @@ The `html` tag function returns a `TemplateResult`—a lightweight object that r
 The `render` function actual creates DOM nodes and appends them to a DOM tree. In this case, the rendered DOM replaces the contents of the document's `body` tag.
 -->
 
-lit-htmlテンプレートは、タグ付きテンプレートリテラルです。テンプレート自体は通常のJavaScript文字列のように見えますが、バッククォートで囲まれています（) instead of quotes. The browser passes the string to lit-html's html`タグ関数。
+lit-htmlテンプレートは、[_タグ付きテンプレートリテラル_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)です。テンプレート自体は通常のJavaScript文字列のように見えますが、バッククォートで囲われています(`` ` ``)。ブラウザはlit-htmlの`html`タグ関数を文字列として認識します。
 
-htmlタグ関数は返すTemplateResultレンダリングされるテンプレートを表す-a軽量オブジェクト。
+`html`タグ関数は`TemplateResult` (テンプレートが描画されるのに使用される軽量オブジェクト)を返します。
 
-render実際の関数は、DOMノードを作成し、それらをDOMツリーに追加します。この場合、レンダリングされたDOMはドキュメントのbodyタグの内容を置き換えます。
 
-## Render dynamic text content
+実際に`render`関数は、DOMを作成し、それらをDOMツリーに追加します。上記の例では描画されたDOMがページのbodyタグの内容を置き換えます。
+
+## 動的テキストを描画する
 
 <!-- original:
 You can't get very far with a static template. lit-html lets you create bindings using <code>${<em>expression</em>}</code> placeholders in the template literal:
 -->
 
-基本静的なテンプレートではいろいろできません。lit-htmlでは、テンプレートリテラルにプレースホルダを使ってバインディングを作成できます。${expression}
+基本静的なテンプレートではなにもできません。lit-htmlでは、テンプレートリテラルに<code>${<em>expression</em>}</code>書式のプレースフォルダを使ってデータの表示(バインディング)ができます。
 
 ```js
 const aTemplate = html`<h1>${title}</h1>`;
@@ -65,18 +66,18 @@ const aTemplate = html`<h1>${title}</h1>`;
 To make your template dynamic, you can create a _template function_. Call the template function any time your data changes.
 -->
 
-テンプレートを動的にするには、テンプレート関数を作成します。データが変わるたびにテンプレート関数を呼び出します。
+動的なテンプレート作るのにテンプレート関数を作ることができます。値が変わるたびにテンプレート関数を呼び出されます。
 
 ```js
 import {html, render} from 'lit-html'
-// Define a template function
+// テンプレート関数を定義
 const  myTemplate = (name) => html`<div>Hello ${name}</div>`;
 
-// Render the template with some data
+// 値によってテンプレートが描画される
 render(myTemplate('world'), document.body);
 ...
-// ... Later on ... 
-// Render the template with different data
+// ... あとで ... 
+// 違う値によってテンプレートを描画
 render(myTemplate('lit-html'), document.body);
 ```
 
@@ -88,26 +89,26 @@ The template function returns a `TemplateResult` that's a function of the input 
 When you call `render`, **lit-html only updates the parts of the template that have changed since the last render.** This makes lit-html updates very fast.
 -->
 
-テンプレート関数を呼び出すと、lit-htmlは現在の式の値を取得します。テンプレート関数はDOMノードを作成しないので、高速で安価です。
+テンプレート関数が呼び出されると、lit-htmlはその時点でのJavaScript式の値を取得します。テンプレート関数はDOMを作らないので、高速で軽く動作します。
 
-テンプレート関数は、TemplateResultそれを入力データの関数として返します。これはlit-htmlを使用する背後にある主な原則の1つです。つまり、UI を状態の関数として作成します。
+テンプレート関数は、入力値への関数として`TemplateResult`を返します。これはlit-htmlの主な原則の1つです: ** 状態の _関数_ としてUIをつくる**
 
-あなたが呼び出すとrender、lit-htmlは最後のレンダリング以降に変更されたテンプレートの部分だけを更新します。これにより、lit-htmlの更新が非常に高速になります。
+`render`を呼び出すと、**lit-htmlは最後に実行された描画において、変更されたテンプレートの一部分のみを更新します**。これにより、lit-htmlの更新は非常に高速になっています。
 
-## Using expressions
+## JavaScritp式を使う
 
 <!-- original:
 The previous example shows interpolating a simple text value, but the binding can include any kind of JavaScript expression:
 -->
 
-前の例では単純なテキスト値の補間を示していますが、バインディングには任意の種類のJavaScript式を含めることができます。
+前述の例では単純にテキストを挿入していますが、JavaScript式も使えます:
 
 ```js
 const  myTemplate = (subtotal, tax) => html`<div>Total: ${subtotal + tax}</div>`;
 const myTemplate2 = (name) => html`<div>${formatName(name.given, name.family, name.title)}</div>`;
 ```
 
-## Bind to attributes 
+## 属性へのバインド
 
 <!-- original:
 In addition to using expressions in the text content of a node, you can bind them to a node's attribute and property values, too.
@@ -115,9 +116,9 @@ In addition to using expressions in the text content of a node, you can bind the
 By default, an expression in the value of an attribute creates an attribute binding:
 -->
 
-ノードのテキストコンテンツに式を使用することに加えて、それらをノードの属性とプロパティ値にバインドすることもできます。
+テキストにJavaScript式を使用することに加え、nodeの属性(attribute)やプロパティ(property)にも値をバインドすることができます。
 
-デフォルトでは、属性値の式は属性バインディングを作成します。
+デフォルトでは、属性への値の変更によって属性も変更されます:
 
 ```js
 // set the class attribute
@@ -130,21 +131,21 @@ Since attribute values are always strings, the expression should return a value 
 Use the `?` prefix for a boolean attribute binding. The attribute is added if the expression evaluates to a truthy value, removed if it evaluates to a falsy value:
 -->
 
-属性値は常に文字列なので、式は文字列に変換できる値を返す必要があります。
+属性値は常に文字列となるので、JavaScript式は文字列に変換する必要があります。
 
-?ブール値属性バインディングの接頭辞を使用します。式が真理値に評価される場合は属性が追加され、真偽値に評価される場合は削除されます。
+'?'を接頭辞(prefix)に使うことによって属性に真偽値(boolean)を設定します。真偽値が真と評価された(truthy)時に属性が追加され、偽(falsy)の場合に取り除かれます:
 
 ```js
 const myTemplate2(data) = html`<div ?disabled="${!data.active}">Stylish text.</div>`;
 ```
 
-## Bind to properties
+## プロパティへのバインド
 
 <!-- original:
 You can also bind to a node's JavaScript properties using the `.` prefix and the property name:
 -->
 
-.接頭辞とプロパティ名を使用して、ノードのJavaScriptプロパティにバインドすることもできます。
+nodeのJavaScriptプロパティにバインドするには`.`を接頭辞を使います:
 
 ```js
 const myTemplate3(data) = html`<my-list .listItems=${data.items}></my-list>`
@@ -156,17 +157,17 @@ You can use property bindings to pass complex data down the tree to subcomponent
 Note that the property name in this example—`listItems`—is mixed case. Although HTML attributes are case-insensitive, lit-html preserves the case when it processes the template.
 -->
 
-プロパティー・バインディングを使用して、複雑なデータをツリーの下にサブコンポーネントに渡すことができます。
+プロパティ・バインディングによって、複雑なデータをサブコンポーネントに渡すことができます。
 
-この例のプロパティ名はlistItems大文字と小文字が混在していることに注意してください。HTML属性は大文字と小文字を区別しませんが、lit-htmlはテンプレートを処理する際に大文字と小文字を保持します。
+この例のプロパティ名(listItems)は大文字と小文字が混在していることに注意してください。HTML属性は大文字と小文字を区別しませんが、lit-htmlはテンプレートを処理する際に大文字と小文字を区別します。
 
-## Add event handlers
+## イベントハンドラの追加
 
 <!-- original:
 Templates can also include declarative event handlers. An event handler looks like an attribute binding, but with the prefix `@` followed by an event name:
 -->
 
-テンプレートには、宣言型イベントハンドラも含めることができます。イベントハンドラは属性バインディングのように見えますが、接頭辞の@後にイベント名が続きます：
+テンプレートには宣言型イベントハンドラも含めることができます。イベントハンドラは属性へのバインドのように見えますが、接頭辞`@`後にイベント名が続きます:
 
 ```js
 const myTemplate = () => html`<button @click=${clickHandler}>Click Me!</button>`
@@ -178,29 +179,29 @@ This is equivalent to calling `addEventListener('click', clickHandler)` on the b
 The event handler can be either a plain function, or an object with a `handleEvent` method:
 -->
 
-これはaddEventListener('click', clickHandler)、ボタン要素を呼び出すのと同じです。
+これはボタン要素への`addEventListener('click', clickHandler)`と同じです。
 
-イベントハンドラは、プレーン関数か、handleEventメソッドを持つオブジェクトのいずれかになります。
+イベントハンドラは、普通の関数か、`handleEvent`メソッドを持つオブジェクトのいずれかになります。
 
 ```js
 const clickHandler = {
-  // handleEvent method is required.
+  // handleEvent メソッドが必要
   handleEvent(e) { 
     console.log('clicked!');
   }
-  // event listener object can also define zero or more of the event 
-  // listener options: capture, passive, and once.
+  // 0か一つ以上のイベントリスナオプションを
+  // 持つことができます: capture, passive, onceなど
   capture: true;
 }
 ```
 
-### Nest and compose templates
+### テンプレートの入れ子
 
 <!-- original:
 You can also compose templates to create more complex templates. When a binding in the text content of a template returns a `TemplateResult`, the `TemplateResult` is interpolated in place.
 -->
 
-さらに複雑なテンプレートを作成するためにテンプレートを作成することもできます。テンプレートのテキストコンテンツのバインディングがaを返すとき、TemplateResultはそのTemplateResult場所で補間されます。
+さらに複雑なテンプレートを作成するためにテンプレートを入れ子にできます。テキストを表示する `TemplateResult` であれば、`TemplateResult` はそこに挿入されます。
 
 ```js
 const myHeader = html`<h1>Header</h1>`;
@@ -214,7 +215,7 @@ const myPage = html`
 You can use any expression that returns a `TemplateResult`, like another template function: 
 -->
 
-別のテンプレート関数のように、TemplateResultを返す式を使うことができます：
+`TemplateResult`を返すテンプレート関数であれば、一緒に使えます:
 
 ```js
 // some complex view
@@ -230,23 +231,24 @@ const myPage(data) = html`
  Composing templates opens a number of possibilities, including conditional and repeating templates.
 -->
 
-テンプレートを作成すると、条件付きテンプレートと繰り返しテンプレートを含む多くの可能性が開かれます。
+テンプレートをつくることにより、条件付きと繰り返しのテンプレートを含めて大くの可能性が開かれます。
 
-### Conditional templates
+
+### 条件付きテンプレート
 
 <!-- original:
 lit-html has no built-in control-flow constructs. Instead you use normal JavaScript expressions and statements.
 -->
 
-lit-htmlには組み込みの制御フロー構造はありません。代わりに、通常のJavaScript式とステートメントを使用します。
+lit-htmlには組み込みの制御方法はありません。代わりに、通常のJavaScript式とステートメントを使用します。
 
-#### Conditionals with ternary operators
+#### 三項演算子による条件式
 
 <!-- original:
 Ternary expressions are a great way to add inline conditionals:
 -->
 
-三項式は、インライン条件を追加するのに最適です。
+三項演算子は、インラインで条件を追加するのに最適です。
 
 ```js
 html`
@@ -258,13 +260,13 @@ html`
 ```
 
 
-#### Conditionals with if statements
+#### if文による条件式
 
 <!-- original:
 You can express conditional logic with if statements outside of a template to compute values to use inside of the template:
 -->
 
-if文を使用して条件付きロジックをテンプレート外に表現し、テンプレート内で使用する値を計算することができます。
+if文の条件をテンプレートの外部で定義し、テンプレート内で使うことができます。
 
 ```js
 getUserMessage() {
@@ -280,7 +282,7 @@ html`
 `
 ```
 
-## Repeating templates
+## 繰り返し処理のテンプレート
 
 <!-- original:
 You can use standard JavaScript constructs to create repeating templates. 
@@ -288,17 +290,17 @@ You can use standard JavaScript constructs to create repeating templates.
 lit-html also provides some special functions, called _directives_, for use in templates. You can use the  `repeat` directive to build certain kinds of dynamic lists more efficiently.
 -->
 
-標準のJavaScript構造を使用して繰り返しテンプレートを作成することができます。
+標準のJavaScriptを使用して繰り返し処理のテンプレートをつくることができます。
 
-lit-htmlには、テンプレートで使用するためのディレクティブと呼ばれる特別な関数もいくつか用意されています。このrepeatディレクティブを使用して、特定の種類の動的リストをより効率的に構築することができます 。
+また、lit-htmlには_ディレクティブ(directives)_と呼ばれるテンプレートで使用するための特別な関数がいくつか用意されています。例えば`repeat`ディレクティブを使用して、特定の動的リストをより効率的に描画することができます。
 
-###  Repeating templates with Array.map
+###  Array.mapによる繰り返し
 
 <!-- original:
 To render lists, you can use `Array.map` to transform a list of data into a list of templates:
 -->
 
-リストをレンダリングするために、Array.mapデータのリストをテンプレートのリストに変換するのに使うことができます：
+リストを描画するのに、`Array.map`によってテンプレートのリストに変換ができます：
 
 ```js
 html`
@@ -312,15 +314,15 @@ html`
 Note that this expression returns an array of `TemplateResult` objects. lit-html will render an array or iterable of subtemplates and other values.
 -->
 
-この式はTemplateResultオブジェクトの配列を返すことに注意してください。lit-htmlは、サブテンプレートやその他の値の配列またはiterableをレンダリングします。
+この式は`TemplateResult`オブジェクトの配列を返していることに注意してください。lit-htmlは、配列やiterableなサブテンプレートやその他の値を描画します。
 
-### Repeating templates with looping statements
+### ループ文による繰り返し
 
 <!-- original:
 You can also build an array of templates and pass it in to a template binding.
 -->
 
-また、テンプレートの配列を作成し、それをテンプレートバインディングに渡すこともできます。
+また、テンプレートの配列を作成し、それをテンプレートに渡すこともできます。
 
 ```js
 const itemTemplates = [];
@@ -335,7 +337,7 @@ html`
 `;
 ```
 
-### Repeating templates with the repeat directive
+### repeatディレクティブによる繰り返し
 
 <!-- original:
 In most cases, using loops or `Array.map` is an efficient way to build repeating templates. However, if you want to reorder a large list, or mutate it by adding and removing individual entries, this approach can involve recreating a large number of DOM nodes. 
@@ -345,11 +347,11 @@ The `repeat` directive can help here. Directives are special functions that prov
 The repeat directive performs efficient updates of lists based on user-supplied keys:
 -->
 
-ほとんどの場合、ループを使用するかArray.map、繰り返しテンプレートを作成する効率的な方法です。ただし、大きなリストを並べ替えるか、個々のエントリを追加したり削除したりして変更する場合は、多数のDOMノードを再作成する必要があります。
+ほとんどの場合、Array.mapが繰り返し処理を行う効率的な方法です。ただし、大きなリストを並べ替えたり、個々のエントリを追加・削除する場合は、多数のDOMノードを効率的に再作成する必要があります。
 
-このrepeat指令はここで助けになることができます。ディレクティブは、レンダリングを特別に制御する特別な関数です。lit-htmlには、のような組込みディレクティブが付属していrepeatます。
+こういった場合に `repeat` _ディレクティブ_ が使えます。ディレクティブ(Directive)はレンダリングを特別に制御する拡張可能な関数です。lit-htmlには、`repeat`のような組み込みのディレクティブが付属してます。
 
-repeatディレクティブは、ユーザが提供するキーに基づいてリストを効率的に更新します。
+`repeat`ディレクティブは、開発者がリストにおいて指定するユニークキーに基づき効率的に描画更新します。
 
 `repeat(items, keyFunction, itemTemplate)`
 
@@ -363,13 +365,13 @@ Where:
 For example:
 -->
 
-場所：
+引数:
 
-items 配列またはiterableです。
-keyFunction 単一の項目を引数としてとり、その項目の保証された固有のキーを返す関数です。
-itemTemplate アイテムとその現在のインデックスを引数とするテンプレート関数であり、TemplateResultを返します。
+* `items` 配列もしくはiterable
+* `keyFunction` itemsより1つずつ取り出される要素を引数としてとり、その要素のユニークキーを返す関数
+* `itemTemplate` 各要素と現在のインデックスを引数としてとるテンプレート関数であり、`TemplateResult`を返す
 
-例えば：
+例えば:
 
 ```js
 const employeeList = (employees) => html` 
@@ -390,15 +392,16 @@ To compare this to lit-html's default handling for lists, consider reversing a l
 Which repeat is more efficient depends on your use case: if updating the DOM nodes is more expensive than moving them, use the repeat directive. Otherwise, use `Array.map` or looping statements.
 -->
 
-employees配列を再ソートするとrepeat、既存のDOMノードの順序が変更されます。
+`employees`配列を再度並び換えする場合、`repeat`ディレクティブは既存のDOMノードを並び替えます。
 
-これをlit-htmlのデフォルトのリスト処理と比較するには、大きな名前のリストを逆にすることを検討してください。
+これは普通に並び替えをする場合と何が違うのかというと、大きなリストを逆順に並び替えにすることを想像してください。
 
-を使用して作成されたリストの場合Array.map、lit-htmlはリスト項目のDOMノードを維持しますが、値を再割り当てします。
-を使用して作成されたリストのrepeat場合、repeatディレクティブは既存の DOMノードを並べ替えます。したがって、最初のリスト項目を表すノードが最後の位置に移動します。
-どれがより効率的なのかは、ユースケースによって異なります。DOMノードを更新する方が移動させるよりもコストがかかる場合は、repeatディレクティブを使用してください。それ以外の場合は、Array.mapステートメントを使用するか、ループします。
+* `Array.map`を使った場合、lit-htmlはDOMノードを維持しますが、全てに値を再度割り当てしてしまいます。
+* `repeat`ディレクティブの場合、既存のDOMノードを並べ替えるので、リストの最初のノードが最後の位置に移動します。
 
-## Caching template results: the cache directive 
+どちらがより効率的なのかは、ユースケースによって異なります。DOMノードを更新する方が移動させるよりもコストがかかる場合は、`repeat`ディレクティブを使用してください。それ以外の場合は、Array.mapを使用するか、ループを使用します。
+
+## テンプレートのキャッシュ: cacheディレクティブ
 
 <!-- original:
 In most cases, JavaScript conditionals are all you need for conditional templates. However, if you're switching between large, complicated templates, you might want to save the cost of recreating DOM on each switch. 
@@ -406,9 +409,9 @@ In most cases, JavaScript conditionals are all you need for conditional template
 In this case, you can use the `cache` _directive_. Directives are special functions that provide extra control over rendering. The cache directive caches DOM for templates that aren't being rendered currently. 
 -->
 
-ほとんどの場合、条件付きテンプレートにはJavaScript条件がすべて必要です。しかし、大規模で複雑なテンプレートを切り替える場合は、各スイッチにDOMを再作成するコストを節約したい場合があります。
+ほとんどの場合、条件付きテンプレートにおいてJavaScriptの条件式で済みます。ただし、大規模で複雑なテンプレートを置き換える場合にDOMを再作成するコストを節約したい場合があります。
 
-この場合、cache ディレクティブを使用できます。ディレクティブは、レンダリングを特別に制御する特別な関数です。cacheディレクティブは、現在レンダリングされていないテンプレートのDOMをキャッシュします。
+こういった場合に `cache`_ディレクティブ_ が使えます。ディレクティブ(Directive)はレンダリングを特別に制御する拡張可能な関数です。lit-htmlには、cacheディレクティブは、現在描画していないテンプレートのDOMを保持(キャッシュ)します。
 
 ```js
 const detailView = (data) => html`<div>...</div>`; 
@@ -426,6 +429,6 @@ When lit-html re-renders a template, it only updates the modified portions: it d
 The `cache` directive caches the generated DOM for a given binding and input template. In the example above, it would cache the DOM for both the  `summaryView` and `detailView` templates. When you switch from one view to another, lit-html just needs to swap in the cached version of the new view, and and update it with the latest data.
 -->
 
-lit-htmlがテンプレートを再レンダリングすると、変更された部分のみが更新されます。つまり、必要以上にDOMを作成したり削除したりすることはありません。しかし、あるテンプレートから別のテンプレートに切り替えるとき、lit-htmlは古いDOMを削除して新しいDOMツリーをレンダリングする必要があります。
+lit-htmlがテンプレートを再度描画する場合、変更された部分のみが更新されるので、必要以上にDOMを作成したり削除されることはありません。ただし、あるテンプレートから別のテンプレートに切り替えるときは、lit-htmlは古いDOMを削除して新しいDOMツリーを描画します。
 
-cacheディレクティブは、与えられた結合および入力テンプレート用に生成されたDOMをキャッシュします。上記の例ではsummaryView、detailViewテンプレートとテンプレートの両方にDOMがキャッシュされます 。あるビューから別のビューに切り替えると、lit-htmlは新しいビューのキャッシュされたバージョンを入れ替え、最新のデータで更新するだけです。
+`cache`ディレクティブは、バインディングや入力用に生成されたDOMをキャッシュします。上記の例ではsummaryView、detailViewテンプレートの両方がDOMがキャッシュされます 。あるビューから別のビューに切り替えると、lit-htmlはキャッシュされた新しいビューで入れ替え、最新のデータで更新します。
