@@ -12,7 +12,7 @@ slug: template-reference
 lit-html templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, HTML:
 -->
 
-lit-htmlテンプレートは、`html`タグでタグ付けされたJavaScriptテンプレートリテラルを使用して作成されます。リテラルの内容は、ほとんどがプレーンであり、ディレクティブか、HTMLです。
+lit-htmlテンプレートは、`html`タグでタグ付けされたJavaScriptテンプレートリテラルによって生成されます。リテラルの内容は、ほとんどがプレーンであり、ディレクティブか、HTMLです。
 
 
 ```js
@@ -23,7 +23,7 @@ html`<h1>Hello World</h1>`
 **Bindings** or expressions are denoted with the standard JavaScript syntax for template literals:
 -->
 
-**バインディング**や式は、JavaScript標準のテンプレートリテラル構文を使用します。
+**バインディング**や式は、JavaScript標準のテンプレートリテラル構文を使います。
 
 
 ```js
@@ -225,7 +225,7 @@ Text content bindings accept a large range of value types:
 Primitives values are converted to strings when interpolated into text content or attribute values. They are checked for equality to the previous value so that the DOM is not updated if the value hasn't changed.
 -->
 
-プリミティブの値は、テキストコンテンツまたは属性値に使用されたときに文字列に変換されます。以前の値と等しいかどうかがチェックされ、値が変更されていない場合はDOMは更新されません。
+プリミティブの値は、テキストコンテンツまたは属性値に使われた時に文字列に変換されます。以前の値と等しいかどうかがチェックされ、値が変更されていない場合はDOMは更新されません。
 
 #### TemplateResult
 
@@ -266,7 +266,7 @@ const page = html`
 Arrays and Iterables of supported types are supported as well. They can be mixed values of different supported types.
 -->
 
-配列とIterableもうまくサポートされています。異なる型でも混在させることができます。
+配列とイテラブル(Iterable)もうまくサポートされています。異なる型でも混在させることができます。
 
 ```javascript
 const items = [1, 2, 3];
@@ -288,7 +288,7 @@ const list = () => html`items = ${Object.entries(items)}`;
 lit-html has no built-in control-flow constructs. Instead you use normal JavaScript expressions and statements:
 -->
 
-lit-htmlには組み込みの制御方法はありません。代わりに、通常のJavaScript式とステートメントを使用します。
+lit-htmlには組み込みの制御方法はありません。代わりに、通常のJavaScript式とJavaScript文を使います。
 
 ### 三項演算子による条件
 
@@ -307,7 +307,7 @@ html`
 `;
 ```
 
-### If文を使用した条件
+### If文を使った条件
 
 <!-- original:
 You can express conditional logic with if statements outside of a template to compute values to use inside of the template:
@@ -394,7 +394,7 @@ moving DOM when required, and is generally the most efficient way to use
 Example:
 -->
 
-iterableから生成された一連の値（通常は `TemplateResults`）を繰り返し、iterableが変更されたときにそれらの項目を効率的に更新します。
+イテラブル(iterable)から生成された一連の値（通常は `TemplateResults`）を繰り返して表示し、変更されたときにそれらの項目を効率的に更新します。
 `keyFn`があれば、必要に応じてDOMを移動させることによってキーとDOMの関連付けが維持されるので、DOMの挿入を最小限に抑えるためには` repeat`を使うのが最も効率的です。
 
 例:
@@ -505,7 +505,7 @@ Example:
 
 値は優先度順に表示され、最初の引数は最高の優先度を持ち、最後の引数は最低の優先度を持ちます。値がPromiseの場合、優先度の低い値は解決されるまでレンダリングされます。
 
-値の優先順位は、非同期データのプレースホルダコンテンツを作成するために使用できます。たとえば、保留中のコンテンツを含むPromiseを最初の優先度の高い引数にすることができ、非プロンプトのローディングインジケータテンプレートを2番目の優先度の低い引数として使用できます。ローディングインジケータがすぐにレンダリングされ、プロミスが解決するとプライマリコンテンツがレンダリングされます。
+値の優先順位は、非同期データのプレースホルダコンテンツを作成するために使えます。たとえば、保留中のコンテンツを含むPromiseを最初の優先度の高い引数にすることができ、非プロンプトのローディングインジケータテンプレートを2番目の優先度の低い引数として使えます。ローディングインジケータがすぐにレンダリングされ、プロミスが解決するとプライマリコンテンツがレンダリングされます。
 
 例:
 
@@ -542,11 +542,11 @@ JavaScriptの非同期イテレータは、データへの非同期順次アク�
 
 lit-htmlは、非同期イテレータを使用するための2つのディレクティブを提供します。
 
-  * `asyncAppend` [非同期のiterable](https://github.com/tc39/proposal-async-iteration)の値をレンダリングし、
+  * `asyncAppend` [非同期のイテラブル](https://github.com/tc39/proposal-async-iteration)の値をレンダリングし、
   
 新しい値を前の値の後に追加します。
 
-  * `asyncReplace` [非同期のiterable]((https://github.com/tc39/proposal-async-iteration)の値をレンダリングし、
+  * `asyncReplace` [非同期のイテラブル]((https://github.com/tc39/proposal-async-iteration)の値をレンダリングし、
 
 前の値を新しい値に置き換えます。
 

@@ -32,7 +32,7 @@ The literal uses backticks instead of quotes, and can span multiple lines. The p
 A _tagged_ template literal is prefixed with a special template tag function:
 -->
 
-リテラルは、引用符の代わりにバッククォートを使用し、複数の行にまたがることができます。`${}`の内部は _全ての_ JavaScript式を使えます。
+いわゆるリテラルとは、引用符の代わりにバッククォートを使い、複数の行にまたがることができます。`${}`の内部は _全ての_ JavaScript式が使えます。
 
 _タグ付けされた_ テンプレートリテラルは、特別なテンプレートタグ機能が付いています:
 
@@ -53,7 +53,7 @@ This means that the strings can be used as a key into a cache so that lit-html c
 
 lit-htmlが高速に更新を行うために利用するテンプレートタグの重要な機能は、テンプレートのリテラル文字列を保持するオブジェクトは、特定のテンプレートのタグを何度呼び出しても _正確に_ 同じであることです。
 
-これは、文字列をキャッシュへのキーとして使用できるので、lit-htmlはテンプレートを初めてレンダリングしたときにテンプレートの準備を一度しか行わず、その作業をスキップして更新することができることを意味します。
+これは、文字列をキャッシュへのキーとして使えるので、lit-htmlはテンプレートを初めてレンダリングしたときにテンプレートの準備を一度しか行わず、その作業をスキップして更新することができることを意味します。
 
 ## HTML `<template>` 要素
 
@@ -63,7 +63,7 @@ A `<template>` element is an inert fragment of DOM. Inside a `<template>`, scrip
 lit-html creates HTML `<template>` elements from the tagged template literals, and then clones them to create new DOM.
 -->
 
-`<template>`要素は、DOMの断片です。`<template>`の内部ではスクリプトは実行されず、画像も読み込まれず、カスタム要素も更新されません。`<template>`は効率的にクローンを作成できます。それら通常、文書のセクションを解析する際にインスタンス化されてはならない、と後でコードによって管理されるHTMLパーサを伝えるために使用していますが、それらは`createElement`や`innerHTML`によって命令的に作成することができます。
+`<template>`要素は、DOMの断片です。`<template>`の内部ではスクリプトは実行されず、画像も読み込まれず、カスタム要素も更新されません。`<template>`は効率的にクローンを作成できます。それら通常、文書のセクションを解析する際にインスタンス化されてはならない、と後でコードによって管理されるHTMLパーサを伝えるために使われますが、それらは`createElement`や`innerHTML`によって命令的に作成することができます。
 
 lit-htmlはHTML`<template>`要素をタグ付きテンプレートリテラルから作成し、それらをクローンして新しいDOMを作成します。
 
@@ -123,7 +123,7 @@ And there's an auxillary table of where the expressions were:
 A `Part` is a "hole" in the DOM where values can be injected. lit-html includes two type of parts by default: `NodePart` and `AttributePart`, which let you set text content and attribute values respectively. The `Part`s, container, and template they were created from are grouped together in an object called a `TemplateInstance`.
 -->
 
-`render()`は`TemplateResult`をとり、それをDOMコンテナに描画します。最初の描画では、テンプレートをクローンし、次に記憶されたプレースホルダ位置を使用してテンプレートをまわり、Partオブジェクトを作成します。
+`render()`は`TemplateResult`をとり、それをDOMコンテナに描画します。最初の描画では、テンプレートをクローンし、次に記憶されたプレースホルダ位置を覚えてテンプレートを巡り、Partオブジェクトを作成します。
 
 `Part`は値を挿入できるDOMの「穴」です。lit-htmlにはデフォルトで2種類のPartが含まれています: `NodePart` と `AttributePart`、それぞれテキストの内容と属性の値を設定できるようになっています。`Part`のコンテナ、およびグループ化されたテンプレートが呼び出されたオブジェクトは`TemplateInstance`と呼ばれます。
 
@@ -133,7 +133,7 @@ A `Part` is a "hole" in the DOM where values can be injected. lit-html includes 
 lit-html is ideal for use in a functional approach to describing UIs. If you think of UI as a function of data, commonly expressed as `UI = f(data)`, you can write lit-html templates that mirror this exactly:
 -->
 
-lit-htmlは、UIを記述するのに関数的アプローチでの使用に理想的です。UIをデータの関数と考えると、通常は次のように表されます `UI = f(data)`。これを正確に反映したlit-htmlテンプレートを書くことができます。
+lit-htmlは、関数的アプローチでUIを記述するのに最適です。UIをデータの関数と考えると、通常は次のように表されます `UI = f(data)`。これを正確に表すlit-htmlテンプレートは次のように書くことができます。
 
 ```js
 let ui = (data) => html`...${data}...`;

@@ -19,7 +19,7 @@ layout: default
 lit-html lets you write HTML templates in JavaScript, then efficiently render and _re-render_ those templates together with data to create and update DOM:
 -->
 
-lit-htmlは、JavaScriptの中でHTMLテンプレートを作成し(HTML in JS)、DOMを作成・更新するのにデータとテンプレートを効率的に描画・ _再描画_ します。:
+lit-htmlは、JavaScriptの中でHTMLテンプレートを作成して(HTML in JS)、DOMを作成・更新するのにデータとテンプレートを効率的に描画したり _再描画_ します:
 
 ```js
 import {html, render} from 'lit-html';
@@ -87,7 +87,7 @@ lit-html is extremely customizable and extensible.
 Directives customize how values are handled, allowing for asynchronous values, efficient keyed-repeats, error boundaries, and more. lit-html is like your very own a template construction kit.
 -->
 
-lit-htmlはとってもカスタマイズしやすく拡張しやすいです。
+lit-htmlはとってもカスタマイズしやすく拡張が容易です。
 
 ディレクティブ(Directives)を定義することにより、値の処理や非同期処理、効率的なキー付き繰り返し処理やエラーなど様々なことがカスタマイズできます。lit-htmlはあなた専用のテンプレート構築キットとなるでしょう。
 

@@ -45,7 +45,7 @@ The `render` function actual creates DOM nodes and appends them to a DOM tree. I
 
 lit-htmlテンプレートは、[_タグ付きテンプレートリテラル_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)です。テンプレート自体は通常のJavaScript文字列のように見えますが、バッククォートで囲われています(`` ` ``)。ブラウザはlit-htmlの`html`タグ関数を文字列として認識します。
 
-`html`タグ関数は`TemplateResult` (テンプレートが描画されるのに使用される軽量オブジェクト)を返します。
+`html`タグ関数は`TemplateResult` (テンプレートが描画されるのに使われる軽量オブジェクト)を返します。
 
 
 実際に`render`関数は、DOMを作成し、それらをDOMツリーに追加します。上記の例では描画されたDOMがページのbodyタグの内容を置き換えます。
@@ -91,7 +91,7 @@ When you call `render`, **lit-html only updates the parts of the template that h
 
 テンプレート関数が呼び出されると、lit-htmlはその時点でのJavaScript式の値を取得します。テンプレート関数はDOMを作らないので、高速で軽く動作します。
 
-テンプレート関数は、入力値への関数として`TemplateResult`を返します。これはlit-htmlの主な原則の1つです: ** 状態の _関数_ としてUIをつくる**
+テンプレート関数は、入力値への関数として`TemplateResult`を返します。これはlit-htmlの主な原則の1つです: **状態の _関数_ としてUIをつくる**
 
 `render`を呼び出すと、**lit-htmlは最後に実行された描画において、変更されたテンプレートの一部分のみを更新します**。これにより、lit-htmlの更新は非常に高速になっています。
 
@@ -116,7 +116,7 @@ In addition to using expressions in the text content of a node, you can bind the
 By default, an expression in the value of an attribute creates an attribute binding:
 -->
 
-テキストにJavaScript式を使用することに加え、nodeの属性(attribute)やプロパティ(property)にも値をバインドすることができます。
+テキストコンテンツにJavaScript評価式が使えることに加え、nodeの属性(attribute)やプロパティ(property)にも値をバインドすることができます。
 
 デフォルトでは、属性への値の変更によって属性も変更されます:
 
@@ -240,7 +240,7 @@ const myPage(data) = html`
 lit-html has no built-in control-flow constructs. Instead you use normal JavaScript expressions and statements.
 -->
 
-lit-htmlには組み込みの制御方法はありません。代わりに、通常のJavaScript式とステートメントを使用します。
+lit-htmlには組み込みの制御方法はありません。代わりに、通常のJavaScript評価式とJavaScript文を使います。
 
 #### 三項演算子による条件式
 
@@ -290,9 +290,9 @@ You can use standard JavaScript constructs to create repeating templates.
 lit-html also provides some special functions, called _directives_, for use in templates. You can use the  `repeat` directive to build certain kinds of dynamic lists more efficiently.
 -->
 
-標準のJavaScriptを使用して繰り返し処理のテンプレートをつくることができます。
+標準のJavaScriptの機能を使って繰り返し処理のテンプレートをつくることができます。
 
-また、lit-htmlには_ディレクティブ(directives)_と呼ばれるテンプレートで使用するための特別な関数がいくつか用意されています。例えば`repeat`ディレクティブを使用して、特定の動的リストをより効率的に描画することができます。
+また、lit-htmlには _ディレクティブ_ (directives)というテンプレートで使われる特別な関数がいくつか用意されています。例えば`repeat`ディレクティブを使って、特定の動的リストをより効率的に描画することができます。
 
 ###  Array.mapによる繰り返し
 
@@ -314,7 +314,7 @@ html`
 Note that this expression returns an array of `TemplateResult` objects. lit-html will render an array or iterable of subtemplates and other values.
 -->
 
-この式は`TemplateResult`オブジェクトの配列を返していることに注意してください。lit-htmlは、配列やiterableなサブテンプレートやその他の値を描画します。
+この式は`TemplateResult`オブジェクトの配列を返していることに注意してください。lit-htmlは、配列やイテラブル(iterable)なサブテンプレートやその他の値を描画します。
 
 ### ループ文による繰り返し
 
@@ -367,9 +367,9 @@ For example:
 
 引数:
 
-* `items` 配列もしくはiterable
+* `items` 配列もしくはイテラブル(iterable)
 * `keyFunction` itemsより1つずつ取り出される要素を引数としてとり、その要素のユニークキーを返す関数
-* `itemTemplate` 各要素と現在のインデックスを引数としてとるテンプレート関数であり、`TemplateResult`を返す
+* `itemTemplate` 各要素と現在のインデックスを引数とするテンプレート関数で、`TemplateResult`を返す
 
 例えば:
 
@@ -399,7 +399,7 @@ Which repeat is more efficient depends on your use case: if updating the DOM nod
 * `Array.map`を使った場合、lit-htmlはDOMノードを維持しますが、全てに値を再度割り当てしてしまいます。
 * `repeat`ディレクティブの場合、既存のDOMノードを並べ替えるので、リストの最初のノードが最後の位置に移動します。
 
-どちらがより効率的なのかは、ユースケースによって異なります。DOMノードを更新する方が移動させるよりもコストがかかる場合は、`repeat`ディレクティブを使用してください。それ以外の場合は、Array.mapを使用するか、ループを使用します。
+どちらがより効率的なのかは、ユースケースによって異なります。DOMノードを更新する方が移動させるよりもコストがかかる場合は、`repeat`ディレクティブを使ってください。それ以外の場合は、Array.mapか、ループを使ってください。
 
 ## テンプレートのキャッシュ: cacheディレクティブ
 
