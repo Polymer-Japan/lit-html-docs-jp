@@ -55,7 +55,7 @@ render実際の関数は、DOMノードを作成し、それらをDOMツリー�
 You can't get very far with a static template. lit-html lets you create bindings using <code>${<em>expression</em>}</code> placeholders in the template literal:
 -->
 
-基本静的なテンプレートではいろいろできません。lit-htmlでは、テンプレートリテラルにプレースホルダを使用してバインディングを作成できます。${expression}
+基本静的なテンプレートではいろいろできません。lit-htmlでは、テンプレートリテラルにプレースホルダを使ってバインディングを作成できます。${expression}
 
 ```js
 const aTemplate = html`<h1>${title}</h1>`;

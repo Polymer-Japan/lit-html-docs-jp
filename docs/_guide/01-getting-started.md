@@ -40,7 +40,7 @@ import {html, render} from 'https://unpkg.com/lit-html?module';
 You can try out lit-html without installing anything using an online editor. Below are links to a simple lit-html starter project in some popular online editors:
 -->
 
-何もインストールせずに試すこともできます。以下のリンクはよく使われているオンラインエディタによるシンプルなlit-html starterプロジェクトです。
+インストールをせずに試すこともできます。以下のリンクはオンラインエディタによるシンプルなlit-html starterプロジェクトです。
 
 *   [CodeSandbox](https://codesandbox.io/s/wq2wm73o28)
 *   [JSBin](https://jsbin.com/nahocaq/1/edit?html,output)
@@ -55,10 +55,10 @@ Modules are increasingly supported in JavaScript environments and are shipping i
 To use lit-html, import it via a path:
 -->
 
-lit-htmlは、標準的なJavaScriptモジュールとして作成されています。
-モジュール機構自体もどんどん一般的になっており、既にChrome、Opera、Safariで使用でき、まもなくFirefoxとEdgeでも使用できるようになります。
+lit-htmlは標準的なJavaScriptモジュールとして作成されています。
+JavaScriptモジュールは既にChrome、Opera、Safariで使え、まもなくFirefoxとEdgeでも使えるようになります。
 
-lit-htmlを使用するには、importでパスを指定します。
+lit-htmlを使うには、importでパスを指定します。
 
 ```js
 <script type="module">
@@ -77,7 +77,7 @@ If you use a tool that converts package names into paths, then you can import by
 
 JavaScriptの`import`は`<script type="module">`内でのみ動作し、インライン（上記のように）か外部スクリプトとして読み込む必要があります。
 
-ブラウザ上ではインポートの指定にパッケージ名を使うことはできず、他のモジュールを指定する場合もバンドラー等の別ツールを使用しない限りパスを直接指定する必要があります。
+ブラウザ上ではインポートの指定にパッケージ名を使うことはできず、他のモジュールを指定する場合もバンドラー等の別ツールを使わない限りパスを直接指定する必要があります。
 
 もしパッケージ名をパスに変換するツールを使っている場合は、パッケージ名を指定してインポートできます。
 

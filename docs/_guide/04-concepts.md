@@ -12,7 +12,7 @@ slug: concepts
 `lit-html` utilizes some unique properties of JavaScript template literals and HTML `<template>` elements to function and achieve fast performance. So it's helpful to understand them first.
 -->
 
-lit-htmlJavaScriptのテンプレートリテラルやHTML <template>要素のいくつかのユニークなプロパティを使用して、機能し、高速なパフォーマンスを実現します。だから最初に理解すると便利です。
+lit-htmlJavaScriptのテンプレートリテラルやHTML <template>要素のいくつかのユニークなプロパティを使って、機能し、高速なパフォーマンスを実現します。だから最初に理解すると便利です。
 
 ## Tagged Template Literals
 

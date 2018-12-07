@@ -53,7 +53,7 @@ lit-html is extremely fast. It uses fast platform features like HTML `<template>
 Unlike VDOM libraries, lit-html only ever updates the parts of templates that actually change - it doesn't re-render the entire view.
 -->
 
-lit-html はとっても速いです。 lit-htmlはネイティブクローニング(native cloning)によるHTMLの`<template>`要素などの高速なプラットフォームを使用しています。
+lit-html はとっても高速です。 lit-htmlはネイティブクローニング(native cloning)によるHTMLの`<template>`要素などの高速なプラットフォームを活用しています。
 
 VDOMライブラリとは違って、lit-htmlは画面全体を再描画せず、実際に変更されるテンプレートの一部分だけを更新します。
 
@@ -72,7 +72,7 @@ lit-html support many kind of values natively: strings, DOM nodes, heterogeneous
 
 lit-htmlではJavaScriptと関数型プログラミングパターンのフルパワーが使えます。
 
-テンプレート(Templates)では加工した値を使用したり、関数に値を渡したり受けとったり、または入れ子にして使います。式(Expressions)では生のJavaScriptが評価され、必要なことはなんでもできます。
+テンプレート(Templates)では加工した値を使ったり、関数に値を渡したり受けとったり、または入れ子にして使います。式(Expressions)では生のJavaScriptが評価され、必要なことはなんでもできます。
 
 lit-htmlは、文字列やDOMノード、多様なリスト、ネストされたテンプレートなど、多くの種類の値をネイティブでサポートします。
 
@@ -101,7 +101,7 @@ lit-htmlはとってもカスタマイズしやすく拡張しやすいです。
 <div class="responsive-row center">
 <div style="max-width: 600px">
 
-lit-htmlはいわゆるフレームワークではなく、コンポーネントモデルも含まれていません。 DOMを効率的に作成して更新するという、1つのことだけにフォーカスしています。 単純な処理では単体で使用でき、複雑で多機能なUI開発では他のフレームワークやWebコンポーネントなどのコンポーネントと組み合わせることができます。
+lit-htmlはいわゆるフレームワークではなく、コンポーネントモデルも含まれていません。 DOMを効率的に作成して更新するという、1つのことだけにフォーカスしています。 単純な処理では単体で使え、複雑で多機能なUI開発では他のフレームワークやWebコンポーネントなどのコンポーネントと組み合わせることができます。
 
 <!-- original:
 lit-html is not a framework, nor does it include a component model. It focuses on one thing and one thing only: efficiently creating and updating DOM. It can be used standalone for simple tasks, or combined with a framework or component model, like Web Components, for a full-featured UI development platform.
