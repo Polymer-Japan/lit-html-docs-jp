@@ -153,7 +153,7 @@ This leads to model that's easy to write and easy to reason about: always try to
 
 これは、書くことが容易で推論が簡単なモデルにつながります。常に依存するデータの単純な関数としてのUIの記述、中間状態のキャッシングの回避、または手動によるDOM操作の実行をするようにしてください。lit-htmlは、ほとんどの場合、あなたのUIの最も単純な記述で十分に速くなります。
 
-## JavaScript Modules
+## JavaScriptモジュール
 
 <!-- original:
 Why is lit-html distributed as JavaScript modules, not as UMD/CJS/AMD?

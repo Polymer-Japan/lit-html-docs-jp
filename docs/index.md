@@ -13,7 +13,7 @@ layout: default
 <section>
 <div class="wrapper">
 
-## 次世代HTMLテンプレートエンジン in JavaScript
+## 次世代HTMLテンプレート in JavaScript
 
 <!-- original:
 lit-html lets you write HTML templates in JavaScript, then efficiently render and _re-render_ those templates together with data to create and update DOM:
