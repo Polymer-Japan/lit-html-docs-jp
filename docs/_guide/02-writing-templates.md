@@ -300,7 +300,7 @@ lit-html also provides some special functions, called _directives_, for use in t
 To render lists, you can use `Array.map` to transform a list of data into a list of templates:
 -->
 
-リストを描画するのに、`Array.map`によってテンプレートのリストに変換ができます：
+リストを描画するのに、`Array.map`を使ってデータのリストをテンプレートのリストに変換ができます：
 
 ```js
 html`
@@ -322,7 +322,7 @@ Note that this expression returns an array of `TemplateResult` objects. lit-html
 You can also build an array of templates and pass it in to a template binding.
 -->
 
-また、テンプレートの配列を作成し、それをテンプレートに渡すこともできます。
+また、別にテンプレートの配列を作成し、そのままテンプレートに渡すこともできます。
 
 ```js
 const itemTemplates = [];
@@ -409,9 +409,9 @@ In most cases, JavaScript conditionals are all you need for conditional template
 In this case, you can use the `cache` _directive_. Directives are special functions that provide extra control over rendering. The cache directive caches DOM for templates that aren't being rendered currently. 
 -->
 
-ほとんどの場合、条件付きテンプレートにおいてJavaScriptの条件式で済みます。ただし、大規模で複雑なテンプレートを置き換える場合にDOMを再作成するコストを節約したい場合があります。
+ほとんどの場合、条件付きテンプレートはJavaScriptの条件式で済みます。ただし、大規模で複雑なテンプレートを置き換える場合にDOMを再作成するコストを節約したい場合があります。
 
-こういった場合に `cache`_ディレクティブ_ が使えます。ディレクティブ(Directive)はレンダリングを特別に制御する拡張可能な関数です。lit-htmlには、cacheディレクティブは、現在描画していないテンプレートのDOMを保持(キャッシュ)します。
+こういった場合に `cache`_ディレクティブ_ が使えます。ディレクティブ(Directive)はレンダリングを特別に制御する拡張可能な関数です。cacheディレクティブは、現在描画していないテンプレートのDOMを保持(キャッシュ)します。
 
 ```js
 const detailView = (data) => html`<div>...</div>`; 

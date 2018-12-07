@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Concepts
+title: コンセプト
 slug: concepts
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Template syntax reference
+title: テンプレート・リファレンス
 slug: template-reference
 ---
 

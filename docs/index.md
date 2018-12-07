@@ -70,9 +70,9 @@ Templates are values that can be computed, passed to and from functions and nest
 lit-html support many kind of values natively: strings, DOM nodes, heterogeneous lists, nested templates and more.
 -->
 
-lit-htmlではJavaScriptと関数型プログラミングパターンのフルパワーが使えます。
+lit-htmlではJavaScriptと関数型プログラミングのフルパワーが使えます。
 
-テンプレート(Templates)では加工した値を使ったり、関数に値を渡したり受けとったり、または入れ子にして使います。式(Expressions)では生のJavaScriptが評価され、必要なことはなんでもできます。
+テンプレート(Templates)は関数へ再計算した値の受け渡しや入れ子にして使えます。式(Expressions)では生のJavaScriptが評価されるので、そこで必要なことはなんでもできます。
 
 lit-htmlは、文字列やDOMノード、多様なリスト、ネストされたテンプレートなど、多くの種類の値をネイティブでサポートします。
 
