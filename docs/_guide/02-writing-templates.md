@@ -14,24 +14,24 @@ lit-html is a templating library that provides fast, efficient rendering and upd
 This section introduces the main features and concepts in lit-html.
 -->
 
-lit-htmlは、HTMLの高速で効率的なレンダリングと更新を提供するテンプレートライブラリです。それはあなたがデータの関数としてWeb UIを表現することができます。
+lit-htmlは、高速で効率的にHTMLを描画、更新するテンプレートライブラリです。様々なデータを扱うWeb UIをすぐに作ることができるでしょう。
 
-このセクションでは、lit-htmlの主な機能と概念を紹介します。
+この章では、lit-htmlの主な機能と概念を紹介します。
 
-## Render static HTML
+## 静的HTMLの描画
 
 <!-- original:
 The simplest thing to do in lit-html is to render some static HTML. 
 -->
 
-lit-htmlで行う最も簡単なことは、静的なHTMLをレンダリングすることです。
+lit-htmlで行う最も簡単なことは、静的なHTMLを描画することです。
 
 ```js
 import {html, render} from 'lit-html'
-// Declare a template
+// テンプレートを定義
 const  myTemplate = html`<div>Hello World</div>`
 
-// Render the template
+// テンプレートを描画
 render(myTemplate, document.body);
 ```
 
