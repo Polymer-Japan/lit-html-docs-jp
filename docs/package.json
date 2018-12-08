@@ -3,6 +3,6 @@
   "scripts": {
     "build": "jekyll build",
     "serve": "dev_appserver.py _site/app.yaml",
-    "deploy": "npm run build && gcloud app deploy _site/app.yaml --project polymer-lit-html --no-promote"
+    "deploy": "npm run build && gcloud app deploy _site/app.yaml --project polymer-japan --no-promote"
   }
 }
