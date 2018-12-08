@@ -1,6 +1,3 @@
 dispatch:
   - url: "*lit-html.polymer-jp.org/*"
     service: lit-html
-
-  - url: "*lit-html.polymer-jp.org/*"
-    service: lit-html

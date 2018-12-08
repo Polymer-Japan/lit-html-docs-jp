@@ -44,7 +44,7 @@ render(sayHello('Everyone'), document.body);
 <section class="grey-bg">
 <div class="wrapper">
 
-## なぜ lit-html なのか?
+## lit-html を使う理由は?
 
 <div class="responsive-row">
 <div style="flex: 1">
@@ -123,7 +123,7 @@ lit-html is not a framework, nor does it include a component model. It focuses o
 lit-html works in all major browsers (Chrome, Firefox, IE, Edge, Safari, and Opera). 
 -->
 
-lit-htmlは全ての主要なブラウザで動作します(Chrome, Firefox, IE, Edge, Safari, and Opera)
+lit-htmlは全ての主要なブラウザで動作します(Chrome, Firefox, IE, Edge, Safari, Opera)
 
 </p>
 <div>
