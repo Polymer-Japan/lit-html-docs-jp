@@ -23,7 +23,7 @@ layout: default
 lit-html lets you write HTML templates in JavaScript, then efficiently render and _re-render_ those templates together with data to create and update DOM:
 -->
 
-lit-htmlは、JavaScriptの中でHTMLテンプレートを作成して(HTML in JS)、DOMを作成・更新するのにデータとテンプレートを効率的に描画したり _再描画_ します:
+lit-htmlは、JavaScriptでHTMLテンプレートを書くことができ(HTML in JS)、DOMを作成・更新するのに必要なデータとテンプレートを効率的に描画・ _再描画_ します:
 
 ```js
 import {html, render} from 'lit-html';
@@ -57,7 +57,7 @@ lit-html is extremely fast. It uses fast platform features like HTML `<template>
 Unlike VDOM libraries, lit-html only ever updates the parts of templates that actually change - it doesn't re-render the entire view.
 -->
 
-lit-html はとっても高速です。 lit-htmlはネイティブクローニング(native cloning)によるHTMLの`<template>`要素などの高速なプラットフォームを活用しています。
+lit-htmlはとっても高速です。lit-htmlはネイティブクローニング(native cloning)による`<template>`要素などの高速なプラットフォームを活用しています。
 
 VDOMライブラリとは違って、lit-htmlは画面全体を再描画せず、実際に変更されるテンプレートの一部分だけを更新します。
 
@@ -74,7 +74,7 @@ Templates are values that can be computed, passed to and from functions and nest
 lit-html support many kind of values natively: strings, DOM nodes, heterogeneous lists, nested templates and more.
 -->
 
-lit-htmlではJavaScriptと関数型プログラミングのフルパワーが使えます。
+lit-htmlを使うことで、JavaScriptと関数型プログラミングのフルパワーを発揮できます。
 
 テンプレート(Templates)は関数へ再計算した値の受け渡しや入れ子にして使えます。式(Expressions)では生のJavaScriptが評価されるので、そこで必要なことはなんでもできます。
 

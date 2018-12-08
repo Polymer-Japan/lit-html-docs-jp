@@ -1,5 +1,5 @@
 name: lit-html
-description: An efficient, expressive, extensible HTML templating library for JavaScript
+description: 効率的で、表現力豊かで、拡張可能なJavaScript HTMLテンプレートライブラリ
 markdown: kramdown
 kramdown:
   parse_block_html: true

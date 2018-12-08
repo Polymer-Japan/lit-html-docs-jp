@@ -16,7 +16,7 @@ lit-html is a simple, modern, safe, small and fast HTML templating library for J
 lit-html lets you write HTML templates in JavaScript using [template literals] with embedded JavaScript expressions. Behind the scenes lit-html creates HTML `<template>` elements from your JavaScript templates and processes them so that it knows exactly where to insert and update the values from expressions.
 -->
 
-lit-htmlは、JavaScript用のシンプルでモダンな、安全で小型で高速なHTMLテンプレートライブラリです。
+lit-htmlは、JavaScript用のシンプルでモダンな、安全で軽量高速なHTMLテンプレートライブラリです。
 
 lit-htmlではJavaScriptの式を埋め込んだテンプレートリテラル([template literals])によってHTML in JavaScriptとして使うことができます。内部的にlit-htmlはJavaScriptテンプレートからHTMLの`<template>`要素を作成することにより、JavaScript式の評価結果をどこに追加・更新するか正確に知ることができています。
 
@@ -36,7 +36,7 @@ html`<h1>Hello ${name}</h1>`
 Since lit-html templates almost always need to merge in data from JavaScript values, and be able to update DOM when that data changes, they'll most often be written within functions that take some data and return a lit-html template, so that the function can be called multiple times:
 -->
 
-ほとんどのケースでlit-htmlテンプレートではJavaScript上のデータからDOMを更新する必要があるので、引数からlit-htmlテンプレートを返す関数を書くことが多いでしょう。この関数は他でも繰り返し利用することができます:
+ほとんどの場合、JavaScript上のデータを使ってDOMを更新する必要があるので、引数からlit-htmlテンプレートを返す関数を書くことが多いでしょう。この関数は他でも繰り返し利用することができます:
 
 ```js
 let myTemplate = (data) => html`
