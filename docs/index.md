@@ -13,6 +13,10 @@ layout: default
 <section>
 <div class="wrapper">
 
+<div class="alert alert-info">
+<p>日本語翻訳(作業中)</p>
+</div>
+
 ## 次世代HTMLテンプレート in JavaScript
 
 <!-- original:
