@@ -236,16 +236,15 @@ const myPage(data) = html`
  Composing templates opens a number of possibilities, including conditional and repeating templates.
 -->
 
-テンプレートをつくることにより、条件付きと繰り返しのテンプレートを含めて大くの可能性が開かれます。
+テンプレートに条件分岐と繰り返しが使えることにより、様々なことができるようになります。
 
-
-### 条件付きテンプレート
+### 条件分岐テンプレート
 
 <!-- original:
 lit-html has no built-in control-flow constructs. Instead you use normal JavaScript expressions and statements.
 -->
 
-lit-htmlには組み込みの制御方法はありません。代わりに、通常のJavaScript評価式とJavaScript文を使います。
+lit-htmlには条件分岐に特別な組み込みの制御方法はありません。代わりに、通常のJavaScript評価式とJavaScript文を使います。
 
 #### 三項演算子による条件式
 
@@ -287,7 +286,7 @@ html`
 `
 ```
 
-## 繰り返し処理のテンプレート
+## 繰り返しのテンプレート
 
 <!-- original:
 You can use standard JavaScript constructs to create repeating templates. 
@@ -295,7 +294,7 @@ You can use standard JavaScript constructs to create repeating templates.
 lit-html also provides some special functions, called _directives_, for use in templates. You can use the  `repeat` directive to build certain kinds of dynamic lists more efficiently.
 -->
 
-標準のJavaScriptの機能を使って繰り返し処理のテンプレートをつくることができます。
+標準のJavaScriptの機能を使って繰り返しのテンプレートをつくることができます。
 
 また、lit-htmlには _ディレクティブ_ (directives)というテンプレートで使われる特別な関数がいくつか用意されています。例えば`repeat`ディレクティブを使って、特定の動的リストをより効率的に描画することができます。
 
@@ -352,9 +351,9 @@ The `repeat` directive can help here. Directives are special functions that prov
 The repeat directive performs efficient updates of lists based on user-supplied keys:
 -->
 
-ほとんどの場合、Array.mapが繰り返し処理を行う効率的な方法です。ただし、大きなリストを並べ替えたり、個々のエントリを追加・削除する場合は、多数のDOMノードを効率的に再作成する必要があります。
+ほとんどの場合、Array.mapが繰り返しを行う効率的な方法です。ただし、大きなリストを並べ替えたり、個々のエントリを追加・削除する場合は、多数のDOMノードを効率的に再作成する必要があります。
 
-こういった場合に `repeat` _ディレクティブ_ が使えます。ディレクティブ(Directive)はレンダリングを特別に制御する拡張可能な関数です。lit-htmlには、`repeat`のような組み込みのディレクティブが付属してます。
+こういった場合に `repeat` _ディレクティブ_ が使えます。ディレクティブ(Directive)とはレンダリングを特別に制御する拡張可能な関数です。lit-htmlには、`repeat`のような組み込みのディレクティブが付属してます。
 
 `repeat`ディレクティブは、開発者がリストにおいて指定するユニークキーに基づき効率的に描画更新します。
 
@@ -414,7 +413,7 @@ In most cases, JavaScript conditionals are all you need for conditional template
 In this case, you can use the `cache` _directive_. Directives are special functions that provide extra control over rendering. The cache directive caches DOM for templates that aren't being rendered currently. 
 -->
 
-ほとんどの場合、条件付きテンプレートはJavaScriptの条件式で済みます。ただし、大規模で複雑なテンプレートを置き換える場合にDOMを再作成するコストを節約したい場合があります。
+ほとんどの場合、条件分岐テンプレートはJavaScriptの条件式で済みます。ただし、大規模で複雑なテンプレートを置き換える場合にDOMを再作成するコストを節約したい場合があります。
 
 こういった場合に `cache`_ディレクティブ_ が使えます。ディレクティブ(Directive)はレンダリングを特別に制御する拡張可能な関数です。cacheディレクティブは、現在描画していないテンプレートのDOMを保持(キャッシュ)します。
 
