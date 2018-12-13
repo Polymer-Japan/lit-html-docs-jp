@@ -100,7 +100,7 @@ There are a few types of bindings:
   * Text:
 -->
 
-JavaScript式はテキストコンテンツまたは属性の値で表示されます。
+JavaScript評価式はテキストコンテンツまたは属性の値で表示されます。
 
 バインディングにはいくつかの種類があります。
 
@@ -288,7 +288,7 @@ const list = () => html`items = ${Object.entries(items)}`;
 lit-html has no built-in control-flow constructs. Instead you use normal JavaScript expressions and statements:
 -->
 
-lit-htmlには組み込みの制御方法はありません。代わりに、通常のJavaScript式とJavaScript文を使います。
+lit-htmlには組み込みの制御方法はありません。代わりに、通常のJavaScript評価式とJavaScript文を使います。
 
 ### 三項演算子による条件
 

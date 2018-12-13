@@ -20,7 +20,7 @@ slug: concepts
 A JavaScript template literal is a string literal that can have JavaScript expressions embedded in it:
 -->
 
-JavaScriptのテンプレートリテラルは、JavaScript式を埋め込むことができる文字列リテラルです。
+JavaScriptのテンプレートリテラルは、JavaScript評価式を埋め込むことができる文字列リテラルです。
 
 ```js
 `My name is ${name}.`
@@ -32,7 +32,7 @@ The literal uses backticks instead of quotes, and can span multiple lines. The p
 A _tagged_ template literal is prefixed with a special template tag function:
 -->
 
-いわゆるリテラルとは、引用符の代わりにバッククォートを使い、複数の行にまたがることができます。`${}`の内部は _全ての_ JavaScript式が使えます。
+いわゆるリテラルとは、引用符の代わりにバッククォートを使い、複数の行にまたがることができます。`${}`の内部は _全ての_ JavaScript評価式が使えます。
 
 _タグ付けされた_ テンプレートリテラルは、特別なテンプレートタグ機能が付いています:
 

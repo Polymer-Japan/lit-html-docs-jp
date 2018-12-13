@@ -89,7 +89,7 @@ The template function returns a `TemplateResult` that's a function of the input 
 When you call `render`, **lit-html only updates the parts of the template that have changed since the last render.** This makes lit-html updates very fast.
 -->
 
-テンプレート関数が呼び出されると、lit-htmlはその時点でのJavaScript式の値を取得します。テンプレート関数はDOMを作らないので、高速で軽く動作します。
+テンプレート関数が呼び出されると、lit-htmlはその時点でのJavaScript評価式の値を取得します。テンプレート関数はDOMを作らないので、高速で軽く動作します。
 
 テンプレート関数は、入力値への関数として`TemplateResult`を返します。これはlit-htmlの主な原則の1つです: **状態の _関数_ としてUIをつくる**
 
@@ -101,7 +101,7 @@ When you call `render`, **lit-html only updates the parts of the template that h
 The previous example shows interpolating a simple text value, but the binding can include any kind of JavaScript expression:
 -->
 
-前述の例では単純にテキストを挿入していますが、JavaScript式も使えます:
+前述の例では単純にテキストを挿入していますが、JavaScript評価式も使えます:
 
 ```js
 const  myTemplate = (subtotal, tax) => html`<div>Total: ${subtotal + tax}</div>`;
@@ -114,6 +114,11 @@ const myTemplate2 = (name) => html`<div>${formatName(name.given, name.family, na
 In addition to using expressions in the text content of a node, you can bind them to a node's attribute and property values, too.
 
 By default, an expression in the value of an attribute creates an attribute binding:
+
+```js
+// set the class attribute
+const myTemplate(data) = html`<div class=${data.cssClass}>Stylish text.</div>`;
+```
 -->
 
 テキストコンテンツにJavaScript評価式が使えることに加え、nodeの属性(attribute)やプロパティ(property)にも値をバインドすることができます。
@@ -121,7 +126,7 @@ By default, an expression in the value of an attribute creates an attribute bind
 デフォルトでは、属性への値の変更によって属性も変更されます:
 
 ```js
-// set the class attribute
+// class属性を付与
 const myTemplate(data) = html`<div class=${data.cssClass}>Stylish text.</div>`;
 ```
 
@@ -131,7 +136,7 @@ Since attribute values are always strings, the expression should return a value 
 Use the `?` prefix for a boolean attribute binding. The attribute is added if the expression evaluates to a truthy value, removed if it evaluates to a falsy value:
 -->
 
-属性値は常に文字列となるので、JavaScript式は文字列に変換する必要があります。
+属性値は常に文字列となるので、JavaScript評価式は文字列に変換する必要があります。
 
 '?'を接頭辞(prefix)に使うことによって属性に真偽値(boolean)を設定します。真偽値が真と評価された(truthy)時に属性が追加され、偽(falsy)の場合に取り除かれます:
 
