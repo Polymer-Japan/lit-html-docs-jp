@@ -3,7 +3,7 @@ description: 効率的で、表現力豊かで、拡張可能なJavaScript HTML�
 markdown: kramdown
 kramdown:
   parse_block_html: true
-google_analytics:
+google_analytics: UA-131004707-1
 collections:
   guide:
     output: true
