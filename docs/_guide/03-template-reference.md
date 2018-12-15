@@ -199,7 +199,7 @@ Each binding type supports different types of values:
 
   * プロパティ: それぞれに応じた値となります。
 
-  * イベントハンドラ：イベントハンドラ関数またはオブジェクトのみ。
+  * イベントハンドラ: イベントハンドラ関数またはオブジェクトのみ。
 
 ### テキストバインディングでサポートされている型
 
@@ -219,7 +219,7 @@ Text content bindings accept a large range of value types:
 *   DOMノード。
 *   配列またはiterables。
 
-#### プリミティブ値：String、Number、Boolean、null、undefined
+#### プリミティブ値: 文字列、数値、真偽値、null、undefined
 
 <!-- original:
 Primitives values are converted to strings when interpolated into text content or attribute values. They are checked for equality to the previous value so that the DOM is not updated if the value hasn't changed.
@@ -331,7 +331,7 @@ html`
 
 ### Array.mapによるループ
 
-リストを描画するのに、`Array.map`を使ってデータのリストをテンプレートのリストに変換ができます：
+リストを描画するのに、`Array.map`を使ってデータのリストをテンプレートのリストに変換ができます:
 
 ```js
 html`

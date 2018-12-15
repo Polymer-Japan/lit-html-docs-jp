@@ -304,7 +304,7 @@ lit-html also provides some special functions, called _directives_, for use in t
 To render lists, you can use `Array.map` to transform a list of data into a list of templates:
 -->
 
-リストを描画するのに、`Array.map`を使ってデータのリストをテンプレートのリストに変換ができます：
+リストを描画するのに、`Array.map`を使ってデータのリストをテンプレートのリストに変換ができます:
 
 ```js
 html`

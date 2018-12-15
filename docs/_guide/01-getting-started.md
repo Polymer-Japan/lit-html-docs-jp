@@ -28,7 +28,7 @@ npm install lit-html
 You can also load lit-html directly from the unpkg.com CDN:
 -->
 
-unpkg.comのCDNから直接読み込むこともできます：
+unpkg.comのCDNから直接読み込むこともできます:
 
 ```js
 import {html, render} from 'https://unpkg.com/lit-html?module';
@@ -100,7 +100,7 @@ lit-html has two main APIs:
 *   The `render()` function used to render a template to a DOM container.
 -->
 
-lit-htmlには2つの主要なAPIがあります：
+lit-htmlには2つの主要なAPIがあります:
 
 * `html` テンプレートを書き込むためのテンプレートタグ(template tag)
 * `render()` DOMコンテナにテンプレートを描画する関数(function)。
