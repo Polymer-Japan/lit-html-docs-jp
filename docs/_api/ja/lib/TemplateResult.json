@@ -1,0 +1,19 @@
+{
+    "TemplateResult": {
+        "comment": {
+            "shortText": [
+                "The return type of `html`, which holds a Template and the values from",
+                "interpolated expressions."
+            ]
+        },
+        "properties": {},
+        "methods": {
+            "getHTML": {
+                "comment": {
+                    "shortText": "Returns a string of HTML used to create a `<template>` element."
+                }
+            }
+        },
+        "accessors": {}
+    }
+}

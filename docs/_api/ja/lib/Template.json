@@ -1,0 +1,10 @@
+{
+    "Template": {
+        "comment": {
+            "shortText": "An updateable Template that tracks the location of dynamic parts."
+        },
+        "properties": {},
+        "methods": {},
+        "accessors": {}
+    }
+}
