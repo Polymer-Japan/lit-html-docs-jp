@@ -1,0 +1,19 @@
+{
+    "AttributeCommitter": {
+        "comment": {
+            "shortText": [
+                "Sets attribute values for AttributeParts, so that the value is only set once",
+                "even if there are multiple parts for an attribute."
+            ]
+        },
+        "properties": {},
+        "methods": {
+            "_createPart": {
+                "comment": {
+                    "shortText": "Creates a single part. Override this to create a differnt type of part."
+                }
+            }
+        },
+        "accessors": {}
+    }
+}

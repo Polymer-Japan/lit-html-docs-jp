@@ -1,0 +1,15 @@
+{
+    "SVGTemplateResult": {
+        "comment": {
+            "text": [
+                "This class wraps HTMl in an `<svg>` tag in order to parse its contents in the",
+                "SVG namespace, then modifies the template to remove the `<svg>` tag so that",
+                "clones only container the original fragment."
+            ],
+            "shortText": "A TemplateResult for SVG fragments."
+        },
+        "properties": {},
+        "methods": {},
+        "accessors": {}
+    }
+}

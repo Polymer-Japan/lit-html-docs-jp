@@ -1,0 +1,119 @@
+{
+    "render": {
+        "comment": {
+            "text": [
+                "To update a container with new values, reevaluate the template literal and",
+                "call `render` with the new result."
+            ],
+            "shortText": "Renders a template to a container."
+        }
+    },
+    "prepareTemplateStyles": {
+        "comment": {
+            "text": [
+                "Note, <style> elements can only be placed into templates for the",
+                "initial rendering of the scope. If <style> elements are included in templates",
+                "dynamically rendered to the scope (after the first scope render), they will",
+                "not be scoped and the <style> will be left in the template and rendered",
+                "output."
+            ],
+            "shortText": [
+                "For the given scope name, ensures that ShadyCSS style scoping is performed.",
+                "This is done just once per scope name so the fragment and template cannot",
+                "be modified.",
+                "(1) extracts styles from the rendered fragment and hands them to ShadyCSS",
+                "to be scoped and appended to the document",
+                "(2) removes style elements from all lit-html Templates for this scope name."
+            ]
+        }
+    },
+    "removeStylesFromLitTemplates": {
+        "comment": {
+            "shortText": "Removes all style elements from Templates for the given scopeName."
+        }
+    },
+    "shadyTemplateFactory": {
+        "comment": {
+            "shortText": "Template factory which scopes template DOM using ShadyCSS."
+        }
+    },
+    "insertNodeIntoTemplate": {
+        "comment": {
+            "shortText": [
+                "Inserts the given node into the Template, optionally before the given",
+                "refNode. In addition to inserting the node into the Template, the Template",
+                "part indices are updated to match the mutated Template DOM."
+            ]
+        }
+    },
+    "removeNodesFromTemplate": {
+        "comment": {
+            "text": [
+                "As the template is walked the removal state is tracked and",
+                "part indices are adjusted as needed.",
+                "div",
+                "  div#1 (remove) <-- start removing (removing node is div#1)",
+                "    div",
+                "      div#2 (remove)  <-- continue removing (removing node is still div#1)",
+                "        div",
+                "div <-- stop removing since previous sibling is the removing node (div#1,",
+                "removed 4 nodes)"
+            ],
+            "shortText": [
+                "Removes the list of nodes from a Template safely. In addition to removing",
+                "nodes from the Template, the Template part indices are updated to match",
+                "the mutated Template DOM."
+            ]
+        }
+    },
+    "svg": {
+        "comment": {
+            "shortText": [
+                "Interprets a template literal as an SVG template that can efficiently",
+                "render to and update a container."
+            ]
+        }
+    },
+    "html": {
+        "comment": {
+            "shortText": [
+                "Interprets a template literal as an HTML template that can efficiently",
+                "render to and update a container."
+            ]
+        }
+    },
+    "templateFactory": {
+        "comment": {
+            "shortText": [
+                "The default TemplateFactory which caches Templates keyed on",
+                "result.type and result.strings."
+            ]
+        }
+    },
+    "removeNodes": {
+        "comment": {
+            "shortText": [
+                "Removes nodes, starting from `startNode` (inclusive) to `endNode`",
+                "(exclusive), from `container`."
+            ]
+        }
+    },
+    "reparentNodes": {
+        "comment": {
+            "shortText": [
+                "Reparents nodes, starting from `startNode` (inclusive) to `endNode`",
+                "(exclusive), into another container (could be the same container), before",
+                "`beforeNode`. If `beforeNode` is null, it appends the nodes to the",
+                "container."
+            ]
+        }
+    },
+    "directive": {
+        "comment": {
+            "shortText": [
+                "Brands a function as a directive so that lit-html will call the function",
+                "during template rendering, rather than passing as a value."
+            ]
+        }
+    }
+}

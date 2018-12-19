@@ -1,0 +1,23 @@
+{
+    "Part": {
+        "comment": {
+            "shortText": [
+                "The Part interface represents a dynamic part of a template instance rendered",
+                "by lit-html."
+            ]
+        },
+        "properties": {},
+        "methods": {
+            "setValue": {
+                "comment": {
+                    "shortText": "Sets the current part value, but does not write it to the DOM."
+                }
+            },
+            "commit": {
+                "comment": {
+                    "shortText": "Commits the current part value, cause it to actually be written to the DOM."
+                }
+            }
+        }
+    }
+}

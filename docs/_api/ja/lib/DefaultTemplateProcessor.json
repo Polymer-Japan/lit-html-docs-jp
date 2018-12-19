@@ -1,0 +1,24 @@
+{
+    "DefaultTemplateProcessor": {
+        "comment": {
+            "shortText": "Creates Parts when a template is instantiated."
+        },
+        "properties": {},
+        "methods": {
+            "handleAttributeExpressions": {
+                "comment": {
+                    "shortText": [
+                        "Create parts for an attribute-position binding, given the event, attribute",
+                        "name, and string literals."
+                    ]
+                }
+            },
+            "handleTextExpression": {
+                "comment": {
+                    "shortText": "Create parts for a text-position binding."
+                }
+            }
+        },
+        "accessors": {}
+    }
+}

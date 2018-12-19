@@ -1,0 +1,19 @@
+{
+    "PropertyCommitter": {
+        "comment": {
+            "text": [
+                "If an expression controls the whole property value, then the value is simply",
+                "assigned to the property under control. If there are string literals or",
+                "multiple expressions, then the strings are expressions are interpolated into",
+                "a string first."
+            ],
+            "shortText": [
+                "Sets attribute values for PropertyParts, so that the value is only set once",
+                "even if there are multiple parts for a property."
+            ]
+        },
+        "properties": {},
+        "methods": {},
+        "accessors": {}
+    }
+}

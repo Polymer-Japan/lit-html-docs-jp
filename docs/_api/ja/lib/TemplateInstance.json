@@ -1,0 +1,13 @@
+{
+    "TemplateInstance": {
+        "comment": {
+            "shortText": [
+                "An instance of a `Template` that can be attached to the DOM and updated",
+                "with new values."
+            ]
+        },
+        "properties": {},
+        "methods": {},
+        "accessors": {}
+    }
+}
