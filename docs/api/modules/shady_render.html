@@ -928,8 +928,8 @@ img { max-width: 100%; }
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>Module to add shady DOM/shady CSS polyfill support to lit-html template rendering.
-					See the <a href="shady_render.html#render">render</a> method for details.</p>
+					<p>Module to add shady DOM/shady CSS polyfill support to lit-html template
+					rendering. See the <a href="shady_render.html#render">render</a> method for details.</p>
 				</div>
 			</div>
 		</section>
@@ -1044,7 +1044,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in lib/shady-render.ts:221</li>
+								<li>Defined in lib/shady-render.ts:224</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1078,8 +1078,8 @@ img { max-width: 100%; }
 								<li><p>Note, due to a limitation of the ShadyDOM polyfill, rendering in a
 										custom element&#39;s <code>constructor</code> is not supported. Instead rendering should
 										either done asynchronously, for example at microtask timing (for example
-										<code>Promise.resolve()</code>), or be deferred until the first time the element&#39;s <code>connectedCallback</code>
-									runs.</p>
+										<code>Promise.resolve()</code>), or be deferred until the first time the element&#39;s
+									<code>connectedCallback</code> runs.</p>
 								</li>
 							</ul>
 							<p>Usage considerations when using shimmed custom properties or <code>@apply</code>:</p>
@@ -1093,10 +1093,10 @@ img { max-width: 100%; }
 									should be called in the element&#39;s <code>connectedCallback</code>.</p>
 								</li>
 								<li><p>Shimmed custom properties may only be defined either for an entire
-										shadowRoot (for example, in a <code>:host</code> rule) or via a rule that directly matches an element
-										with a shadowRoot. In other words, instead of flowing from parent to child as
-										do native css custom properties, shimmed custom properties flow only from
-									shadowRoots to nested shadowRoots.</p>
+										shadowRoot (for example, in a <code>:host</code> rule) or via a rule that directly
+										matches an element with a shadowRoot. In other words, instead of flowing from
+										parent to child as do native css custom properties, shimmed custom properties
+									flow only from shadowRoots to nested shadowRoots.</p>
 								</li>
 								<li><p>When using <code>@apply</code> mixing css shorthand property names with
 										non-shorthand names (for example <code>border</code> and <code>border-width</code>) is not
