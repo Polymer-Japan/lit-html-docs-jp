@@ -1,0 +1,17 @@
+{
+    "BooleanAttributePart": {
+        "comment": {
+            "text": [
+                "If the value is truthy, then the attribute is present with a value of",
+                "''. If the value is falsey, the attribute is removed."
+            ],
+            "shortText": [
+                "Implements a boolean attribute, roughly as defined in the HTML",
+                "specification."
+            ]
+        },
+        "properties": {},
+        "methods": {},
+        "accessors": {}
+    }
+}
