@@ -2,8 +2,8 @@
   "private": true,
   "scripts": {
     "gen-api-docs-init-patch": "patch -p0 < _api/ja/typedoc-plugin-localization-render.diff",
-    "gen-api-docs-en": "(cd _api && sh copy_api.sh)  && cp ../tsconfig.json _api/en && typedoc --generate-json ./_api/en _api/tmp/lit-html.ts _api/tmp/lib/shady-render.ts",
-    "gen-api-docs-ja": "typedoc --name \"lit-html API\" --readme _api/readme.md  --mode modules --theme _api/localize-theme --tsconfig _api/en/tsconfig.json --ignoreCompilerErrors --excludeNotExported --excludePrivate --out ./api --generate-from-json ./_api/ja --localize ja --templateStrings ./_api/ja/shell-strings.json _api/tmp/lit-html.ts _api/tmp/lib/shady-render.ts",
+    "gen-api-docs-en": "(cd _api && sh copy_api.sh)  && cp ../tsconfig.json _api/en && typedoc --params --generate-json ./_api/en _api/tmp/lit-html.ts _api/tmp/lib/shady-render.ts",
+    "gen-api-docs-ja": "typedoc --name \"lit-html API\" --readme _api/readme.md  --mode modules --theme _api/localize-theme --tsconfig _api/en/tsconfig.json --ignoreCompilerErrors --excludeNotExported --excludePrivate --out ./api --generate-from-json ./_api/ja --localize ja --templateStrings ./_api/ja/shell-strings.json --params _api/tmp/lit-html.ts _api/tmp/lib/shady-render.ts",
     "gen-api-docs": "(cd _api && sh copy_api.sh) &&  typedoc --name \"lit-html API\" --readme _api/readme.md  --mode modules --theme minimal --tsconfig ../tsconfig.json --ignoreCompilerErrors --excludeNotExported --excludePrivate --out ./api --gaID UA-39334307-23 _api/tmp/lit-html.ts _api/tmp/lib/shady-render.ts",
     "build": "jekyll build",
     "build-all": "npm run gen-api-docs && jekyll build",

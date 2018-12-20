@@ -11,6 +11,25 @@
             },
             "handleTextExpression": {
                 "comment": {
+                    "parameters": {
+                        "element": {
+                            "comment": {
+                                "text": "バインディングを含む要素"
+                            }
+                        },
+                        "name": {
+                            "comment": {
+                                "text": "属性名"
+                            }
+                        },
+                        "strings": {
+                            "comment": {
+                                "text": [
+                                    "文字列リテラル。少なくとも2つの文字列があり、単一の式による完全に制御されたバインディング用のイベントです。"
+                                ]
+                            }
+                        }
+                    },
                     "shortText": "テキストバインディングのためのパーツを作成します。"
                 }
             }

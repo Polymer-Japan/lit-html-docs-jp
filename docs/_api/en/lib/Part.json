@@ -10,6 +10,13 @@
         "methods": {
             "setValue": {
                 "comment": {
+                    "parameters": {
+                        "value": {
+                            "comment": {
+                                "text": "The value that will be committed."
+                            }
+                        }
+                    },
                     "shortText": "Sets the current part value, but does not write it to the DOM."
                 }
             },

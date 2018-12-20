@@ -1,6 +1,34 @@
 {
     "render": {
         "comment": {
+            "parameters": {
+                "result": {
+                    "comment": {
+                        "shortText": [
+                            "a TemplateResult created by evaluating a template tag like",
+                            "    `html` or `svg`."
+                        ]
+                    }
+                },
+                "container": {
+                    "comment": {
+                        "shortText": [
+                            "A DOM parent to render to. The entire contents are either",
+                            "    replaced, or efficiently updated if the same result type was previous",
+                            "    rendered there."
+                        ]
+                    }
+                },
+                "options": {
+                    "comment": {
+                        "shortText": [
+                            "RenderOptions for the entire render tree rendered to this",
+                            "    container. Render options must *not* change between renders to the same",
+                            "    container, as those changes will not effect previously rendered DOM."
+                        ]
+                    }
+                }
+            },
             "text": [
                 "To update a container with new values, reevaluate the template literal and",
                 "call `render` with the new result."
@@ -110,6 +138,17 @@
     },
     "directive": {
         "comment": {
+            "parameters": {
+                "f": {
+                    "comment": {
+                        "shortText": [
+                            "The directive factory function. Must be a function that returns a",
+                            "function of the signature `(part: Part) => void`. The returned function will",
+                            "be called with the part object"
+                        ]
+                    }
+                }
+            },
             "shortText": [
                 "Brands a function as a directive so that lit-html will call the function",
                 "during template rendering, rather than passing as a value."
