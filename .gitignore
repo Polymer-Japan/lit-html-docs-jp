@@ -42,3 +42,6 @@ pids
 /docs/_api/tmp/
 /docs/node_modules/
 *.pyc
+
+# JP-API-Docs
+/docs/api

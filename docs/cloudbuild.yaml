@@ -1,8 +1,7 @@
 steps:
 - name: ubuntu
-  args: ['cp', '-r', 'src', 'docs/_api/tmp']
-- name: ubuntu
-  args: ['cp', 'tsconfig.json', 'docs/_api/en/']
+  dir: docs/_api
+  args: ['sh', 'copy_api.sh']
 - name: gcr.io/cloud-builders/npm
   dir: docs
   args: ['install']
@@ -13,7 +12,8 @@ steps:
   dir: docs
   args: ['run', 'gen-api-docs-ja']
 - name: ubuntu
-  args: ['mkdir', '-p', 'docs/_site']
+  dir: docs
+  args: ['mkdir', '-p', '_site']
 - name: jekyll/jekyll
   dir: docs
   args: ['jekyll', 'build']
