@@ -1,5 +1,18 @@
 steps:
-- name: 'ubuntu'
+- name: ubuntu
+  args: ['cp', '-r', 'src', 'docs/_api/tmp']
+- name: ubuntu
+  args: ['cp', 'tsconfig.json', 'docs/_api/en/']
+- name: gcr.io/cloud-builders/npm
+  dir: docs
+  args: ['install']
+- name: gcr.io/cloud-builders/npm
+  dir: docs
+  args: ['run', 'gen-api-docs-init-patch']
+- name: gcr.io/cloud-builders/npm
+  dir: docs
+  args: ['run', 'gen-api-docs-ja']
+- name: ubuntu
   args: ['mkdir', '-p', 'docs/_site']
 - name: jekyll/jekyll
   dir: docs

@@ -113,5 +113,13 @@
                 "during template rendering, rather than passing as a value."
             ]
         }
+    },
+    "lit-html": {
+        "comment": {
+            "text": [
+                "コンテナを新しい値で更新するには、テンプレートリテラルを再評価し、新しい結果で `render`を呼び出します。"
+            ],
+            "shortText": "テンプレートをコンテナにレンダリングします。"
+        }
     }
 }

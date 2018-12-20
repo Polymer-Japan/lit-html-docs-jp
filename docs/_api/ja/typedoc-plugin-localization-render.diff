@@ -1,0 +1,20 @@
+--- node_modules/typedoc-plugin-localization/dist/components/render-component.orig.js	1985-10-26 17:15:00.000000000 +0900
++++ node_modules/typedoc-plugin-localization/dist/components/render-component.js	2018-12-20 11:11:26.685968432 +0900
+@@ -42,6 +42,17 @@
+     }
+     processTheReflection(reflection) {
+         switch (reflection.kind) {
++            case models_1.ReflectionKind.ExternalModule:
++                if (!this.globalFuncsData) {
++                    break;
++                }
++                const emName = reflection.name;
++                const emData = this.globalFuncsData[emName];
++                if (!emData || !reflection.comment || !emData[constants_1.Constants.COMMENT]) {
++                    break;
++                }
++                this.updateComment(reflection, emData);
++                break;
+             case models_1.ReflectionKind.Class:
+             case models_1.ReflectionKind.Enum:
+             case models_1.ReflectionKind.Interface:
