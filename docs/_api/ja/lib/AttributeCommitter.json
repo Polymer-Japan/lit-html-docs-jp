@@ -2,15 +2,14 @@
     "AttributeCommitter": {
         "comment": {
             "shortText": [
-                "Sets attribute values for AttributeParts, so that the value is only set once",
-                "even if there are multiple parts for an attribute."
+                "AttributePartsの属性値を設定します。属性に複数のパーツがあっても値は1度だけ設定されます。"
             ]
         },
         "properties": {},
         "methods": {
             "_createPart": {
                 "comment": {
-                    "shortText": "Creates a single part. Override this to create a differnt type of part."
+                    "shortText": "単一のパーツを作ります。異なった型のパーツは上書きされます。"
                 }
             }
         },

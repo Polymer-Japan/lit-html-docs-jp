@@ -1,7 +1,7 @@
 {
     "Template": {
         "comment": {
-            "shortText": "An updateable Template that tracks the location of dynamic parts."
+            "shortText": "動的パーツの位置を追跡する更新可能なテンプレート。"
         },
         "properties": {},
         "methods": {},

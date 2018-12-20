@@ -4,30 +4,28 @@
         "methods": {
             "appendInto": {
                 "comment": {
-                    "text": "This part must be empty, as its contents are not automatically moved.",
-                    "shortText": "Inserts this part into a container."
+                    "text": "このパーツは内容が自動的に移動されないため、空でなければなりません。",
+                    "shortText": "このパーツをコンテナに挿入します。"
                 }
             },
             "insertAfterNode": {
                 "comment": {
-                    "text": "This part must be empty, as its contents are not automatically moved.",
+                    "text": "このパーツは内容が自動的に移動されないため、空でなければなりません。",
                     "shortText": [
-                        "Inserts this part between `ref` and `ref`'s next sibling. Both `ref` and",
-                        "its next sibling must be static, unchanging nodes such as those that appear",
-                        "in a literal section of a template."
+                        "このパーツを `ref`と`ref`の次の兄弟の間に挿入します。 `ref`とその次の兄弟は、テンプレートのリテラルセクションに現れるような静的で不変のノードでなければなりません。"
                     ]
                 }
             },
             "appendIntoPart": {
                 "comment": {
-                    "text": "This part must be empty, as its contents are not automatically moved.",
-                    "shortText": "Appends this part into a parent part."
+                    "text": "このパーツは内容が自動的に移動されないため、空でなければなりません。",
+                    "shortText": "このパーツを親パーツに追加します。"
                 }
             },
             "insertAfterPart": {
                 "comment": {
-                    "text": "This part must be empty, as its contents are not automatically moved.",
-                    "shortText": "Appends this part after `ref`"
+                    "text": "このパーツは内容が自動的に移動されないため、空でなければなりません。",
+                    "shortText": "`ref`の後にこのパーツを追加します。"
                 }
             }
         },

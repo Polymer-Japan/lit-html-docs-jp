@@ -2,8 +2,7 @@
     "TemplateInstance": {
         "comment": {
             "shortText": [
-                "An instance of a `Template` that can be attached to the DOM and updated",
-                "with new values."
+                "DOMに接続し、新しい値で更新できる `Template`のインスタンス。"
             ]
         },
         "properties": {},

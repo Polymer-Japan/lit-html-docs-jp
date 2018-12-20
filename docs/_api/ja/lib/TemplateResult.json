@@ -2,15 +2,14 @@
     "TemplateResult": {
         "comment": {
             "shortText": [
-                "The return type of `html`, which holds a Template and the values from",
-                "interpolated expressions."
+              "`html`の返り値の型。テンプレートと式からの値が含まれます。"
             ]
         },
         "properties": {},
         "methods": {
             "getHTML": {
                 "comment": {
-                    "shortText": "Returns a string of HTML used to create a `<template>` element."
+                    "shortText": "`<template>`要素を作るために使われるHTMLの文字列を返します。"
                 }
             }
         },

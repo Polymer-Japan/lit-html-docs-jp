@@ -10,66 +10,53 @@
     "prepareTemplateStyles": {
         "comment": {
             "text": [
-                "Note, <style> elements can only be placed into templates for the",
-                "initial rendering of the scope. If <style> elements are included in templates",
-                "dynamically rendered to the scope (after the first scope render), they will",
-                "not be scoped and the <style> will be left in the template and rendered",
-                "output."
+                "`<style>`要素は初期レンダリングの時のみ置くことができます。",
+                "`<style>`要素をテンプレートに含めて動的にレンダリングした場合（最初のスコープレンダリング時）、それらはスコープに入らず、`<style>`はテンプレートに残ったままで、出力だけされます。"
             ],
             "shortText": [
-                "For the given scope name, ensures that ShadyCSS style scoping is performed.",
-                "This is done just once per scope name so the fragment and template cannot",
-                "be modified.",
-                "(1) extracts styles from the rendered fragment and hands them to ShadyCSS",
-                "to be scoped and appended to the document",
-                "(2) removes style elements from all lit-html Templates for this scope name."
+                "指定されたスコープ名に対して、ShadyCSSスタイルスコープは確実に実行されます。これは、スコープ名ごとに1回だけ実行されるため、フラグメントとテンプレートは変更されません。",
+                "(1) レンダリングされたフラグメントからスタイルを抽出し、ShadyCSSに渡してスコープを設定し、ドキュメントに追加します",
+                "(2) このスコープ名のすべてのlit-htmlテンプレートからスタイル要素を削除します"
             ]
         }
     },
     "removeStylesFromLitTemplates": {
         "comment": {
-            "shortText": "Removes all style elements from Templates for the given scopeName."
+            "shortText": "指定されたscopeNameのTemplatesからすべてのスタイル要素を削除します。"
         }
     },
     "shadyTemplateFactory": {
         "comment": {
-            "shortText": "Template factory which scopes template DOM using ShadyCSS."
+            "shortText": "ShadyCSSを使用してテンプレートDOMをスコープするテンプレートファクトリ。"
         }
     },
     "insertNodeIntoTemplate": {
         "comment": {
             "shortText": [
-                "Inserts the given node into the Template, optionally before the given",
-                "refNode. In addition to inserting the node into the Template, the Template",
-                "part indices are updated to match the mutated Template DOM."
+                "指定されたノードをテンプレートに挿入します。オプションで指定したrefNodeの前に挿入します。 テンプレートにノードを挿入するだけでなく、テンプレート・パーツのインデックスは、変更されたテンプレートDOMに一致するように更新されます。"
             ]
         }
     },
     "removeNodesFromTemplate": {
         "comment": {
             "text": [
-                "As the template is walked the removal state is tracked and",
-                "part indices are adjusted as needed.",
+                "テンプレートは削除状態に追従し、必要に応じて部分インデックスが調整されます。",
                 "div",
-                "  div#1 (remove) <-- start removing (removing node is div#1)",
+                "  div#1 (削除) <-- 削除開始 (div#1のノードが削除される)",
                 "    div",
-                "      div#2 (remove)  <-- continue removing (removing node is still div#1)",
+                "      div#2 (削除)  <-- 続いて削除される (削除しているのはdiv#1ノード)",
                 "        div",
-                "div <-- stop removing since previous sibling is the removing node (div#1,",
-                "removed 4 nodes)"
+                "div <-- 直前の兄弟ノードなので、削除をストップする (div#1によって4ノードが削除された)"
             ],
             "shortText": [
-                "Removes the list of nodes from a Template safely. In addition to removing",
-                "nodes from the Template, the Template part indices are updated to match",
-                "the mutated Template DOM."
+                "テンプレートから安全にノードリストを削除します。テンプレートからノードを削除するだけでなく、テンプレート・パーツのインデックスは、変更されたテンプレートDOMに一致するように更新されます。"
             ]
         }
     },
     "svg": {
         "comment": {
             "shortText": [
-                "Interprets a template literal as an SVG template that can efficiently",
-                "render to and update a container."
+                "テンプレートリテラルをSVGテンプレートとして解釈し、コンテナへ効率的にレンダリングおよび更新します。"
             ]
         }
     },
@@ -83,34 +70,28 @@
     "templateFactory": {
         "comment": {
             "shortText": [
-                "The default TemplateFactory which caches Templates keyed on",
-                "result.type and result.strings."
+                "テンプレートをキャッシュするデフォルトのTemplateFactoryは、result.typeとresult.stringsをキーとします。"
             ]
         }
     },
     "removeNodes": {
         "comment": {
             "shortText": [
-                "Removes nodes, starting from `startNode` (inclusive) to `endNode`",
-                "(exclusive), from `container`."
+                "`startNode`(包含)から`endNode`(排他)まで、 `container`からノードを削除します。"
             ]
         }
     },
     "reparentNodes": {
         "comment": {
             "shortText": [
-                "Reparents nodes, starting from `startNode` (inclusive) to `endNode`",
-                "(exclusive), into another container (could be the same container), before",
-                "`beforeNode`. If `beforeNode` is null, it appends the nodes to the",
-                "container."
+                "親要素を切り替える為に、`beforeNode`の前へ`startNode`(包含)から`endNode`(排他)までを、別のコンテナ(同じコンテナでも)に挿入します。`beforeNode`がnullの場合、ノードをコンテナに追加します。"
             ]
         }
     },
     "directive": {
         "comment": {
             "shortText": [
-                "Brands a function as a directive so that lit-html will call the function",
-                "during template rendering, rather than passing as a value."
+                "ディレクティブとしてlit-htmlがテンプレートを描画するのに(値ではなく)関数として呼び出せるように定義します"
             ]
         }
     },

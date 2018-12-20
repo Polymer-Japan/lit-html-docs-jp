@@ -2,11 +2,9 @@
     "SVGTemplateResult": {
         "comment": {
             "text": [
-                "This class wraps HTMl in an `<svg>` tag in order to parse its contents in the",
-                "SVG namespace, then modifies the template to remove the `<svg>` tag so that",
-                "clones only container the original fragment."
+                "このクラスはHTMLを `<svg>`タグにラップしてSVG名前空間の内容を解析し、`<svg>`タグを削除するようにテンプレートを修正します。"
             ],
-            "shortText": "A TemplateResult for SVG fragments."
+            "shortText": "SVGフラグメントのTemplateResult"
         },
         "properties": {},
         "methods": {},

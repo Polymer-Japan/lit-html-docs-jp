@@ -2,20 +2,19 @@
     "Part": {
         "comment": {
             "shortText": [
-                "The Part interface represents a dynamic part of a template instance rendered",
-                "by lit-html."
+                "パーツのインタフェースは、lit-htmlで描画するテンプレートインスタンスの動的変更部分です。"
             ]
         },
         "properties": {},
         "methods": {
             "setValue": {
                 "comment": {
-                    "shortText": "Sets the current part value, but does not write it to the DOM."
+                    "shortText": "現在のパーツの値を設定しますが、すぐにDOMに書き込みません。"
                 }
             },
             "commit": {
                 "comment": {
-                    "shortText": "Commits the current part value, cause it to actually be written to the DOM."
+                    "shortText": "現在のパーツの値をコミットし、実際にDOMに書き込みます。"
                 }
             }
         }

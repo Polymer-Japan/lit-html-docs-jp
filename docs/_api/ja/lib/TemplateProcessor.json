@@ -5,14 +5,13 @@
             "handleAttributeExpressions": {
                 "comment": {
                     "shortText": [
-                        "Create parts for an attribute-position binding, given the event, attribute",
-                        "name, and string literals."
+                        "イベント、属性名、および文字列リテラルによって属性バインディングのパーツを作成します。"
                     ]
                 }
             },
             "handleTextExpression": {
                 "comment": {
-                    "shortText": "Create parts for a text-position binding."
+                    "shortText": "テキストバインディングのためのパーツを作成します。"
                 }
             }
         }

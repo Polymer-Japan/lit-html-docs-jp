@@ -2,12 +2,10 @@
     "BooleanAttributePart": {
         "comment": {
             "text": [
-                "If the value is truthy, then the attribute is present with a value of",
-                "''. If the value is falsey, the attribute is removed."
+                "値が真(truthy)の場合、属性の値は''になります。値が偽の場合、属性は削除されます。"
             ],
             "shortText": [
-                "Implements a boolean attribute, roughly as defined in the HTML",
-                "specification."
+                "HTML仕様で定義されているようなboolean属性を実装します。"
             ]
         },
         "properties": {},
