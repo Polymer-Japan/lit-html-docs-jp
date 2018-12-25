@@ -91,7 +91,7 @@ lit-html support many kind of values natively: strings, DOM nodes, heterogeneous
 
 lit-htmlを使うことで、JavaScriptと関数型プログラミングのフルパワーを発揮できます。
 
-テンプレート(Templates)は関数へ再計算した値の受け渡しや入れ子にして使えます。式(Expressions)では生のJavaScriptが評価されるので、そこで必要なことはなんでもできます。
+テンプレート(Templates)は関数へ再計算した値の受け渡しや入れ子にして使えます。式(Expressions)ではJavaScriptがそのまま評価されるので、そこで必要なことはなんでもできます。
 
 lit-htmlは、文字列やDOMノード、多様なリスト、ネストされたテンプレートなど、多くの種類の値をネイティブでサポートします。
 
