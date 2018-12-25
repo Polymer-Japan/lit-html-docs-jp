@@ -95,7 +95,7 @@ When you call `render`, **lit-html only updates the parts of the template that h
 
 `render`を呼び出すと、**lit-htmlは最後に実行された描画において、変更されたテンプレートの一部分のみを更新します**。これにより、lit-htmlの更新は非常に高速になっています。
 
-## JavaScritp式を使う
+## JavaScript評価式を使う
 
 <!-- original:
 The previous example shows interpolating a simple text value, but the binding can include any kind of JavaScript expression:
@@ -318,7 +318,7 @@ html`
 Note that this expression returns an array of `TemplateResult` objects. lit-html will render an array or iterable of subtemplates and other values.
 -->
 
-この式は`TemplateResult`オブジェクトの配列を返していることに注意してください。lit-htmlは、配列やイテラブル(iterable)なサブテンプレートやその他の値を描画します。
+このJavaScript評価式は`TemplateResult`オブジェクトの配列を返していることに注意してください。lit-htmlは、配列やイテラブル(iterable)なサブテンプレートやその他の値を描画します。
 
 ### ループ文による繰り返し
 
@@ -353,7 +353,7 @@ The repeat directive performs efficient updates of lists based on user-supplied 
 
 ほとんどの場合、Array.mapが繰り返しを行う効率的な方法です。ただし、大きなリストを並べ替えたり、個々のエントリを追加・削除する場合は、多数のDOMノードを効率的に再作成する必要があります。
 
-こういった場合に `repeat` _ディレクティブ_ が使えます。ディレクティブ(Directive)とはレンダリングを特別に制御する拡張可能な関数です。lit-htmlには、`repeat`のような組み込みのディレクティブが付属してます。
+こういった場合に `repeat` _ディレクティブ_ が使えます。ディレクティブ(Directive)とは描画を特別に制御する拡張可能な関数です。lit-htmlには、`repeat`のような組み込みのディレクティブが付属してます。
 
 `repeat`ディレクティブは、開発者がリストにおいて指定するユニークキーに基づき効率的に描画更新します。
 
@@ -417,7 +417,7 @@ In this case, you can use the `cache` _directive_. Directives are special functi
 
 ほとんどの場合、条件分岐テンプレートはJavaScriptの条件式で済みます。ただし、大規模で複雑なテンプレートを置き換える場合にDOMを再作成するコストを節約したい場合があります。
 
-こういった場合に `cache`_ディレクティブ_ が使えます。ディレクティブ(Directive)はレンダリングを特別に制御する拡張可能な関数です。cacheディレクティブは、現在描画していないテンプレートのDOMを保持(キャッシュ)します。
+こういった場合に `cache`_ディレクティブ_ が使えます。ディレクティブ(Directive)は描画を特別に制御する拡張可能な関数です。cacheディレクティブは、現在描画していないテンプレートのDOMを保持(キャッシュ)します。
 
 ```js
 const detailView = (data) => html`<div>...</div>`; 

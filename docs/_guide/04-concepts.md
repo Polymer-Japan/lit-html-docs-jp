@@ -12,7 +12,7 @@ slug: concepts
 `lit-html` utilizes some unique properties of JavaScript template literals and HTML `<template>` elements to function and achieve fast performance. So it's helpful to understand them first.
 -->
 
-`lit-html` はJavaScriptのテンプレートリテラルやHTML `<template>`要素のいくつかの独自のプロパティを使って高速なパフォーマンスを実現しています。よって、最初にそれらを理解するのは大事です。
+`lit-html` はJavaScript標準のテンプレートリテラルや、HTML`<template>`要素の独自のプロパティを使って高速なパフォーマンスを実現しています。よって、最初にそれらを理解するのは大事なことです。
 
 ## タグ付きテンプレートリテラル
 
@@ -20,7 +20,7 @@ slug: concepts
 A JavaScript template literal is a string literal that can have JavaScript expressions embedded in it:
 -->
 
-JavaScriptのテンプレートリテラルは、JavaScript評価式を埋め込むことができる文字列リテラルです。
+JavaScript標準のテンプレートリテラルは、JavaScript評価式を埋め込むことができる文字列リテラルです。
 
 ```js
 `My name is ${name}.`
@@ -49,13 +49,13 @@ The key features of template tags that lit-html utilizes to make updates fast is
 This means that the strings can be used as a key into a cache so that lit-html can do the template preparation just once, the first time it renders a template, and updates skip that work.
 -->
 
-タグは、テンプレートのリテラル文字列と埋め込み式の値を受け取り、新しい値を返す関数です。これは文字列だけでなく、あらゆる種類の値にすることができます。lit-htmlは、`TemplateResult` というテンプレートを表すオブジェクトを返します。
+テンプレートタグは、テンプレートのリテラル文字列と埋め込み式の値を受け取り、新しい値を返す関数です。これは文字列だけでなく、あらゆる種類の値を返すことができます。lit-htmlは、`TemplateResult` というテンプレートを表すオブジェクトを返します。
 
-lit-htmlが高速に更新を行うために利用するテンプレートタグの重要な機能は、テンプレートのリテラル文字列を保持するオブジェクトは、特定のテンプレートのタグを何度呼び出しても _正確に_ 同じであることです。
+lit-htmlが高速に更新を行うために利用するテンプレートタグの重要な機能は、テンプレートのリテラル文字列を保持するオブジェクトが、特定のテンプレートのタグを何度呼び出しても _正確に_ 同じであることです。
 
-これは、文字列をキャッシュへのキーとして使えるので、lit-htmlはテンプレートを初めてレンダリングしたときにテンプレートの準備を一度しか行わず、その作業をスキップして更新することができることを意味します。
+これは、文字列をキャッシュへのキーとして使えるので、lit-htmlはテンプレートを初めて描画したときにテンプレートの準備を一度しか行わず、その作業をスキップして更新することができることを意味します。
 
-## HTML `<template>` 要素
+## HTML`<template>` 要素
 
 <!-- original:
 A `<template>` element is an inert fragment of DOM. Inside a `<template>`, script don't run, images don't load, custom elements aren't upgraded, etc. `<template>`s can be efficiently cloned. They're usually used to tell the HTML parser that a section of the document must not be instantiated when parsed, and will be managed by code at a later time, but it can also be created imperatively with `createElement` and `innerHTML`.
@@ -63,7 +63,7 @@ A `<template>` element is an inert fragment of DOM. Inside a `<template>`, scrip
 lit-html creates HTML `<template>` elements from the tagged template literals, and then clones them to create new DOM.
 -->
 
-`<template>`要素は、DOMの断片です。`<template>`の内部ではスクリプトは実行されず、画像も読み込まれず、カスタム要素も更新されません。`<template>`は効率的にクローンを作成できます。それら通常、文書のセクションを解析する際にインスタンス化されてはならない、と後でコードによって管理されるHTMLパーサを伝えるために使われますが、それらは`createElement`や`innerHTML`によって命令的に作成することができます。
+`<template>`要素は、活性化していない部分的なDOMです。`<template>`の内部ではスクリプトは実行されず、画像も読み込まれず、カスタム要素も更新されません。`<template>`は効率的にクローンを作成できます。それらは通常、文書のセクションを解析する際にインスタンス化しないようHTMLパーサを伝えるために使われますが、`createElement`や`innerHTML`によって命令的に作成することができます。
 
 lit-htmlはHTML`<template>`要素をタグ付きテンプレートリテラルから作成し、それらをクローンして新しいDOMを作成します。
 
@@ -75,7 +75,7 @@ The first time a particular lit-html template is rendered anywhere in the applic
 If we start with a template like this:
 -->
 
-特定のlit-htmlテンプレートがアプリケーション内のどこかで最初にレンダリングされる時、lit-htmlは一度だけHTMLテンプレートを作成作業を行います。すべてのリテラル部分を特殊なプレースホルダ`"{% raw %}{{}}{% endraw %}"`で結合し、次に`<template>`を作成し、`innerHTML`に結果を格納します。
+特定のlit-htmlテンプレートがアプリケーション内のどこかで最初に描画される時、lit-htmlは一度だけHTMLテンプレートを作成します。すべてのリテラル部分を特殊なプレースホルダ`"{% raw %}{{}}{% endraw %}"`で結合し、次に`<template>`を作成し、`innerHTML`に結果を格納します。
 
 次のようなテンプレートで始める場合:
 
@@ -123,7 +123,7 @@ And there's an auxillary table of where the expressions were:
 A `Part` is a "hole" in the DOM where values can be injected. lit-html includes two type of parts by default: `NodePart` and `AttributePart`, which let you set text content and attribute values respectively. The `Part`s, container, and template they were created from are grouped together in an object called a `TemplateInstance`.
 -->
 
-`render()`は`TemplateResult`をとり、それをDOMコンテナに描画します。最初の描画では、テンプレートをクローンし、次に記憶されたプレースホルダ位置を覚えてテンプレートを巡り、Partオブジェクトを作成します。
+`render()`は`TemplateResult`オブジェクトをとり、それをDOMコンテナに描画します。最初の描画では、テンプレートをクローンし、次に記憶されたプレースホルダ位置を覚えてテンプレートを巡り、`Part`オブジェクトを作成します。
 
 `Part`は値を挿入できるDOMの「穴」です。lit-htmlにはデフォルトで2種類のPartが含まれています: `NodePart` と `AttributePart`、それぞれテキストの内容と属性の値を設定できるようになっています。`Part`のコンテナ、およびグループ化されたテンプレートが呼び出されたオブジェクトは`TemplateInstance`と呼ばれます。
 
@@ -147,11 +147,11 @@ When the result is rendered, lit only updates the expressions whose values have 
 This leads to model that's easy to write and easy to reason about: always try to describe your UI as a simple function of the data it depends on, an avoid caching intermediate state, or doing manual DOM manipulation. lit-html will almost always be fast enough with the simplest description of your UI.
 -->
 
-この種の機能は、データの変更があればいつでも呼び出すことができ、非常に軽く呼び出すことができます。lit-htmlが`html`タグで行う唯一のことは、引数をテンプレートに転送することです。
+この種の機能は、データの変更があればいつでも呼び出すことができ、非常に低コストで呼び出すことができます。lit-htmlが`html`タグで行う唯一のことは、引数を元にテンプレートを生成することです。
 
-結果がレンダリングされると、前のレンダリング以降に値が変更された式のみが更新されます。
+結果が描画されると、前の描画以降に値が変更された式のみが更新されます。
 
-これは、書くことが容易で推論が簡単なモデルにつながります。常に依存するデータの単純な関数としてのUIの記述、中間状態のキャッシングの回避、または手動によるDOM操作の実行をするようにしてください。lit-htmlは、ほとんどの場合、あなたのUIの最も単純な記述で十分に速くなります。
+これは、書くことが容易で推論が簡単なモデルにつながります。常に依存するデータの単純な関数としてのUIの記述、中間状態のキャッシングの回避、または手動によるDOM操作の実行をするようにしてください。lit-htmlは、ほとんどの場合、あなたのUIへの最も単純な記述で十分に速く動作します。
 
 ## JavaScriptモジュール
 
@@ -166,11 +166,11 @@ For more information on JavaScript modules:
 
 -->
 
-なぜlit-htmlはUMD / CJS / AMDではなく、JavaScriptモジュールとして配布されていますか？
+なぜlit-htmlはUMD / CJS / AMDではなく、JavaScriptモジュールとして配布(ESM)されていますか？
 
-モジュールがリリースされるまで、ブラウザはコードからコードをインポートする標準的な方法を持っていなかったので、ユーザーランドモジュールローダまたはバンドルが必要でした。標準がなかったので、競合するフォーマットが倍増しました。多くの場合、ライブラリはさまざまなツールのユーザーをサポートするためにさまざまな形式で公開されていますが、これは共通ライブラリが他の多くの中間ライブラリに依存している場合に問題を引き起こします。それらの中間ライブラリのいくつかがフォーマットAをロードし、他のフォーマットがフォーマットBをロードし、フォーマットCをロードするものがあると、複数のコピーがロードされ、膨らんで、パフォーマンスが低下します、みつけにくいバグを引き起します。
+JavaScriptモジュール機構がリリースされるまで、ブラウザはコードからコードをインポートする標準的な方法を持っていなかったので、ユーザーランドモジュールローダまたはバンドルが必要でした。標準の枠組みがなかったことで、競合するフォーマットが倍増しました。多くの場合、ライブラリはさまざまなツールのユーザーをサポートするためにさまざまな形式で公開されていますが、これは共通ライブラリが他の多くの中間ライブラリに依存している場合に問題を引き起こします。それらの中間ライブラリのいくつかがフォーマットAをロードし、他のフォーマットがフォーマットBをロードし、フォーマットCをロードするものがあると、複数のコピーがロードされ、膨らんで、パフォーマンスが低下します、みつけにくいバグを引き起します。
 
-唯一の真の解決策は、他のすべてのライブラリがインポートするライブラリの正規バージョンを1つ持つことです。モジュールサポートは現在ブラウザに展開されており、モジュールはツールで非常にうまくサポートされているため、そのフォーマットがモジュールであることは理にかなっています。
+唯一の真の解決策は、他のすべてのライブラリがインポートするライブラリの正規バージョンを1つ持つことです。モジュールは現在ブラウザでサポートされており、ツールでも非常にうまく扱えるため、フォーマットをJavaScritpモジュール機構とすることは理にかなっています。
 
 JavaScriptモジュールの詳細については、次を参照してください。
 

@@ -12,7 +12,7 @@ slug: template-reference
 lit-html templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, HTML:
 -->
 
-lit-htmlテンプレートは、`html`タグでタグ付けされたJavaScriptテンプレートリテラルによって生成されます。リテラルの内容は、ほとんどがプレーンであり、ディレクティブか、HTMLです。
+lit-htmlテンプレートは、`html`タグでタグ付けされたJavaScript標準のテンプレートリテラルによって生成されます。リテラルの内容は、ほとんどがプレーンであり、ディレクティブか、HTMLです。
 
 
 ```js
@@ -23,7 +23,7 @@ html`<h1>Hello World</h1>`
 **Bindings** or expressions are denoted with the standard JavaScript syntax for template literals:
 -->
 
-**バインディング**や式は、JavaScript標準のテンプレートリテラル構文を使います。
+**バインディング**やJavaScript評価式は、JavaScript標準のテンプレートリテラル構文を使います。
 
 
 ```js
@@ -44,12 +44,12 @@ Follow these rules for well-formed templates:
  *  Bindings **_can only occur_** in attribute-value and text-content positions.
 -->
 
-lit-htmlテンプレートはきちんと整えられたHTMLでなければならず、ちゃんと指定された場所でしかバインディングされません。テンプレートは値が置き換えられる前にブラウザの組み込みHTMLパーサーによって解析されます。
+lit-htmlテンプレートはきちんと整えられたHTMLでなければならず、ちゃんと指定された場所でしかバインディングされません。テンプレートは値が置き換えられる前にブラウザ内部の組み込みHTMLパーサーによって解析されます。
 
-**Warningは出ません** 不正な形式のテンプレートのほとんどは、lit-htmlで検出できないため、予期したとおりに動作しないテンプレートだけが警告を表示することはありません。したがって、正しくテンプレートを構造化するために特別な注意が必要です。
+**不正な形式に対して警告されません** lit-htmlではほとんどの不正な形式のテンプレートを検出できないので、期待した動作がされないテンプレートに警告が表示されることはありません。よって、正しいHTMLの構造を維持するには特別な注意が必要です。
 
- * すべての式が空の値に置き換えられた場合、テンプレートは整形式のHTMLでなければなりません。 
- * バインディングは、属性およびテキストコンテンツで**のみ機能**します。
+ * すべてのJavaScript評価式が空だった場合でもテンプレートはきちんと整えられたHTMLとなるようにしてください。
+ * バインディングは、HTMLの属性およびHTMLのテキストコンテンツで**のみ機能**します。
 
    ```html
    <!-- 属性値 -->
@@ -63,7 +63,7 @@ lit-htmlテンプレートはきちんと整えられたHTMLでなければな�
  *  Expressions **_cannot_** appear where tag or attribute names would appear.
 -->
 
- * タグや属性名は置き換えられません。
+ * タグや属性名でバインディングは使用できません。
     
     ```html
     <!-- エラー --> 
@@ -79,9 +79,9 @@ lit-htmlテンプレートはきちんと整えられたHTMLでなければな�
  *  Templates **_should not contain_** unclosed elements—they will be closed by the HTML parser.
 -->
 
- * テンプレートには複数のトップレベルの要素とテキストを含めることができます。 
+ * テンプレートでは複数のトップレベル要素とテキストを含めることができます【全体をdivで囲う必要はありません】。 
  
- * テンプレートには閉じられていない要素が含まれてはいけません。それらはHTMLパーサーによって自動的に閉じられるでしょう。
+ * テンプレートには閉じられていない要素を含まれてはいけません。それらはHTMLパーサーによって強制的に閉じられるでしょう。
 
     ```js
     // HTMLパーサーは"Some text"の後でdivタグを閉じます
@@ -100,7 +100,7 @@ There are a few types of bindings:
   * Text:
 -->
 
-JavaScript評価式はテキストコンテンツまたは属性の値で表示されます。
+JavaScript評価式はテキストコンテンツまたは属性の値で描画されます。
 
 バインディングにはいくつかの種類があります。
 
@@ -116,7 +116,7 @@ JavaScript評価式はテキストコンテンツまたは属性の値で表示�
   * Attribute:
 -->
 
-   テキストバインディングは、要素のテキストコンテンツのどこにでもつくれます。
+   テキストのバインディングは、要素のテキストコンテンツのどこにでもつくれます。
 
   * 属性:
   
@@ -189,7 +189,7 @@ Each binding type supports different types of values:
  * Event handler bindings: Event handler functions or objects only.
 -->
 
-各バインドされる型はそれぞれ異なるタイプの値の型となります:
+バインドされる形式によって異なる型がサポートされます:
 
   * テキストコンテンツ: 後述の通り、多くの型が使えます。
 
@@ -214,10 +214,10 @@ Text content bindings accept a large range of value types:
 
 テキストコンテンツにおけるバインディングは、広範囲の型を使えます。
 
-*   プリミティブ値。
-*   TemplateResultオブジェクト。
-*   DOMノード。
-*   配列またはiterables。
+*   プリミティブ値
+*   TemplateResultオブジェクト
+*   DOMノード
+*   配列もしくはイテラブル
 
 #### プリミティブ値: 文字列、数値、真偽値、null、undefined
 
@@ -225,15 +225,15 @@ Text content bindings accept a large range of value types:
 Primitives values are converted to strings when interpolated into text content or attribute values. They are checked for equality to the previous value so that the DOM is not updated if the value hasn't changed.
 -->
 
-プリミティブの値は、テキストコンテンツまたは属性値に使われた時に文字列に変換されます。以前の値と等しいかどうかがチェックされ、値が変更されていない場合はDOMは更新されません。
+プリミティブの値は、テキストコンテンツまたは属性値に使われた時に文字列に変換されます。以前の値と等しいかどうかがチェックされ、値が変更されていない場合DOMは更新されません。
 
-#### TemplateResult
+#### TemplateResultオブジェクト
 
 <!-- original:
 Templates can be nested by passing a `TemplateResult` as a value of an expression:
 -->
 
-テンプレートは、式の値として `TemplateResult`を渡すことで入れ子にすることができます:
+テンプレートは、JavaScript評価式の値として `TemplateResult`を渡すことで入れ子にすることができます:
 
 ```js
 const header = html`<h1>Header</h1>`;
@@ -244,13 +244,13 @@ const page = html`
 `;
 ```
 
-#### ノード
+#### DOMノード
 
 <!-- original:
 Any DOM Node can be passed to a text position expression. The node is attached to the DOM tree at that point, and so removed from any current parent:
 -->
 
-どのDOMノードも指定された位置に値に渡すことができます。ノードはその時点でDOMツリーに関連付けられているため、現在の親から削除されます:
+どんなDOMノードも指定された位置に値に渡すことができます。ノードはその時点でDOMツリーに関連付けられているため、現在の親から削除されます:
 
 ```js
 const div = document.createElement('div');
@@ -260,13 +260,13 @@ const page = html`
 `;
 ```
 
-#### 配列 / イテラブル
+#### 配列もしくはイテラブル
 
 <!-- original:
 Arrays and Iterables of supported types are supported as well. They can be mixed values of different supported types.
 -->
 
-配列とイテラブル(Iterable)もうまくサポートされています。異なる型でも混在させることができます。
+配列とイテラブル(列挙可能なオブジェクト)もうまくサポートされています。異なる型でも混在させることができます。
 
 ```javascript
 const items = [1, 2, 3];
@@ -331,7 +331,11 @@ html`
 
 ### Array.mapによるループ
 
-リストを描画するのに、`Array.map`を使ってデータのリストをテンプレートのリストに変換ができます:
+<!-- original:
+To render lists, `Array.map` can be used to transform a list of data into a list of templates:
+-->
+
+リストを描画するのに、`Array.map`を使ってデータをテンプレートのリストに変換できます:
 
 ```js
 html`
@@ -364,7 +368,7 @@ Directives are functions that can extend lit-html by customizing the way a bindi
 lit-html includes a few built-in directives.
 -->
 
-ディレクティブは、バインディングのレンダリング方法をカスタマイズすることで、lit-htmlを拡張できる関数です。
+ディレクティブは、バインディングの描画方法をカスタマイズすることで、lit-htmlを拡張できる関数です。
 
 lit-htmlにはいくつかの組み込みディレクティブが含まれています。
 
@@ -378,7 +382,7 @@ lit-htmlにはいくつかの組み込みディレクティブが含まれてい
 **Directives may change.** The exact list of directives included with lit-html, and the API of the directives may be subject to change before lit-html 1.0 is released.
 -->
 
-**ディレクティブは変更されるかもしれません** lit-htmlに含まれるディレクティブとAPIは、lit-html 1.0がリリースされる前に変更される可能性があります。
+**ディレクティブは変更される可能性があります** lit-htmlに含まれるディレクティブとAPIは、v1.0がリリースされる前に変更される可能性があります。
 
 ### repeat 
 
@@ -394,8 +398,8 @@ moving DOM when required, and is generally the most efficient way to use
 Example:
 -->
 
-イテラブル(iterable)から生成された一連の値（通常は `TemplateResults`）を繰り返して表示し、変更されたときにそれらの項目を効率的に更新します。
-`keyFn`があれば、必要に応じてDOMを移動させることによってキーとDOMの関連付けが維持されるので、DOMの挿入を最小限に抑えるためには` repeat`を使うのが最も効率的です。
+イテラブル(iterable)から生成された一連の値（通常は `TemplateResults`オブジェクト）を繰り返して表示し、変更されたときにそれらの項目を効率的に更新します。
+`keyFn`が定義されていれば、必要に応じてDOMを移動させてキーとDOMの関連付けを維持するので、DOMの挿入を最小限に抑えるためには`repeat`を使うのが最も効率的です。
 
 例:
 
@@ -431,7 +435,7 @@ Example:
 
 属性を設定する場合、値が定義されていれば属性を設定し、値が undefined の場合は属性を削除します。
 
-他のテキストコンテンツなどの場合に、ディレクテブはなにもしません。
+他のテキストコンテンツなど属性以外に使用した場合に、このディレクテブはなにもしません。
 
 例:
 
@@ -458,11 +462,11 @@ The `guard` directive caches the last-known value of `valueFn`, and only re-eval
 Example:
 -->
 
-識別された式のいずれかが一意性(identity)を変更しない限り、高価なテンプレート関数（`valueFn`）の再評価は避けてください。`valueFn`の戻り値ははキャッシュされる可能性があります。
+識別されたJavaScript評価式のいずれかが一意性(identity)を変更しない限り、高価なテンプレート関数（`valueFn`）の再評価は避けてください。`valueFn`の戻り値ははキャッシュされる可能性があります。
 
-`expressions`(式)では単一の値（配列とならない）であり、もしくは監視する対象を含めた配列とすることができます。
+`expressions`(JavaScript評価式)では単一の値（配列とならない）であり、もしくは監視する対象を含めた配列とすることができます。
 
-この`guard`ディレクティブは最後の既知の値をキャッシュし、プリミティブが値を変更したときやオブジェクト参照が変更されたときなど、式の一意性(identity)が変更された場合にのみ再描画されます。
+この`guard`ディレクティブは最後の既知の値をキャッシュし、プリミティブが値を変更したときやオブジェクト参照が変更されたときなど、JavaScript評価式の一意性(identity)が変更された場合にのみ再描画されます。
 
 ```js
 import { guard } from 'lit-html/directives/guard';
@@ -501,11 +505,11 @@ resolves.
 Example:
 -->
 
-プロミスを含む一連の値の1つをパートにレンダリングします。
+プロミスを含む一連の値の1つをパーツ(部分)に描画します。
 
-値は優先度順に表示され、最初の引数は最高の優先度を持ち、最後の引数は最低の優先度を持ちます。値がPromiseの場合、優先度の低い値は解決されるまでレンダリングされます。
+値は優先度順に表示され、最初の引数は最高の優先度を持ち、最後の引数は最低の優先度を持ちます。値がPromiseの場合、優先度の低い値は解決されるまで描画されます。
 
-値の優先順位は、非同期データのプレースホルダコンテンツを作成するために使えます。たとえば、保留中のコンテンツを含むPromiseを最初の優先度の高い引数にすることができ、非プロンプトのローディングインジケータテンプレートを2番目の優先度の低い引数として使えます。ローディングインジケータがすぐにレンダリングされ、プロミスが解決するとプライマリコンテンツがレンダリングされます。
+値の優先順位は、非同期データのプレースホルダコンテンツを作成するために使えます。たとえば、保留中のコンテンツを含むPromiseを最初の優先度の高い引数にすることができ、非プロンプトのローディングインジケータテンプレートを2番目の優先度の低い引数として使えます。ローディングインジケータがすぐにレンダリングされ、プロミスが解決するとプライマリコンテンツが描画されます。
 
 例:
 
@@ -542,11 +546,11 @@ JavaScriptの非同期イテレータは、データへの非同期順次アク�
 
 lit-htmlは、非同期イテレータを使用するための2つのディレクティブを提供します。
 
-  * `asyncAppend` [非同期のイテラブル](https://github.com/tc39/proposal-async-iteration)の値をレンダリングし、
+  * `asyncAppend` [非同期の列挙可能なオブジェクト(iterable)](https://github.com/tc39/proposal-async-iteration)の値を描画し、
   
 新しい値を前の値の後に追加します。
 
-  * `asyncReplace` [非同期のイテラブル]((https://github.com/tc39/proposal-async-iteration)の値をレンダリングし、
+  * `asyncReplace` [非同期の列挙可能オブジェクト(iterable)](https://github.com/tc39/proposal-async-iteration)の値を描画し、
 
 前の値を新しい値に置き換えます。
 
