@@ -101,7 +101,7 @@ lit-htmlは、文字列やDOMノード、多様なリスト、ネストされた
 ## Extensible - 拡張可能
 
 <!-- original:
-lit-html is extremely customizable and extensible. Directives customize how values are handled, allowing for asynchronous values, efficient keyed-repeats, error boundaries, and more. lit-html is like your very own a template construction kit.
+lit-html is extremely customizable and extensible. Directives customize how values are handled, allowing for asynchronous values, efficient keyed-repeats, error boundaries, and more. lit-html is like your very own template construction kit.
 -->
 
 lit-htmlはとってもカスタマイズしやすく拡張が容易です。ディレクティブ(Directives)を定義することにより、値の処理や非同期処理、効率的なキー付き繰り返し処理やエラーなど様々なことがカスタマイズできます。lit-htmlはあなた専用のテンプレート構築キットとなるでしょう。
