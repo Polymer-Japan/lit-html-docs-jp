@@ -178,7 +178,7 @@ html`<button @click=${listener}>Click Me</button>`
 <!-- original:
 Each binding type supports different types of values:
 
- * Text content bindings: Many supported types—see below.
+ * Text content bindings: Many types, see [Supported data types for text bindings](#supported-data-types-for-text-bindings).
 
  * Attribute bindings: All values are converted to strings.
 
@@ -285,7 +285,7 @@ const list = () => html`items = ${Object.entries(items)}`;
 ## JavaScriptによる制御フロー
 
 <!-- original:
-lit-html has no built-in control-flow constructs. Instead you use normal JavaScript expressions and statements:
+lit-html has no built-in control-flow constructs. Instead you use normal JavaScript expressions and statements.
 -->
 
 lit-htmlには組み込みの制御方法はありません。代わりに、通常のJavaScript評価式とJavaScript文を使います。
@@ -372,11 +372,15 @@ lit-html includes a few built-in directives.
 
 lit-htmlにはいくつかの組み込みディレクティブが含まれています。
 
-*   [`repeat`](#repeat)
+*   [`asyncAppend` と `asyncReplace`](#asyncappend-and-asyncreplace)
+*   [`cache`](#cache)
+*   [`classMap`](#classmap)
 *   [`ifDefined`](#ifdefined)
 *   [`guard`](#guard)
+*   [`repeat`](#repeat)
+*   [`styleMap`](#stylemap)
+*   [`unsafeHTML`](#unsafehtml)
 *   [`until`](#until)
-*   [`asyncAppend` と `asyncReplace`](#asyncappend-and-asyncreplace)
 
 <!-- original:
 **Directives may change.** The exact list of directives included with lit-html, and the API of the directives may be subject to change before lit-html 1.0 is released.
@@ -384,16 +388,67 @@ lit-htmlにはいくつかの組み込みディレクティブが含まれてい
 
 **ディレクティブは変更される可能性があります** lit-htmlに含まれるディレクティブとAPIは、v1.0がリリースされる前に変更される可能性があります。
 
-### repeat 
+### asyncAppend and asyncReplace
 
-`repeat(items, keyfn, template)`
+`asyncAppend(asyncIterable)`<br>
+`asyncReplace(asyncIterable)`
 
-<!-- original:
-Repeats a series of values (usually `TemplateResults`) generated from an
-iterable, and updates those items efficiently when the iterable changes. When
-the `keyFn` is provided, key-to-DOM association is maintained between updates by
-moving DOM when required, and is generally the most efficient way to use
-`repeat` since it performs minimum unnecessary work for insertions amd removals.
+Location: text bindings
+
+JavaScript asynchronous iterators provide a generic interface for asynchronous sequential access to data. Much like an iterator, a consumer requests the next data item with a a call to `next()`, but with asynchronous iterators `next()` returns a `Promise`, allowing the iterator to provide the item when it's ready.
+
+lit-html offers two directives to consume asynchronous iterators:
+
+ * `asyncAppend` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration),
+
+appending each new value after the previous.
+
+ * `asyncReplace` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration),
+
+replacing the previous value with the new value.
+
+Example:
+
+```javascript
+const wait = (t) => new Promise((resolve) => setTimeout(resolve, t));
+/**
+ * Returns an async iterable that yields increasing integers.
+ */
+async function* countUp() {
+  let i = 0;
+  while (true) {
+    yield i++;
+    await wait(1000);
+  }
+}
+
+render(html`
+  Count: <span>${asyncReplace(countUp())}</span>.
+`, document.body);
+```
+
+In the near future, `ReadableStream`s will be async iterables, enabling streaming `fetch()` directly into a template:
+
+```javascript
+// Endpoint that returns a billion digits of PI, streamed.
+const url =
+    'https://cors-anywhere.herokuapp.com/http://stuff.mit.edu/afs/sipb/contrib/pi/pi-billion.txt';
+
+const streamingResponse = (async () => {
+  const response = await fetch(url);
+  return response.body.getReader();
+})();
+render(html`π is: ${asyncAppend(streamingResponse)}`, document.body);
+```
+
+### cache
+
+`cache(conditionalTemplate)`
+
+Location: text bindings
+
+Caches the rendered DOM nodes for templates when they're not in use. The `conditionalTemplate` argument is an expression that can return one of several templates. `cache` renders the current
+value of `conditionalTemplate`. When the template changes, the directive caches the _current_ DOM nodes before switching to the new value. 
 
 Example:
 -->
@@ -404,14 +459,40 @@ Example:
 例:
 
 ```js
-import { repeat } from 'lit-html/directives/repeat';
+const detailView = (data) => html`<div>...</div>`; 
+const summaryView = (data) => html`<div>...</div>`;
 
-const myTemplate = () => html`
-  <ul>
-    ${repeat(items, (i) => i.id, (i, index) => html`
-      <li>${index}: ${i.name}</li>`)}
-  </ul>
-`;
+html`${cache(data.showDetails
+  ? detailView(data) 
+  : summaryView(data)
+)}`
+```
+
+When lit-html re-renders a template, it only updates the modified portions: it doesn't create or remove any more DOM than it needs to. But when you switch from one template to another, lit-html needs to remove the old DOM and render a new DOM tree. 
+
+The `cache` directive caches the generated DOM for a given binding and input template. In the example above, it would cache the DOM for both the  `summaryView` and `detailView` templates. When you switch from one view to another, lit-html just needs to swap in the cached version of the new view, and and update it with the latest data.
+
+### classMap
+
+`class=${classMap(classObj)}`
+
+Location: attribute bindings (must be the entire value of the `class` attribute)
+
+Sets a list of classes based on an object. Each key in the object is treated as a class name, if the value associated with the key is truthy, that class is added to the element. 
+
+```js
+let classes = { highlight: true, enabled: true, hidden: false };`
+
+html`<div class=${classMap(classes)>Classy text</div>`;
+// renders as <div class="highlight enabled">Classy text</div>
+```
+
+Note that you can only use `classMap` in an attribute binding for the `class` attribute, and it must be the entire value of the attribute.
+
+
+```js
+// DON'T DO THIS
+html`<div class="someClass ${classMap(moreClasses}">Broken div</div>`;
 ```
 
 <!-- original:
@@ -426,6 +507,8 @@ items to values, and DOM will be reused against potentially different items.
 `ifDefined(value)`
 
 <!-- original:
+Location: attribute bindings
+
 For AttributeParts, sets the attribute if the value is defined and removes the attribute if the value is undefined.
 
 For other part types, this directive is a no-op.
@@ -443,24 +526,33 @@ Example:
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 const myTemplate = () => html`
-  <div class=${ifDefined(className)}></div>
+  <img src="/images/${ifDefined(image.filename)}">
 `;
-
 ```
 
 ### guard
 
-`guard(expression, valueFn)`
+`guard(dependencies, valueFn)`
 
 <!-- original:
-Avoids re-evaluating an expensive template function (`valueFn`) unless one of the identified expressions changes identity. Returns the value of `valueFn`, which may be cached.
+Location: any
 
-The `expressions` argument can either be a single (non-array) expression, or an array of multiple expressions to monitor.
+Renders the value returned by `valueFn`. Only re-evaluates `valueFn` when one of the 
+dependencies changes identity. 
 
-The `guard` directive caches the last-known value of `valueFn`, and only re-evaluates `valueFn` if the identity of any of the expressions changes (for example when a primitive changes value or when an object reference changes).
+Where:
+
+-   `dependencies` is an array of values to monitor for changes. (For backwards compatibility, 
+     `dependencies` can be a single, non-array value.)
+-   `valueFn` is a function that returns a renderable value.
+
+`guard` is useful with immutable data patterns, by preventing expensive work
+until data updates.
 
 Example:
 -->
+
+使用場所: どこでも
 
 識別されたJavaScript評価式のいずれかが一意性(identity)を変更しない限り、高価なテンプレート関数（`valueFn`）の再評価は避けてください。`valueFn`の戻り値ははキャッシュされる可能性があります。
 
@@ -473,39 +565,41 @@ import { guard } from 'lit-html/directives/guard';
 
 const template = html`
   <div>
-    ${guard(items, () => items.map(item => html`${item}`))}
+    ${guard([immutableItems], () => immutableItems.map(item => html`${item}`))}
   </div>
-`
+`;
 ```
 
 <!-- original:
-In this case, items are mapped over only when the array reference changes.
+In this case, the `immutableItems` array is mapped over only when the array reference changes.
 -->
 
-この場合、配列の参照が変更された場合にのみ評価されます。
+この場合、`immutableItems`の配列の参照が変更された場合にのみ評価されます。
 
 ### until
 
-`until(...values)`
+### repeat 
+
+`repeat(items, keyfn, template)`<br>
+`repeat(items, template)`
 
 <!-- original:
 Renders one of a series of values, including Promises, to a Part.
 
-Values are rendered in priority order, with the first argument having the
-highest priority and the last argument having the lowest priority. If a
-value is a Promise, low-priority values will be rendered until it resolves.
+Location: text bindings
 
-The priority of values can be used to create placeholder content for async
-data. For example, a Promise with pending content can be the first,
-highest-priority, argument, and a non_promise loading indicator template can
-be used as the second, lower-priority, argument. The loading indicator will
-render immediately, and the primary content will render when the Promise
-resolves.
+Repeats a series of values (usually `TemplateResults`) generated from an
+iterable, and updates those items efficiently when the iterable changes. When
+the `keyFn` is provided, key-to-DOM association is maintained between updates by
+moving DOM when required, and is generally the most efficient way to use
+`repeat` since it performs minimum unnecessary work for insertions amd removals.
 
 Example:
 -->
 
 プロミスを含む一連の値の1つをパーツ(部分)に描画します。
+
+使用場所: テキストバインディング
 
 値は優先度順に表示され、最初の引数は最高の優先度を持ち、最後の引数は最低の優先度を持ちます。値がPromiseの場合、優先度の低い値は解決されるまで描画されます。
 
@@ -513,31 +607,56 @@ Example:
 
 例:
 
-```javascript
-import { until } from 'lit-html/directives/until.js';
+```js
+import { repeat } from 'lit-html/directives/repeat';
 
-const content = fetch('./content.txt').then(r => r.text());
-
-html`${until(content, html`<span>Loading...</span>`)}`
+const myTemplate = () => html`
+  <ul>
+    ${repeat(items, (i) => i.id, (i, index) => html`
+      <li>${index}: ${i.name}</li>`)}
+  </ul>
+`;
 ```
 
-### asyncAppend と asyncReplace
+If no `keyFn` is provided, `repeat` will perform similar to a simple map of
+items to values, and DOM will be reused against potentially different items.
 
-`asyncAppend(asyncIterable)`<br>
-`asyncReplace(asyncIterable)`
+See [Repeating templates with the repeat directive](writing-templates#repeating-templates-with-the-repeat-directive) for a discussion
+of when to use `repeat` and when to use standard JavaScript flow control. 
+
+### styleMap
+
+`style=${styleMap(styles)}`
+
+Location: attribute bindings (must be the entire value of the `style` attribute)
+
+The `styleMap` directive sets styles on an element based on an object, where each key in the object is treated as a style property, and the value is treated as the value of for that property. For example:
+
+```js
+let styles = { backgroundColor: 'blue', color: 'white'}'
+html`<p style=${styleMap(styles}>Hello style!</p>`;
+```
+
+For CSS properties that contain dashes, you can either use the camel-case equivalent, or put the property name in quotes. For example, you can write the the CSS property `font-family` as either `fontFamily` or `'font-family'`:
+
+```js
+{ fontFamily: 'roboto' }
+{ 'font-family': 'roboto }
+```
+
+The `styleMap` directive can only be used as a value for the `style` attribute, and it must be the entire value of the attribute.
+
+### unsafeHTML
 
 <!-- original:
-JavaScript asynchronous iterators provide a generic interface for asynchronous sequential access to data. Much like an iterator, a consumer requests the next data item with a a call to `next()`, but with asynchronous iterators `next()` returns a `Promise`, allowing the iterator to provide the item when it's ready.
+`unsafeHTML(html)`
 
-lit-html offers two directives to consume asynchronous iterators:
+Location: text bindings
 
- * `asyncAppend` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration),
+Renders the argument as HTML, rather than text.
 
-appending each new value after the previous.
-
- * `asyncReplace` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration),
-
-replacing the previous value with the new value.
+Note, this is unsafe to use with any user-provided input that hasn't been
+sanitized or escaped, as it may lead to cross-site-scripting vulnerabilities.
 
 Example:
 -->
@@ -556,38 +675,41 @@ lit-htmlは、非同期イテレータを使用するための2つのディレ�
 
 例:
 
-```javascript
-const wait = (t) => new Promise((resolve) => setTimeout(resolve, t));
-/**
- * カウントアップを待つ非同期イテラブルを返す
- */
-async function* countUp() {
-  let i = 0;
-  while (true) {
-    yield i++;
-    await wait(1000);
-  }
-}
-
-render(html`
-  Count: <span>${asyncReplace(countUp())}</span>.
-`, document.body);
+```js
+const markup = '<div>Some HTML to render.</div>';
+const template = html`
+  Look out, potentially unsafe HTML ahead:
+  ${unsafeHTML(markup)}
+`;
 ```
 
-<!-- original:
-In the near future, `ReadableStream`s will be async iterables, enabling streaming `fetch()` directly into a template:
--->
+### until
 
-近い将来、ReadableStream非同期のiterableになりfetch()、テンプレートに直接ストリーミングできます。
+`until(...values)`
+
+Location: any
+
+Renders placeholder content until the final content is available. 
+
+Takes a series of values, including Promises. Values are rendered in priority order, 
+ with the first argument having the highest priority and the last argument having the 
+ lowest priority. If a value is a Promise, a lower-priority value will be rendered until it resolves.
+
+The priority of values can be used to create placeholder content for async
+data. For example, a Promise with pending content can be the first,
+highest-priority, argument, and a non-promise loading indicator template can
+be used as the second, lower-priority, argument. The loading indicator 
+renders immediately, and the primary content will render when the Promise
+resolves.
+
+Example:
 
 ```javascript
-// Endpoint that returns a billion digits of PI, streamed.
-const url =
-    'https://cors-anywhere.herokuapp.com/http://stuff.mit.edu/afs/sipb/contrib/pi/pi-billion.txt';
+import { until } from 'lit-html/directives/until.js';
 
-const streamingResponse = (async () => {
-  const response = await fetch(url);
-  return response.body.getReader();
-})();
-render(html`π is: ${asyncAppend(streamingResponse)}`, document.body);
+const content = fetch('./content.txt').then(r => r.text());
+
+html`${until(content, html`<span>Loading...</span>`)}`
 ```
+
+
