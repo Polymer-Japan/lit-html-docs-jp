@@ -19,4 +19,4 @@ steps:
   args: ['jekyll', 'build']
 - name: gcr.io/cloud-builders/gcloud
   dir: docs
-  args: ['app', 'deploy', '_site/app.yaml', '--project', 'polymer-japan']
+  args: ['app', 'deploy', '_site/app.yaml', '--project', 'polymer-japan', '--stop-previous-version']
