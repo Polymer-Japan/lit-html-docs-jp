@@ -75,25 +75,25 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-external">
-							<h3>External modules</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-external-module tsd-is-external"><a href="modules/lit_html.html" class="tsd-kind-icon">lit-<wbr>html</a></li>
-								<li class="tsd-kind-external-module tsd-is-external"><a href="modules/shady_render.html" class="tsd-kind-icon">shady-<wbr>render</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
+			<div class="tsd-panel tsd-typography">
+				<h2 id="main-exports">Main exports</h2>
+				<p>Import the main lit-html functions from the <a href="./modules/lit_html.html"><code>lit-html</code></a> module:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {render, html, svg} <span class="hljs-keyword">from</span> <span class="hljs-string">'lit-html'</span>;</code></pre>
+				<ul>
+					<li><a href="./modules/lit_html.html#html">html</a></li>
+					<li><a href="./modules/lit_html.html#svg">svg</a></li>
+					<li><a href="./modules/lit_html.html#render">render</a></li>
+				</ul>
+				<h2 id="directives">Directives</h2>
+				<p>lit-html comes with a set of directives. You can import them as individual modules from the <code>lit-html/directives/</code> folder:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {repeat} <span class="hljs-keyword">from</span> <span class="hljs-string">'lit-html/directives/repeat.js'</span>;</code></pre>
+				<p>For a list of directives that ship with lit-html, see the <a href="/guide/template-reference#built-in-directives">Template syntax reference</a>.</p>
+			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals current ">
+					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
 					<li class="label tsd-is-external">
