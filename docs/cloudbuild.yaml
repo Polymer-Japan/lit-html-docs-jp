@@ -5,12 +5,12 @@ steps:
 - name: gcr.io/cloud-builders/npm
   dir: docs
   args: ['install']
-- name: gcr.io/cloud-builders/npm
-  dir: docs
-  args: ['run', 'gen-api-docs-init-patch']
-- name: gcr.io/cloud-builders/npm
-  dir: docs
-  args: ['run', 'gen-api-docs-ja']
+# - name: gcr.io/cloud-builders/npm
+#   dir: docs
+#   args: ['run', 'gen-api-docs-init-patch']
+# - name: gcr.io/cloud-builders/npm
+#   dir: docs
+#   args: ['run', 'gen-api-docs-ja']
 - name: ubuntu
   dir: docs
   args: ['mkdir', '-p', '_site']
