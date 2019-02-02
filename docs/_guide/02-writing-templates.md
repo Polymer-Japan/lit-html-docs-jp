@@ -27,9 +27,10 @@ The simplest thing to do in lit-html is to render some static HTML.
 lit-htmlで行う最も簡単なことは、静的なHTMLを描画することです。
 
 ```js
-import {html, render} from 'lit-html'
+import {html, render} from 'lit-html';
+
 // テンプレートを定義
-const  myTemplate = html`<div>Hello World</div>`
+const  myTemplate = html`<div>Hello World</div>`;
 
 // テンプレートを描画
 render(myTemplate, document.body);
@@ -40,7 +41,7 @@ The lit-html template is a [_tagged template literal_](https://developer.mozilla
 
 The `html` tag function returns a `TemplateResult`—a lightweight object that represents the template to be rendered.
 
-The `render` function actual creates DOM nodes and appends them to a DOM tree. In this case, the rendered DOM replaces the contents of the document's `body` tag.
+The `render` function actually creates DOM nodes and appends them to a DOM tree. In this case, the rendered DOM replaces the contents of the document's `body` tag.
 -->
 
 lit-htmlテンプレートは、[_タグ付きテンプレートリテラル_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)です。テンプレート自体は通常のJavaScript文字列のように見えますが、バッククォートで囲われています(`` ` ``)。ブラウザはlit-htmlの`html`タグ関数を文字列として認識します。
@@ -69,13 +70,14 @@ To make your template dynamic, you can create a _template function_. Call the te
 動的なテンプレート作るのにテンプレート関数を作ることができます。値が変わるたびにテンプレート関数を呼び出されます。
 
 ```js
-import {html, render} from 'lit-html'
+import {html, render} from 'lit-html';
+
 // テンプレート関数を定義
 const  myTemplate = (name) => html`<div>Hello ${name}</div>`;
 
 // 値によってテンプレートが描画される
 render(myTemplate('world'), document.body);
-...
+
 // ... あとで ... 
 // 違う値によってテンプレートを描画
 render(myTemplate('lit-html'), document.body);
@@ -104,7 +106,7 @@ The previous example shows interpolating a simple text value, but the binding ca
 前述の例では単純にテキストを挿入していますが、JavaScript評価式も使えます:
 
 ```js
-const  myTemplate = (subtotal, tax) => html`<div>Total: ${subtotal + tax}</div>`;
+const myTemplate = (subtotal, tax) => html`<div>Total: ${subtotal + tax}</div>`;
 const myTemplate2 = (name) => html`<div>${formatName(name.given, name.family, name.title)}</div>`;
 ```
 
@@ -141,7 +143,7 @@ Use the `?` prefix for a boolean attribute binding. The attribute is added if th
 '?'を接頭辞(prefix)に使うことによって属性に真偽値(boolean)を設定します。真偽値が真と評価された(truthy)時に属性が追加され、偽(falsy)の場合に取り除かれます:
 
 ```js
-const myTemplate2(data) = html`<div ?disabled="${!data.active}">Stylish text.</div>`;
+const myTemplate2(data) = html`<div ?disabled=${!data.active}>Stylish text.</div>`;
 ```
 
 ## プロパティへのバインド
@@ -153,7 +155,7 @@ You can also bind to a node's JavaScript properties using the `.` prefix and the
 nodeのJavaScriptプロパティにバインドするには`.`を接頭辞を使います:
 
 ```js
-const myTemplate3(data) = html`<my-list .listItems=${data.items}></my-list>`
+const myTemplate3(data) = html`<my-list .listItems=${data.items}></my-list>`;
 ```
 
 <!-- original:
@@ -169,38 +171,48 @@ Note that the property name in this example—`listItems`—is mixed case. Altho
 ## イベントハンドラの追加
 
 <!-- original:
-Templates can also include declarative event handlers. An event handler looks like an attribute binding, but with the prefix `@` followed by an event name:
+Templates can also include declarative event listeners. An event listener looks like an attribute binding, but with the prefix `@` followed by an event name:
 -->
 
-テンプレートには宣言型イベントハンドラも含めることができます。イベントハンドラは属性へのバインドのように見えますが、接頭辞`@`後にイベント名が続きます:
+テンプレートには宣言型イベントリスナーも含めることができます。イベントリスナは属性バインディングに似ていますが、接頭辞 `@`の後にイベント名が続きます:
 
 ```js
-const myTemplate = () => html`<button @click=${clickHandler}>Click Me!</button>`
+const myTemplate = () => html`<button @click=${clickHandler}>Click Me!</button>`;
 ```
 
 <!-- original:
 This is equivalent to calling `addEventListener('click', clickHandler)` on the button element.
 
-The event handler can be either a plain function, or an object with a `handleEvent` method:
+The event listener can be either a plain function, or an object with a `handleEvent` method:
 -->
 
 これはボタン要素への`addEventListener('click', clickHandler)`と同じです。
 
-イベントハンドラは、普通の関数か、`handleEvent`メソッドを持つオブジェクトのいずれかになります。
+イベントリスナーは、普通の関数か、`handleEvent`メソッドを持つオブジェクトのいずれかになります。
+
 
 ```js
 const clickHandler = {
   // handleEvent メソッドが必要
   handleEvent(e) { 
-    console.log('clicked!');
-  }
+    console.log('クリックされました!');
+  },
   // 0か一つ以上のイベントリスナオプションを
   // 持つことができます: capture, passive, onceなど
   capture: true;
 }
 ```
 
-### テンプレートの入れ子
+<!-- original:
+**Event listener objects.** When you specify a listener using an event listener object,
+the listener object itself is set as the event context (`this` value).
+-->
+
+**イベントリスナーオブジェクト** イベントリスナーオブジェクトを使ってリスナーを指定すると、リスナーオブジェクト自身がイベントコンテキスト(`this`の値)として設定されます。
+{.alert .alert-info}
+
+
+## テンプレートの入れ子
 
 <!-- original:
 You can also compose templates to create more complex templates. When a binding in the text content of a template returns a `TemplateResult`, the `TemplateResult` is interpolated in place.
@@ -286,7 +298,9 @@ html`
 `
 ```
 
-## 繰り返しのテンプレート
+### 繰り返しのテンプレート
+
+####  Array.mapによる繰り返し
 
 <!-- original:
 You can use standard JavaScript constructs to create repeating templates. 
@@ -297,8 +311,6 @@ lit-html also provides some special functions, called _directives_, for use in t
 標準のJavaScriptの機能を使って繰り返しのテンプレートをつくることができます。
 
 また、lit-htmlには _ディレクティブ_ (directives)というテンプレートで使われる特別な関数がいくつか用意されています。例えば`repeat`ディレクティブを使って、特定の動的リストをより効率的に描画することができます。
-
-###  Array.mapによる繰り返し
 
 <!-- original:
 To render lists, you can use `Array.map` to transform a list of data into a list of templates:
@@ -320,10 +332,10 @@ Note that this expression returns an array of `TemplateResult` objects. lit-html
 
 このJavaScript評価式は`TemplateResult`オブジェクトの配列を返していることに注意してください。lit-htmlは、配列やイテラブル(iterable)なサブテンプレートやその他の値を描画します。
 
-### ループ文による繰り返し
+#### ループ文による繰り返し
 
 <!-- original:
-You can also build an array of templates and pass it in to a template binding.
+You can also build an array of templates and pass it into a template binding.
 -->
 
 また、別にテンプレートの配列を作成し、そのままテンプレートに渡すこともできます。
@@ -341,7 +353,7 @@ html`
 `;
 ```
 
-### repeatディレクティブによる繰り返し
+#### repeatディレクティブによる繰り返し
 
 <!-- original:
 In most cases, using loops or `Array.map` is an efficient way to build repeating templates. However, if you want to reorder a large list, or mutate it by adding and removing individual entries, this approach can involve recreating a large number of DOM nodes. 
@@ -364,7 +376,7 @@ Where:
 
 *   `items` is an Array or iterable.
 *   `keyFunction` is a function that takes a single item as an argument and returns a guaranteed unique key for that item.
-*   `itemTemplate` is a template function that takes the item and its current index as arguments, and returns a TemplateResult.
+*   `itemTemplate` is a template function that takes the item and its current index as arguments, and returns a `TemplateResult`.
 
 For example:
 -->
@@ -384,7 +396,7 @@ const employeeList = (employees) => html`
       <li>${index}: ${employee.familyName}, ${employee.givenName}</li>
     `)}
   </ul>
-`
+`;
 ```
 
 <!-- original:
@@ -432,7 +444,7 @@ html`${cache(data.showDetails
 <!-- original:
 When lit-html re-renders a template, it only updates the modified portions: it doesn't create or remove any more DOM than it needs to. But when you switch from one template to another, lit-html needs to remove the old DOM and render a new DOM tree. 
 
-The `cache` directive caches the generated DOM for a given binding and input template. In the example above, it would cache the DOM for both the  `summaryView` and `detailView` templates. When you switch from one view to another, lit-html just needs to swap in the cached version of the new view, and and update it with the latest data.
+The `cache` directive caches the generated DOM for a given binding and input template. In the example above, it would cache the DOM for both the  `summaryView` and `detailView` templates. When you switch from one view to another, lit-html just needs to swap in the cached version of the new view, and update it with the latest data.
 -->
 
 lit-htmlがテンプレートを再度描画する場合、変更された部分のみが更新されるので、必要以上にDOMを作成したり削除されることはありません。ただし、あるテンプレートから別のテンプレートに切り替えるときは、lit-htmlは古いDOMを削除して新しいDOMツリーを描画します。

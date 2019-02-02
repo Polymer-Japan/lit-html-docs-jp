@@ -9,10 +9,10 @@ slug: concepts
 {:toc}
 
 <!-- original:
-`lit-html` utilizes some unique properties of JavaScript template literals and HTML `<template>` elements to function and achieve fast performance. So it's helpful to understand them first.
+lit-html utilizes some unique properties of JavaScript template literals and HTML `<template>` elements to function and achieve fast performance. So it's helpful to understand them first.
 -->
 
-`lit-html` はJavaScript標準のテンプレートリテラルや、HTML`<template>`要素の独自のプロパティを使って高速なパフォーマンスを実現しています。よって、最初にそれらを理解するのは大事なことです。
+lit-htmlはJavaScript標準のテンプレートリテラルや、HTML`<template>`要素の独自のプロパティを使って高速なパフォーマンスを実現しています。よって、最初にそれらを理解するのは大事なことです。
 
 ## タグ付きテンプレートリテラル
 
@@ -55,15 +55,15 @@ lit-htmlが高速に更新を行うために利用するテンプレートタグ
 
 これは、文字列をキャッシュへのキーとして使えるので、lit-htmlはテンプレートを初めて描画したときにテンプレートの準備を一度しか行わず、その作業をスキップして更新することができることを意味します。
 
-## HTML`<template>` 要素
+## HTMLテンプレート要素
 
 <!-- original:
-A `<template>` element is an inert fragment of DOM. Inside a `<template>`, script don't run, images don't load, custom elements aren't upgraded, etc. `<template>`s can be efficiently cloned. They're usually used to tell the HTML parser that a section of the document must not be instantiated when parsed, and will be managed by code at a later time, but it can also be created imperatively with `createElement` and `innerHTML`.
+A `<template>` element contains an inert fragment of DOM. Inside the template's content, script don't run, images don't load, custom elements aren't upgraded, and so on. The content can be efficiently cloned. Template elements are usually used to tell the HTML parser that a section of the document must not be instantiated when parsed, and will be managed by code at a later time; but template elements can also be created imperatively with `createElement` and `innerHTML`.
 
 lit-html creates HTML `<template>` elements from the tagged template literals, and then clones them to create new DOM.
 -->
 
-`<template>`要素は、活性化していない部分的なDOMです。`<template>`の内部ではスクリプトは実行されず、画像も読み込まれず、カスタム要素も更新されません。`<template>`は効率的にクローンを作成できます。それらは通常、文書のセクションを解析する際にインスタンス化しないようHTMLパーサを伝えるために使われますが、`createElement`や`innerHTML`によって命令的に作成することができます。
+`<template>`要素は、インスタンス化していない部分的なDOMです。テンプレートのコンテンツ内では、スクリプトは実行されず、画像も読み込まれず、カスタム要素も更新されません。コンテンツは効率的に複製できます。テンプレート要素は通常、文書のセクションを解析する際にインスタンス化しないようHTMLパーサを伝えるために使われますが、`createElement`や`innerHTML`によって命令的に作成することもできます。
 
 lit-htmlはHTML`<template>`要素をタグ付きテンプレートリテラルから作成し、それらをクローンして新しいDOMを作成します。
 
@@ -108,10 +108,10 @@ Then lit-html walks the template's DOM and extracts the placeholders and records
 ```
 
 <!-- original:
-And there's an auxillary table of where the expressions were:
+lit-html keeps an auxillary table of where the expressions were:
 -->
 
-そしてデータがどこにあったの補助テーブルをつくります:
+lit-htmlは式がどこにあったかの補助テーブルをつくります:
 
 `[{type: 'node', index: 1}]`
 
@@ -120,17 +120,17 @@ And there's an auxillary table of where the expressions were:
 <!-- original:
 `render()` takes a `TemplateResult` and renders it to a DOM container. On the initial render it clones the template, then walks it using the remembered placeholder positions, to create `Part` objects.
 
-A `Part` is a "hole" in the DOM where values can be injected. lit-html includes two type of parts by default: `NodePart` and `AttributePart`, which let you set text content and attribute values respectively. The `Part`s, container, and template they were created from are grouped together in an object called a `TemplateInstance`.
+A `Part` is a "hole" in the DOM where values can be injected. lit-html has subclasses of `Part` for each type of binding: `NodePart` for text content bindings, `AttributePart` for attribute bindings, and so on. The `Part` objects, container, and the template they were created from are grouped together in an object called a `TemplateInstance`.
 -->
 
 `render()`は`TemplateResult`オブジェクトをとり、それをDOMコンテナに描画します。最初の描画では、テンプレートをクローンし、次に記憶されたプレースホルダ位置を覚えてテンプレートを巡り、`Part`オブジェクトを作成します。
 
-`Part`は値を挿入できるDOMの「穴」です。lit-htmlにはデフォルトで2種類のPartが含まれています: `NodePart` と `AttributePart`、それぞれテキストの内容と属性の値を設定できるようになっています。`Part`のコンテナ、およびグループ化されたテンプレートが呼び出されたオブジェクトは`TemplateInstance`と呼ばれます。
+`Part`は値を挿入できるDOMの「穴」です。lit-htmlはバインディングする型によって`Part`のサブクラスを持ちます。`NodePart`はテキストコンテンツのバインディングで、`AttributePart`は属性の値を設定できるようになっています。`Part`オブジェクトのコンテナ、およびグループ化されたテンプレートが呼び出されたオブジェクトは`TemplateInstance`と呼ばれます。
 
 ## 関数的に考えよう
 
 <!-- original:
-lit-html is ideal for use in a functional approach to describing UIs. If you think of UI as a function of data, commonly expressed as `UI = f(data)`, you can write lit-html templates that mirror this exactly:
+lit-html is ideal for use in a functional approach to describing UIs. If you think of UI as a function of data, commonly expressed as `UI = f(data)`, you can write lit-html templates that mirrors this exactly:
 -->
 
 lit-htmlは、関数的アプローチでUIを記述するのに最適です。UIをデータの関数と考えると、通常は次のように表されます `UI = f(data)`。これを正確に表すlit-htmlテンプレートは次のように書くことができます。
@@ -142,9 +142,9 @@ let ui = (data) => html`...${data}...`;
 <!-- original:
 This kind of function can be called any time data changes, and is extremely cheap to call. The only thing that lit-html does in the `html` tag is forward the arguments to the templates.
 
-When the result is rendered, lit only updates the expressions whose values have changed since the previous render.
+When the result is rendered, lit-html only updates the expressions whose values have changed since the previous render.
 
-This leads to model that's easy to write and easy to reason about: always try to describe your UI as a simple function of the data it depends on, an avoid caching intermediate state, or doing manual DOM manipulation. lit-html will almost always be fast enough with the simplest description of your UI.
+This leads to model that's easy to write and easy to reason about: always try to describe your UI as a simple function of the data it depends on, and avoid caching intermediate state, or doing manual DOM manipulation. lit-html will almost always be fast enough with the simplest description of your UI.
 -->
 
 この種の機能は、データの変更があればいつでも呼び出すことができ、非常に低コストで呼び出すことができます。lit-htmlが`html`タグで行う唯一のことは、引数を元にテンプレートを生成することです。

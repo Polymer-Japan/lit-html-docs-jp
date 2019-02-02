@@ -121,7 +121,7 @@ JavaScript評価式はテキストコンテンツまたは属性の値で描画�
   * 属性:
   
     ```js
-    html`<div id=${id}></div`
+    html`<div id=${id}></div>`
     ```
 
 <!-- original:
@@ -396,17 +396,13 @@ lit-htmlにはいくつかの組み込みディレクティブが含まれてい
 <!-- original:
 Location: text bindings
 
-JavaScript asynchronous iterators provide a generic interface for asynchronous sequential access to data. Much like an iterator, a consumer requests the next data item with a a call to `next()`, but with asynchronous iterators `next()` returns a `Promise`, allowing the iterator to provide the item when it's ready.
+JavaScript asynchronous iterators provide a generic interface for asynchronous sequential access to data. Much like an iterator, a consumer requests the next data item with a call to `next()`, but with asynchronous iterators `next()` returns a `Promise`, allowing the iterator to provide the item when it's ready.
 
 lit-html offers two directives to consume asynchronous iterators:
 
- * `asyncAppend` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration),
+ * `asyncAppend` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration), appending each new value after the previous.
 
-appending each new value after the previous.
-
- * `asyncReplace` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration),
-
-replacing the previous value with the new value.
+ * `asyncReplace` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration), replacing the previous value with the new value.
 
 Example:
 -->
@@ -428,6 +424,8 @@ lit-htmlは、非同期イテレータを使用するための2つのディレ�
 例:
 
 ```javascript
+import {asyncReplace} from 'lit-html/directives/async-replace.js';
+
 const wait = (t) => new Promise((resolve) => setTimeout(resolve, t));
 /**
  * Returns an async iterable that yields increasing integers.
@@ -448,6 +446,8 @@ render(html`
 In the near future, `ReadableStream`s will be async iterables, enabling streaming `fetch()` directly into a template:
 
 ```javascript
+import {asyncAppend} from 'lit-html/directives/async-append.js';
+
 // Endpoint that returns a billion digits of PI, streamed.
 const url =
     'https://cors-anywhere.herokuapp.com/http://stuff.mit.edu/afs/sipb/contrib/pi/pi-billion.txt';
@@ -479,6 +479,8 @@ Example:
 例:
 
 ```js
+import {cache} from 'lit-html/directives/cache.js';
+
 const detailView = (data) => html`<div>...</div>`; 
 const summaryView = (data) => html`<div>...</div>`;
 
@@ -505,10 +507,12 @@ lit-htmlはテンプレートを再レンダリングするとき、変更され
 <!-- original:
 Location: attribute bindings (must be the entire value of the `class` attribute)
 
-Sets a list of classes based on an object. Each key in the object is treated as a class name, if the value associated with the key is truthy, that class is added to the element. 
+Sets a list of classes based on an object. Each key in the object is treated as a class name, and if the value associated with the key is truthy, that class is added to the element.
 
 ```js
-let classes = { highlight: true, enabled: true, hidden: false };`
+import {classMap} from 'lit-html/directives/class-map.js';
+
+let classes = { highlight: true, enabled: true, hidden: false };
 
 html`<div class=${classMap(classes)>Classy text</div>`;
 // renders as <div class="highlight enabled">Classy text</div>
@@ -565,7 +569,7 @@ Example:
 例:
 
 ```javascript
-import { ifDefined } from 'lit-html/directives/if-defined';
+import {ifDefined} from 'lit-html/directives/if-defined';
 
 const myTemplate = () => html`
   <img src="/images/${ifDefined(image.filename)}">
@@ -603,7 +607,7 @@ Example:
 この`guard`ディレクティブは最後の既知の値をキャッシュし、プリミティブが値を変更したときやオブジェクト参照が変更されたときなど、JavaScript評価式の一意性(identity)が変更された場合にのみ再描画されます。
 
 ```js
-import { guard } from 'lit-html/directives/guard';
+import {guard} from 'lit-html/directives/guard';
 
 const template = html`
   <div>
@@ -647,7 +651,7 @@ Example:
 例:
 
 ```js
-import { repeat } from 'lit-html/directives/repeat';
+import {repeat} from 'lit-html/directives/repeat';
 
 const myTemplate = () => html`
   <ul>
@@ -676,10 +680,12 @@ of when to use `repeat` and when to use standard JavaScript flow control.
 <!-- original:
 Location: attribute bindings (must be the entire value of the `style` attribute)
 
-The `styleMap` directive sets styles on an element based on an object, where each key in the object is treated as a style property, and the value is treated as the value of for that property. For example:
+The `styleMap` directive sets styles on an element based on an object, where each key in the object is treated as a style property, and the value is treated as the value for that property. For example:
 
 ```js
-let styles = { backgroundColor: 'blue', color: 'white'}'
+import {styleMap} from 'lit-html/directives/stype-map.js';
+
+let styles = { backgroundColor: 'blue', color: 'white'};
 html`<p style=${styleMap(styles}>Hello style!</p>`;
 ```
 
@@ -687,7 +693,7 @@ For CSS properties that contain dashes, you can either use the camel-case equiva
 
 ```js
 { fontFamily: 'roboto' }
-{ 'font-family': 'roboto }
+{ 'font-family': 'roboto' }
 ```
 
 The `styleMap` directive can only be used as a value for the `style` attribute, and it must be the entire value of the attribute.
@@ -735,6 +741,8 @@ Example:
 例:
 
 ```js
+import {unsafeHTML} from 'lit-html/directives/unsafe-html.js';
+
 const markup = '<div>生のHTMLとして出力</div>';
 const template = html`
   危険な可能性があるHTMLを出力:
@@ -756,9 +764,9 @@ Takes a series of values, including Promises. Values are rendered in priority or
  lowest priority. If a value is a Promise, a lower-priority value will be rendered until it resolves.
 
 The priority of values can be used to create placeholder content for async
-data. For example, a Promise with pending content can be the first,
-highest-priority, argument, and a non-promise loading indicator template can
-be used as the second, lower-priority, argument. The loading indicator 
+data. For example, a Promise with pending content can be the first
+(highest-priority) argument, and a non-promise loading indicator template can
+be used as the second (lower-priority) argument. The loading indicator
 renders immediately, and the primary content will render when the Promise
 resolves.
 
@@ -776,7 +784,7 @@ Promiseを含む一連の値をとります。値は優先度順に表示され�
 例:
 
 ```javascript
-import { until } from 'lit-html/directives/until.js';
+import {until} from 'lit-html/directives/until.js';
 
 const content = fetch('./content.txt').then(r => r.text());
 
