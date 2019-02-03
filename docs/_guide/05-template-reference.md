@@ -532,7 +532,7 @@ html`<div class="someClass ${classMap(moreClasses}">Broken div</div>`;
 オブジェクトに基づいてクラスのリストを設定します。オブジェクト内の各キーはクラス名として扱われます。キーに関連付けられた値が真であれば、そのクラスが要素に追加されます。
 
 ```js
-let classes = { highlight: true, enabled: true, hidden: false };`
+let classes = { highlight: true, enabled: true, hidden: false };
 
 html`<div class=${classMap(classes)>装飾されたテキスト</div>`;
 // <div class="highlight enabled">装飾されたテキスト</div>として描画されます
@@ -712,7 +712,7 @@ html`<p style=${styleMap(styles}>ヘロー、スタイル!</p>`;
 
 ```js
 { fontFamily: 'roboto' }
-{ 'font-family': 'roboto }
+{ 'font-family': 'roboto' }
 ```
 
 `styleMap`ディレクティブは`style`属性の値としてのみ使うことができ、その属性の値全体でなければなりません。
