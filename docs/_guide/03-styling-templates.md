@@ -69,7 +69,7 @@ html`
 
 同じスタイルシートが要素の各インスタンスで再現されるので、このパターンは非効率的に見えるかもしれません。ただし、ブラウザは同じスタイルシートの複数のインスタンスを重複排除できるため、スタイルシートを解析するためのコストは1回しか支払われません。
 
-いくつかのブラウザで利用可能な新機能は[Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/)です。この標準提案では、複数のshadow rootがスタイルシートを明示的に共有することを許可しています。LitElementではこの機能を[静的`styles`プロパティ](https://lit-element.polymer-project.org/guide/styles#define-styles-in-a-static-styles-property)で使用しています。
+いくつかのブラウザで利用可能な新機能は[Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/)です。この標準提案では、複数のshadow rootがスタイルシートを明示的に共有することを許可しています。LitElementではこの機能を[静的`styles`プロパティ](https://lit-element.polymer-jp.org/guide/styles#define-styles-in-a-static-styles-property)で使用しています。
 
 <!-- original:
 ### Bindings in style sheets 
