@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Rendering templates
+title: レンダリング
 slug: rendering-templates
 ---
 
@@ -8,6 +8,7 @@ slug: rendering-templates
 * ToC
 {:toc}
 
+<!-- original:
 A lit-html template expression does not cause any DOM to be created or updated. It's only a description of DOM, called a `TemplateResult`. To actually create or update DOM, you need to pass the `TemplateResult` to the `render()` function, along with a container to render to:
 
 ```js
@@ -19,7 +20,22 @@ render(sayHi('Amy'), document.body);
 // subsequent renders will update the DOM
 render(sayHi('Zoe'), document.body);
 ```
+-->
 
+lit-htmlのテンプレートにおけるJavaScript評価式によってDOMが作成または更新されることはありません。
+これは`TemplateResult`と呼ばれるDOMの雛形にすぎません。実際にDOMを作成または更新するには、レンダリングするコンテナとともに `TemplateResult`を`render()`関数に渡す必要があります:
+
+```js
+import {html, render} from 'lit-html';
+
+const sayHi = (name) => html`<h1>こんにちは ${name}</h1>`;
+render(sayHi('アミー'), document.body);
+
+// このレンダリングはDOMを更新します
+render(sayHi('ゾエ'), document.body);
+```
+
+<!-- original:
 ## Render Options
 
 The `render` method also takes an `options` argument that allows you to specify the following options:
@@ -45,3 +61,30 @@ class MyComponent extends HTMLElement {
 ```
 
 Render options should *not* change between subsequent `render` calls. 
+-->
+
+## オプション
+
+`render`メソッドは`options`引数を取ります。これを使うと以下のオプションを指定することができます:
+
+*   `eventContext`: `@eventName`構文で登録したイベントリスナーを呼び出すときに使う`this`の値。このオプションは、イベントリスナーをプレーンな関数として指定した場合にのみ適用されます。イベントリスナーオブジェクトを使ってイベントリスナーを指定した場合、リスナーオブジェクトは `this`を値として使います。イベントリスナーの詳細については[イベントリスナーを追加する](writing-templates#add-event-listeners)を参照してください。
+
+*   `templateFactory`: 使用する`TemplateFactory`を指定。これは高度なオプションです。`TemplateFactory`は`TemplateResult`からテンプレート要素を作成し、通常は静的コンテンツに基づいてテンプレートをキャッシュします。ユーザは通常自分自身で`TemplateFactory`を提供しませんが、テンプレート処理をカスタマイズするためにテンプレートファクトリを実装するかもしれません。
+
+    `shady-render`モジュールは独自のテンプレートファクトリを提供しており、shadow DOMポリフィル（shadyDOMおよびshadyCSS）と統合するためのテンプレートが前処理として使用されています。
+
+たとえば、コンポーネントクラスを作成している場合は、次のようなレンダリングオプションを使用します:
+
+```js
+class MyComponent extends HTMLElement {
+  // ...
+
+  _update() {
+    // イベントリスナーをMyComponentの現在のインスタンスにバインドします
+    render(this._template(), this._renderRoot, {eventContext: this});
+  }
+}
+
+```
+
+レンダリングオプションは、その後の`render`呼び出しの間に**変更されるべきではありません**
