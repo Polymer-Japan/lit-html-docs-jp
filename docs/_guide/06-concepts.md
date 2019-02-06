@@ -162,6 +162,18 @@ Until modules arrived, browsers have not had a standard way to import code from 
 
 The only true solution is to have one canonical version of a library that all other libraries import. Since modules support is rolling out to browsers now, and modules are very well supported by tools, it makes sense for that format to be modules.
 
+The browser current only accepts modules specified using a full or relative path (a path that starts with `/`, `./`, or `../`). For ease of authoring, many developers prefer to import modules by name (also known as node-style module specifiers). Since this isn't currently supported in the browser, you'll need to use tools that can transform these specifiers into browser-ready paths. See [Tools](tools) for information on dev servers and build tools that can perform this transformation for you:
+
+```js
+// Node-style module import:
+import {html, render} from 'lit-html';
+```
+
+```js
+// Browser-ready module import
+import {html, render} from '../node_modules/lit-html/lit-html.js';
+```
+
 For more information on JavaScript modules:
 
 -->
@@ -171,6 +183,8 @@ For more information on JavaScript modules:
 JavaScriptモジュール機構がリリースされるまで、ブラウザはコードからコードをインポートする標準的な方法を持っていなかったので、ユーザーランドモジュールローダまたはバンドルが必要でした。標準の枠組みがなかったことで、競合するフォーマットが倍増しました。多くの場合、ライブラリはさまざまなツールのユーザーをサポートするためにさまざまな形式で公開されていますが、これは共通ライブラリが他の多くの中間ライブラリに依存している場合に問題を引き起こします。それらの中間ライブラリのいくつかがフォーマットAをロードし、他のフォーマットがフォーマットBをロードし、フォーマットCをロードするものがあると、複数のコピーがロードされ、膨らんで、パフォーマンスが低下します、みつけにくいバグを引き起します。
 
 唯一の真の解決策は、他のすべてのライブラリがインポートするライブラリの正規バージョンを1つ持つことです。モジュールは現在ブラウザでサポートされており、ツールでも非常にうまく扱えるため、フォーマットをJavaScritpモジュール機構とすることは理にかなっています。
+
+現在のブラウザは、フルパスまたは相対パス（ `/`、 `./`、または `../`で始まるパス）を使用して指定されたモジュールのみを受け付けます。編集を容易にするために、多くの開発者は名前でモジュールをインポートすることを好みます（nodeスタイルのモジュール形式としても知られています）。これは現在ブラウザではサポートされていないため、これらの指定をブラウザ対応のパスに変換できるツールを使用する必要があります。開発サーバーに関する情報については[ツール](tools)を参照し、この変換を実行できるツールで構築してください:
 
 JavaScriptモジュールの詳細については、次を参照してください。
 

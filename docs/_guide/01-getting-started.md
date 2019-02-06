@@ -14,7 +14,7 @@ slug: getting-started
 
 lit-html is distributed on npm, in the [lit-html package].
 
-```
+```bash
 npm install lit-html
 ```
 
@@ -82,8 +82,17 @@ import {html, render} from 'lit-html';
 ```
 
 <!-- original:
+For simplicity, the examples in these docs use package names (also known as node-style module specifiers).
+
+See [Tools](tools) for information on build tools and dev servers you can use to convert node-style module specifiers to 
+browser-style module specifiers. 
+
 **Why JavaScript modules?** For more information on why lit-html is distributed using JavaScript modules, see [JavaScript Modules](concepts#javascript-modules).
 -->
+
+簡潔にするために、ドキュメントの例ではパッケージ名（nodeスタイルのモジュール形式）を使用しています。
+
+nodeスタイルのモジュール形式指定子をブラウザスタイルのモジュール形式に変換するために使用できるビルドツールと開発サーバーについては、[ツール](tools)を参照してください。
 
 **なぜJavaScriptモジュールなのか？** JavaScriptモジュールで作成される詳細については、[JavaScript Modules](concepts#javascript-modules)を参照してください。
 
