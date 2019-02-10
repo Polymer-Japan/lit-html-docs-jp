@@ -208,7 +208,7 @@ lit-htmlの`shady-render`モジュールはshady CSS shimを使用するのに�
     ```
 
 <!-- original:
-## Inline styles with styleMap {#stylemap}
+## Inline styles with styleMap
 
 You can use the `styleMap` directive to set inline styles on an element in the template.
 
@@ -249,7 +249,7 @@ const myTemplate = () => {
 詳細については、テンプレート・リファレンスの[styleMap](template-reference#stylemap)を参照してください。
 
 <!-- original:
-## Setting classes with classMap {#classmap}
+## Setting classes with classMap
 
 Like `styleMap`, the `classMap` directive lets you set a group of classes based on an object:
 

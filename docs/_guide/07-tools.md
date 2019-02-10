@@ -269,7 +269,7 @@ For more on building with Polymer CLI, see [Build for production](https://polyme
 
 See the Open Web Components default webpack configuration provides a great starting point for building projects that use lit-html. See their [webpack page](https://open-wc.org/building/building-webpack.html#default-configuration) for instructions on getting started. 
 
-### Build considerations for other tools {#build-considerations}
+### Build considerations for other tools
 
 
 If you're creating your own configuration for webpack, Rollup, or another tool, here are some factors to consider:
@@ -334,7 +334,7 @@ Polymer CLIを使用してプロジェクトをビルドするには、最初に
   ],
   "extraDependencies": [
     "node_modules/@webcomponents/webcomponentsjs/bundles/**"
-  ],
+    ],
   "builds": [
     {"preset": "es6-bundled"}
   ]
@@ -379,4 +379,4 @@ TypeScriptで作業している場合、TypeScriptコンパイラはブラウザ
 ビルドプロセスの一環で、HTMLテンプレートをミニファイしたいと思うでしょう。ほとんどのHTMLミニファイツールは、lit-htmlで使用されているようにテンプレートリテラル内のHTMLをサポートしていません。そのため、lit-htmlテンプレートの縮小をサポートするビルドプラグインを使用する必要があります。lit-htmlテンプレートをミニファイすると、テンプレート内のノード数が減るため、パフォーマンスが向上します。
 
 * [Babelプラグイン](https://github.com/cfware/babel-plugin-template-html-minifier) ビルドプロセスの変換にBabelを使用します。open-wcのwebpackのデフォルト設定はこのプラグインを使っています。
-* [Rollupプラグイン](https://github.com/asyncLiz/rollup-plugin-minify-html-literals) 独自のRollupの設定を使用して構築する場合に使用します。
+  * [Rollupプラグイン](https://github.com/asyncLiz/rollup-plugin-minify-html-literals) 独自のRollupの設定を使用して構築する場合に使用します。
