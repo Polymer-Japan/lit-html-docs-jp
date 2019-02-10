@@ -27,7 +27,7 @@
 <nav class="main-nav" markdown="0">
 	<a class="nav-title" href="../..">lit-html</a>
 	<div class="flex"></div>
-	<a class="nav-item" href="../../guide">Guide</a>
+	<a class="nav-item" href="../../guide">ガイド</a>
 	<a class="nav-item" href="../index.html">API</a>
 	<a class="icon" href="https://github.com/polymer/lit-element" title="GitHub">
 		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentcolor">
@@ -99,6 +99,17 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A Part that controls a location within a Node tree. Like a Range, NodePart
+							has start and end locations and can set and update the Nodes between those
+						locations.</p>
+					</div>
+					<p>NodeParts support several value types: primitives, Nodes, TemplateResults,
+					as well as arrays and iterables of those types.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -160,7 +171,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/parts.ts:123</li>
+									<li>Defined in lib/parts.ts:135</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -182,7 +193,7 @@
 					<div class="tsd-signature tsd-kind-icon">_pending<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lib/parts.ts:123</li>
+							<li>Defined in lib/parts.ts:135</li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +203,7 @@
 					<div class="tsd-signature tsd-kind-icon">end<wbr>Node<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Node</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lib/parts.ts:121</li>
+							<li>Defined in lib/parts.ts:133</li>
 						</ul>
 					</aside>
 				</section>
@@ -202,7 +213,7 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/lit_html.renderoptions.html" class="tsd-signature-type">RenderOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lib/parts.ts:119</li>
+							<li>Defined in lib/parts.ts:131</li>
 						</ul>
 					</aside>
 				</section>
@@ -212,7 +223,7 @@
 					<div class="tsd-signature tsd-kind-icon">start<wbr>Node<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Node</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lib/parts.ts:120</li>
+							<li>Defined in lib/parts.ts:132</li>
 						</ul>
 					</aside>
 				</section>
@@ -223,7 +234,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/lit_html.part.html">Part</a>.<a href="../interfaces/lit_html.part.html#value">value</a></p>
 						<ul>
-							<li>Defined in lib/parts.ts:122</li>
+							<li>Defined in lib/parts.ts:134</li>
 						</ul>
 					</aside>
 				</section>
@@ -240,12 +251,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/parts.ts:134</li>
+									<li>Defined in lib/parts.ts:146</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Inserts this part into a container.</p>
+									<p>Appends this part into a container.</p>
 								</div>
 								<p>This part must be empty, as its contents are not automatically moved.</p>
 							</div>
@@ -269,7 +280,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/parts.ts:156</li>
+									<li>Defined in lib/parts.ts:168</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -298,7 +309,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/parts.ts:304</li>
+									<li>Defined in lib/parts.ts:316</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -322,7 +333,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/lit_html.part.html">Part</a>.<a href="../interfaces/lit_html.part.html#commit">commit</a></p>
 								<ul>
-									<li>Defined in lib/parts.ts:176</li>
+									<li>Defined in lib/parts.ts:188</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -339,14 +350,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/parts.ts:146</li>
+									<li>Defined in lib/parts.ts:158</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Inserts this part between <code>ref</code> and <code>ref</code>&#39;s next sibling. Both <code>ref</code> and
-										its next sibling must be static, unchanging nodes such as those that appear
-									in a literal section of a template.</p>
+									<p>Inserts this part after the <code>ref</code> node (between <code>ref</code> and <code>ref</code>&#39;s next
+										sibling). Both <code>ref</code> and its next sibling must be static, unchanging nodes
+									such as those that appear in a literal section of a template.</p>
 								</div>
 								<p>This part must be empty, as its contents are not automatically moved.</p>
 							</div>
@@ -370,12 +381,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/parts.ts:166</li>
+									<li>Defined in lib/parts.ts:178</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Appends this part after <code>ref</code></p>
+									<p>Inserts this part after the <code>ref</code> part.</p>
 								</div>
 								<p>This part must be empty, as its contents are not automatically moved.</p>
 							</div>
@@ -400,7 +411,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/lit_html.part.html">Part</a>.<a href="../interfaces/lit_html.part.html#setvalue">setValue</a></p>
 								<ul>
-									<li>Defined in lib/parts.ts:172</li>
+									<li>Defined in lib/parts.ts:184</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

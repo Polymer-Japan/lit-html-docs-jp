@@ -1,7 +1,7 @@
 steps:
-- name: ubuntu
-  dir: docs/_api
-  args: ['sh', 'copy_api.sh']
+# - name: ubuntu
+#   dir: docs/_api
+#   args: ['sh', 'copy_api.sh']
 - name: gcr.io/cloud-builders/npm
   dir: docs
   args: ['install']

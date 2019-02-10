@@ -27,7 +27,7 @@
 <nav class="main-nav" markdown="0">
 	<a class="nav-title" href="../..">lit-html</a>
 	<div class="flex"></div>
-	<a class="nav-item" href="../../guide">Guide</a>
+	<a class="nav-item" href="../../guide">ガイド</a>
 	<a class="nav-item" href="../index.html">API</a>
 	<a class="icon" href="https://github.com/polymer/lit-element" title="GitHub">
 		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentcolor">
@@ -470,7 +470,7 @@
 					<div class="tsd-signature tsd-kind-icon">no<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lib/part.ts:29</li>
+							<li>Defined in lib/part.ts:36</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -502,7 +502,7 @@
 					<div class="tsd-signature tsd-kind-icon">nothing<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lib/part.ts:34</li>
+							<li>Defined in lib/part.ts:41</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -566,14 +566,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/directive.ts:36</li>
+									<li>Defined in lib/directive.ts:55</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Brands a function as a directive so that lit-html will call the function
-									during template rendering, rather than passing as a value.</p>
+									<p>Brands a function as a directive factory function so that lit-html will call
+									the function during template rendering, rather than passing as a value.</p>
 								</div>
+								<p>A <em>directive</em> is a function that takes a Part as an argument. It has the
+								signature: <code>(part: Part) =&gt; void</code>.</p>
+								<p>A directive <em>factory</em> is a function that takes arguments for data and
+									configuration and returns a directive. Users of directive usually refer to
+								the directive factory as the directive. For example, &quot;The repeat directive&quot;.</p>
+								<p>Usually a template author will invoke a directive factory in their template
+								with relevant arguments, which will then return a directive function.</p>
+								<p>Here&#39;s an example of using the <code>repeat()</code> directive factory that takes an
+								array and a function to render an item:</p>
+								<pre><code class="language-js">html<span class="hljs-string">`&lt;ul&gt;&lt;<span class="hljs-subst">${repeat(items, (item) =&gt; html<span class="hljs-string">`&lt;li&gt;<span class="hljs-subst">${item}</span>&lt;/li&gt;`</span>)}</span>&lt;/ul&gt;`</span></code></pre>
+								<p>When <code>repeat</code> is invoked, it returns a directive function that closes over
+									<code>items</code> and the template function. When the outer template is rendered, the
+									return directive function is called with the Part for the expression.
+								<code>repeat</code> then performs it&#39;s custom logic to render multiple items.</p>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -589,7 +603,7 @@
 										<div class="lead">
 											<p>The directive factory function. Must be a function that returns a
 												function of the signature <code>(part: Part) =&gt; void</code>. The returned function will
-											be called with the part object</p>
+											be called with the part object.</p>
 										</div>
 									</div>
 								</li>
@@ -608,7 +622,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lit-html.ts:41</li>
+									<li>Defined in lit-html.ts:52</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -640,7 +654,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/directive.ts:43</li>
+									<li>Defined in lib/directive.ts:62</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -840,7 +854,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lit-html.ts:48</li>
+									<li>Defined in lit-html.ts:59</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

@@ -27,7 +27,7 @@
 <nav class="main-nav" markdown="0">
 	<a class="nav-title" href="../..">lit-html</a>
 	<div class="flex"></div>
-	<a class="nav-item" href="../../guide">Guide</a>
+	<a class="nav-item" href="../../guide">ガイド</a>
 	<a class="nav-item" href="../index.html">API</a>
 	<a class="icon" href="https://github.com/polymer/lit-element" title="GitHub">
 		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentcolor">
@@ -170,13 +170,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lib/part.ts:22</li>
+									<li>Defined in lib/part.ts:29</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Commits the current part value, cause it to actually be written to the DOM.</p>
+									<p>Commits the current part value, causing it to actually be written to the
+									DOM.</p>
 								</div>
+								<p>Directives are run at the start of <code>commit</code>, so that if they call
+									<code>part.setValue(...)</code> synchronously that value will be used in the current
+									commit, and there&#39;s no need to call <code>part.commit()</code> within the directive.
+									If directives set a part value asynchronously, then they must call
+								<code>part.commit()</code> manually.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
