@@ -405,23 +405,6 @@ lit-html offers two directives to consume asynchronous iterators:
  * `asyncReplace` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration), replacing the previous value with the new value.
 
 Example:
--->
-
-使用場所: テキストバインディング
-
-JavaScriptの非同期イテレータは、データへの非同期順次アクセスのための汎用インタフェースを提供します。イテレータとよく似ていますが、コンシューマはtoを呼び出して次のデータ項目を要求しますが、非同期イテレータ`next()`を返し、イテレータが`Promise`で準備が整ったときにアイテムを提供できるようにします。
-
-lit-htmlは、非同期イテレータを使用するための2つのディレクティブを提供します。
-
-  * `asyncAppend` [非同期の列挙可能なオブジェクト(iterable)](https://github.com/tc39/proposal-async-iteration)の値を描画し、
-  
-新しい値を前の値の後に追加します。
-
-  * `asyncReplace` [非同期の列挙可能オブジェクト(iterable)](https://github.com/tc39/proposal-async-iteration)の値を描画し、
-
-前の値を新しい値に置き換えます。
-
-例:
 
 ```javascript
 import {asyncReplace} from 'lit-html/directives/async-replace.js';
@@ -449,6 +432,59 @@ In the near future, `ReadableStream`s will be async iterables, enabling streamin
 import {asyncAppend} from 'lit-html/directives/async-append.js';
 
 // Endpoint that returns a billion digits of PI, streamed.
+const url =
+    'https://cors-anywhere.herokuapp.com/http://stuff.mit.edu/afs/sipb/contrib/pi/pi-billion.txt';
+
+const streamingResponse = (async () => {
+  const response = await fetch(url);
+  return response.body.getReader();
+})();
+render(html`π is: ${asyncAppend(streamingResponse)}`, document.body);
+```
+-->
+
+使用場所: テキストバインディング
+
+JavaScriptの非同期イテレータは、データへの非同期順次アクセスのための汎用インタフェースを提供します。イテレータとよく似ていますが、コンシューマはtoを呼び出して次のデータ項目を要求しますが、非同期イテレータ`next()`を返し、イテレータが`Promise`で準備が整ったときにアイテムを提供できるようにします。
+
+lit-htmlは、非同期イテレータを使用するための2つのディレクティブを提供します。
+
+  * `asyncAppend` [非同期の列挙可能なオブジェクト(iterable)](https://github.com/tc39/proposal-async-iteration)の値を描画し、
+  
+新しい値を前の値の後に追加します。
+
+  * `asyncReplace` [非同期の列挙可能オブジェクト(iterable)](https://github.com/tc39/proposal-async-iteration)の値を描画し、
+
+前の値を新しい値に置き換えます。
+
+例:
+
+```javascript
+import {asyncReplace} from 'lit-html/directives/async-replace.js';
+
+const wait = (t) => new Promise((resolve) => setTimeout(resolve, t));
+/**
+ * 1つずつ増える整数を待つ非同期イテラブルを返す
+ */
+async function* countUp() {
+  let i = 0;
+  while (true) {
+    yield i++;
+    await wait(1000);
+  }
+}
+
+render(html`
+  Count: <span>${asyncReplace(countUp())}</span>.
+`, document.body);
+```
+
+近い将来に、`ReadableStream`は非同期イテラブルになり、`fetch()`を直接テンプレートにストリームさせることができるようになります:
+
+```javascript
+import {asyncAppend} from 'lit-html/directives/async-append.js';
+
+// ストリーミング配信する10億桁の円周率を返すエンドポイントURL
 const url =
     'https://cors-anywhere.herokuapp.com/http://stuff.mit.edu/afs/sipb/contrib/pi/pi-billion.txt';
 

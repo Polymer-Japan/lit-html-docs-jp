@@ -24,12 +24,16 @@ HTMLテンプレートを扱うにはJavaScript評価式を埋め込んだテン
 
 <!-- original:
 lit-html templates are tagged template literals - they look like JavaScript strings but are enclosed in backticks (`` ` ``) instead of quotes - and tagged with lit-html's `html` tag:
+
+```js
+html`<h1>Hello ${name}</h1>`
+```
 -->
 
 テンプレートは、タグ付きのテンプレートリテラル(tagged template literals)です。単純なJavaScript文字列のように見えますが、引用符(")ではなくバッククォート(`` ` ``)で囲まれ、lit-htmlの`html`タグが使用されます:
 
 ```js
-html`<h1>Hello ${name}</h1>`
+html`<h1>こんにちは ${name}</h1>`
 ```
 
 <!-- original:
@@ -54,18 +58,22 @@ lit-htmlで描画(レンダリング)は _遅延(lazily)_ 実行されます。�
 
 <!-- original:
 To render a `TemplateResult`, call the `render()` function with a result and DOM container to render to:
--->
-
-`TemplateResult` を実際に描画するには、使用する値と描画先のDOMコンテナを指定して`render()`関数を呼び出します。
-
-
 
 ```js
 const result = myTemplate({title: 'Hello', body: 'lit-html is cool'});
 render(result, document.body);
 ```
 
-
 Ready to try it yourself? Head over to [Getting Started](/guide/getting-started).
+-->
+
+`TemplateResult` を実際に描画するには、使用する値と描画先のDOMコンテナを指定して`render()`関数を呼び出します。
+
+```js
+const result = myTemplate({title: 'こんにちわ', body: 'lit-htmlは素敵です'});
+render(result, document.body);
+```
+
+自分で試してみたいですか? [はじめる](/guide/getting-started)へ進んでください。
 
 [template literals]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals

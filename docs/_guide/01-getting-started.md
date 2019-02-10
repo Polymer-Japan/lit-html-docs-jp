@@ -12,7 +12,11 @@ slug: getting-started
 
 ### npm
 
+<!-- original:
 lit-html is distributed on npm, in the [lit-html package].
+-->
+
+lit-htmlはnpmの[lit-htmlパッケージ]で配布されています。
 
 ```bash
 npm install lit-html
@@ -127,4 +131,7 @@ To learn more about templates, see [Writing Templates](./writing-templates).
 
 テンプレートの詳細については、[テンプレートをつくる](./writing-templates)を参照してください。
 
+<!-- original:
 [lit-html package]: https://www.npmjs.com/package/lit-html
+-->
+[lit-htmlパッケージ]: https://www.npmjs.com/package/lit-html

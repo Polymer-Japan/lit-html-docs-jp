@@ -188,5 +188,5 @@ JavaScriptモジュール機構がリリースされるまで、ブラウザは�
 
 JavaScriptモジュールの詳細については、次を参照してください。
 
-*   [Using JavaScript Modules on the Web](https://developers.google.com/web/fundamentals/primers/modules) on Web Fundementals.
-*   [import statement reference page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) on MDN.
+*   [WebでJavaScriptモジュールを使う](https://developers.google.com/web/fundamentals/primers/modules) - Web Fundementals
+*   [import文のリファレンス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) - MDN
