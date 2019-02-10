@@ -9,11 +9,17 @@ slug: tools
 {:toc}
 
 
+<!-- original:
 lit-html is available from the npm registry. If you're already using npm to manage dependencies, you can use lit-html much like any other JavaScript library you install from npm. This section describes some additional tools or plugins you might want to add to your workflow to make it easier to work with lit-html.
 
 lit-html is delivered as a set of JavaScript modules. If you aren't already using JavaScript modules in your project, you may need to add a couple of steps to your development and build workflow.
+-->
 
+lit-htmlは、npmで入手できます。プロジェクトですでにnpmを使用している場合は、他のJavaScriptライブラリと同じようにlit-htmlを使用できます。この文書では、既存のワークフローでlit-htmlを使うにあたって、その作業を簡単にする追加のツールやプラグインについて説明します。
 
+lit-htmlはJavaScriptモジュールとして提供されています。プロジェクトでまだJavaScriptモジュールを使用していない場合は、開発と構築のワークフローに2、3のステップを追加する必要があります。
+
+<!-- original:
 ## Setup
 
 The simplest way to add lit-html to a project is to install it from the npm registry. 
@@ -36,7 +42,32 @@ The simplest way to add lit-html to a project is to install it from the npm regi
 3. If you're working on a project with many front-end dependencies, you may want to use the npm  `dedupe` command to try and reduce duplicated modules:
 
     `npm dedupe` 
+-->
 
+## セットアップ
+
+プロジェクトにlit-htmlを追加する最も簡単な方法は、npmからインストールすることです。
+
+1. 0から新しいプロジェクトを始めるなら、プロジェクトの作業ディレクトリで次のコマンドを実行してnpmを設定します:
+
+    ```bash
+    npm init
+    ```
+
+    聞かれるプロンプトに応じて、プロジェクトを設定してください。デフォルトでかまなわないならリターンキーを押していけます。
+
+2. lit-htmlをインストールしてください。
+
+    ```bash
+    npm i lit-html
+    ```
+
+
+3. 既存のプロジェクトでフロントエンドの依存関係が多い場合は、重複したモジュールを減らすnpm `dedupe`コマンドを使ってもよいかもしれません:
+
+    `npm dedupe` 
+
+<!-- original:
 ## Development
 
 During the development phase, you might want the following tools:
@@ -44,7 +75,6 @@ During the development phase, you might want the following tools:
 * IDE plugins, for linting and code highlighting.
 * Linter plugins, for checking lit-html templates.
 * A dev server, for previewing code without a build step.
-
 
 ### IDE plugins
 
@@ -97,7 +127,67 @@ The Polymer CLI was designed to help develop, test, and build projects using web
 The Open Web Components project produces a dev server that handles remapping node-style modules to browser-style modules.
 
 For full installation and usage instructions, see the [open-wc website](https://open-wc.org/developing/owc-dev-server.html). 
+-->
 
+## 開発
+
+開発段階では、以下のようなツールが使いたくなるかもしれません:
+
+* IDEプラグイン、リンティングおよびコードの強調表示用に
+* リンタープラグイン、lit-htmlテンプレートのチェック用に
+* 開発用サーバ、都度ビルドせずにコード修正の結果をプレビューするために
+
+### IDEプラグイン
+
+lit-htmlを使って開発するときに役立つかもしれないIDEプラグインがいくつかあります。特に、lit-htmlスタイルのテンプレートに対応したコードハイライト機能を使用することをお勧めします。加えて,最新のJavaScriptをサポートするESLintのようなリンターを使用することをお勧めします。
+
+VSCodeプラグイン
+
+* [https://marketplace.visualstudio.com/items?itemName=bierner.lit-html](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html)
+
+TypeScriptプラグイン(SublimeとAtomで動作します)
+
+* [https://github.com/Microsoft/typescript-lit-html-plugin](https://github.com/Microsoft/typescript-lit-html-plugin)
+
+他のプラグイン
+
+[awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins)リポジトリには他のIDEプラグインがリストされています。
+
+### リンタープラグイン
+
+ESLintはlit-htmlコードのリンティングに推奨されています。以下のESLintプラグインを追加して、lit-htmlテンプレートのよくある間違いをチェックすることができます:
+
+* [https://github.com/43081j/eslint-plugin-lit](https://github.com/43081j/eslint-plugin-lit)
+
+### 開発サーバ
+
+lit-htmlはJavaScriptモジュールとしてパッケージされています。多くの開発者はnodeスタイルのモジュール形式を使ってインポートすることに慣れています。これはブラウザではまだサポートされていません。ブラウザで実行するには、これらのモジュール形式をブラウザ対応のモジュール形式に変換する必要があります。Polymerの開発サーバー(Polymer CLIの一部)はその変換を実行するので、開発中にビルドせずにプロジェクトをプレビューできます。もう1つの代替手段はOpen Web Components Dev Serverです。(`owc-dev-server`).
+
+ビルドプロセスにwebpackを使っているのなら、webpack devサーバーを使うこともできます。
+
+#### Polymer Dev Server
+
+Polymer CLIのインストール:
+
+```bash
+npm i -g polymer-cli
+```
+
+開発サーバーの実行:
+
+```bash
+polymer serve
+```
+
+Polymer CLIは、Webコンポーネント、JavaScriptモジュール、およびその他の最新のWebプラットフォームの機能を使用してプロジェクトの開発、テスト、および構築を支援するように設計されています。lit-htmlを使うのに必ずしも必要はありませんが、いくつかの便利なユーティリティを提供しています。
+
+#### Open Web Components開発サーバ
+
+Open Web Componentsプロジェクトは、nodeスタイルのモジュールをブラウザスタイルのモジュールに再マッピングする処理を行う開発サーバーを提供しています。
+
+インストールと使用方法については、[open-wc website](https://open-wc.org/developing/owc-dev-server.html)を参照してください。 
+
+<!-- original:
 ## Testing
 
 lit-html doesn't have many special testing requirements. If you already have a testing setup, it should work fine as long as it supports working with JavaScript modules (and node-style module specifiers, if you use them).
@@ -108,7 +198,20 @@ Web Component Tester (WCT) is an end-to-end testing environment that supports no
 * [wct-mocha](https://www.npmjs.com/package/wct-mocha). Just the WCT client-side library. You'll need to install your own version of Mocha, and any other add-ons you want.
 
 Alternately, you can also use the Karma test runner. The Open Web Components recommendations includes a [Karma setup](https://open-wc.org/testing/testing-karma.html#browser-testing) that resolves module dependencies by bundling with webpack before running tests. 
+-->
 
+## テスト
+
+lit-htmlはそれほどテストをするのに特別な要件はありません。テスト用の設定がすでにあって、JavaScriptモジュールがサポートされていれば問題なく動作するはずです。 (もしnodeスタイルのモジュール形式を使っていれば).
+
+Webコンポーネントテスター(WCT) は、nodeスタイルのモジュール形式をサポートするエンドツーエンドのテスト環境です。 Mochaテストフレームワークと(オプションで)Chaiアサーションライブラリと連携します。プロジェクトにWCTを追加する方法は2つあります。:
+
+* [web-component-tester](https://www.npmjs.com/package/web-component-tester) 完全なWCTパッケージをインストールするとMochaとChaiを含むその他いくつかのアドオンが提供されます。
+* [wct-mocha](https://www.npmjs.com/package/wct-mocha) WCTのクライアントサイドライブラリです。Mochaとその他アドオンを自分でインストールする必要があります。
+
+その他に、Karmaテストランナーも使えます。Open Web Componentsの推奨事項には、テストを実行する前にwebpackにバンドルすることによってモジュールの依存関係を解決する[Karmaのセットアップ](https://open-wc.org/testing/testing-karma.html#browser-testing)が含まれています。
+
+<!-- original:
 ## Build
 
 Build tools take your code and make it production-ready. Among the things you may need build tools to do:
@@ -192,3 +295,88 @@ As part of the build process, you'll probably want to minify the HTML templates.
 
 * [Babel plugin](https://github.com/cfware/babel-plugin-template-html-minifier). For build chains that use Babel for transpilation. The open-wc webpack default configuration uses this plugin.
 * [Rollup plugin](https://github.com/asyncLiz/rollup-plugin-minify-html-literals). If you're building your own Rollup configuration.
+-->
+
+## ビルド
+
+ビルドツールはコードをリリース可能な製品に仕上げます。その過程でビルドツールに求められるものは:
+
+* JavaScriptモジュールを他の形式に変換するなど、従来のブラウザ用にES6コードをES5に変換します。
+* モジュールをバンドルさせて転送する必要があるファイルの数を減らすことでサイトのパフォーマンスを向上させます。
+* JavaScript、HTML、およびCSSをミニファイします。
+
+多くのビルドツールでこれを実現できます。現時点ではPolymer CLIまたはWebpackをお勧めします。
+
+Polymer CLIには、最小限の設定でlit-htmlを処理できる一連のビルドツールが含まれています。
+
+webpackは様々なプラグインが使える大規模なエコシステムを備えた強力な構築ツールです。[Open Web Components](https://open-wc.org/building/#webpack)プロジェクトでは、lit-htmlとLitElementに適したwebpackのデフォルト設定を提供します。
+
+Rollupなどの他のツールも機能します。その他、独自のWebpack設定を作成している場合は、[他のツールによるビルドに関して](#build-consderations)のセクションを参照してください。
+
+### Polymer CLIを使ってプロジェクトをビルドする
+
+もともとPolymerライブラリと連動するように開発されたPolymer CLIですが、さまざまなプロジェクトのためのビルド作業を処理できます。WebpackやRollupほど柔軟で拡張性はありませんが、最小限の設定で済みます。
+
+Polymer CLIを使用してプロジェクトをビルドするには、最初にPolymer CLIをインストールしてください:
+
+`npm i -g polymer-cli`
+
+プロジェクトのディレクトリに`polymer.json`ファイルを作成してください。簡単な例はこのようになります:
+
+```json
+{
+  "entrypoint": "index.html",
+  "shell": "src/myapp.js",
+  "sources": [
+    "src/**.js",
+    "manifest/**",
+    "package.json"
+  ],
+  "extraDependencies": [
+    "node_modules/@webcomponents/webcomponentsjs/bundles/**"
+  ],
+  "builds": [
+    {"preset": "es6-bundled"}
+  ]
+}
+```
+
+この設定は、アプリが `index.html`というHTMLエントリポイントを持ち、`​​src/myapp.js`というメインのJavaScriptファイル（アプリシェル）を持つことを指定しています。バンドルが実行されますが、ES5には変換されません。polymer.jsonの詳細については、Polymerライブラリサイトの[polymer.jsonの仕様](https://polymer-library.polymer-project.org/3.0/docs/tools/polymer-json)を参照してください。
+
+プロジェクトをビルドするには、プロジェクトのディレクトリで次のコマンドを実行します:
+
+`polymer build`
+
+Polymer CLIを使用したビルドの詳細については、Polymerライブラリの[プロダクションへの構築](https://polymer-library.polymer-project.org/3.0/docs/apps/build-for-production)を参照してください。
+
+### webpackを使ってプロジェクトをビルドする
+
+
+Open Web Componentsを参照してください。デフォルトのWebpack構成はlit-htmlを使用するプロジェクトを構築するための優れたスタートポイントとなっています。[webpackについて](https://open-wc.org/building/building-webpack.html#default-configuration)書かれたインストラクションを参照してください。
+
+### 他のツールによるビルドに関して {#build-considerations}
+
+
+webpack、Rollup、または他のツール用に独自の設定を作成する場合、いくつか考慮すべきポイントがあります:
+
+* ES6からES5への変換。
+* JavaScriptモジュールを従来のブラウザ用の他の形式に変換する。
+* lit-htmlテンプレートのミニファイ
+
+#### ES5変換とモジュール変換
+
+ビルドツールは、従来のブラウザ用にES6の機能をES5に変換する必要があります。
+
+TypeScriptで作業している場合、TypeScriptコンパイラはブラウザごとに異なる出力を生成できます。
+
+* 一般に、ES6は同等のES5より速いので、ES6をサポートするブラウザにはES6で提供することを試みましょう。
+* TypeScriptは、ES5へのコンパイル時にわずかにバグのあるテンプレートリテラルを生成してしまうためパフォーマンスが低下する可能性があります。
+
+ビルドツールはJavaScriptモジュール（ESモジュールとも呼ばれる）を受け入れ、必要に応じてそれらをUMDなどの別のモジュール形式に変換する必要があります。nodeスタイルのモジュール形式を使用する場合、ビルド時にそれらをブラウザ対応のモジュール形式に変換する必要もあります。
+
+#### テンプレートのミニファイ
+
+ビルドプロセスの一環で、HTMLテンプレートをミニファイしたいと思うでしょう。ほとんどのHTMLミニファイツールは、lit-htmlで使用されているようにテンプレートリテラル内のHTMLをサポートしていません。そのため、lit-htmlテンプレートの縮小をサポートするビルドプラグインを使用する必要があります。lit-htmlテンプレートをミニファイすると、テンプレート内のノード数が減るため、パフォーマンスが向上します。
+
+* [Babelプラグイン](https://github.com/cfware/babel-plugin-template-html-minifier) ビルドプロセスの変換にBabelを使用します。open-wcのwebpackのデフォルト設定はこのプラグインを使っています。
+* [Rollupプラグイン](https://github.com/asyncLiz/rollup-plugin-minify-html-literals) 独自のRollupの設定を使用して構築する場合に使用します。
