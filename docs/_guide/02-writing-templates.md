@@ -119,7 +119,7 @@ By default, an expression in the value of an attribute creates an attribute bind
 
 ```js
 // set the class attribute
-const myTemplate(data) = html`<div class=${data.cssClass}>Stylish text.</div>`;
+const myTemplate = (data) => html`<div class=${data.cssClass}>Stylish text.</div>`;
 ```
 -->
 
@@ -143,7 +143,7 @@ Use the `?` prefix for a boolean attribute binding. The attribute is added if th
 '?'を接頭辞(prefix)に使うことによって属性に真偽値(boolean)を設定します。真偽値が真と評価された(truthy)時に属性が追加され、偽(falsy)の場合に取り除かれます:
 
 ```js
-const myTemplate2(data) = html`<div ?disabled=${!data.active}>Stylish text.</div>`;
+const myTemplate2 = (data) => html`<div ?disabled=${!data.active}>Stylish text.</div>`;
 ```
 
 ## プロパティへのバインド
@@ -155,7 +155,7 @@ You can also bind to a node's JavaScript properties using the `.` prefix and the
 nodeのJavaScriptプロパティにバインドするには`.`を接頭辞を使います:
 
 ```js
-const myTemplate3(data) = html`<my-list .listItems=${data.items}></my-list>`;
+const myTemplate3 = (data) => html`<my-list .listItems=${data.items}></my-list>`;
 ```
 
 <!-- original:
@@ -238,7 +238,7 @@ You can use any expression that returns a `TemplateResult`, like another templat
 // some complex view
 const myListView = (items) => html`<ul>...</ul>`;
 
-const myPage(data) = html`
+const myPage = (data) => html`
   ${myHeader}
   ${myListView(data.items)}
 `;
